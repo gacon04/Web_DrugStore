@@ -1,0 +1,137 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="ltn__utilize-overlay"></div>
+
+<!-- BREADCRUMB AREA START -->
+<div class="ltn__breadcrumb-area text-left bg-overlay-white-30 bg-image " data-bs-bg="~/Content/img/bg/contact_bg.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ltn__breadcrumb-inner">
+                    <h1 class="page-title">LIÊN HỆ VỚI CHÚNG TÔI</h1>
+                    <div class="ltn__breadcrumb-list">
+                        <ul>
+                            <li><a asp><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Trang chủ</a></li>
+                            <li>Liên hệ</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BREADCRUMB AREA END -->
+<!-- CONTACT ADDRESS AREA START -->
+<div class="ltn__contact-address-area mb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="ltn__contact-address-item ltn__contact-address-item-3 box-shadow">
+                    <div class="ltn__contact-address-icon">
+                        <img src="~/Content/img/icons/10_2.png" alt="Icon Image">
+                    </div>
+                    <h3>Địa chỉ Email</h3>
+                    <p>
+                        sale@nhathuoclongchau.com.vn <br>
+                        cskh@pharmacity.com
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ltn__contact-address-item ltn__contact-address-item-3 box-shadow">
+                    <div class="ltn__contact-address-icon">
+                        <img src="~/Content/img/icons/11_2.png" alt="Icon Image">
+                    </div>
+                    <h3>Số Hotline</h3>
+                    <p>1800 6821 <br>1800 6928</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ltn__contact-address-item ltn__contact-address-item-3 box-shadow">
+                    <div class="ltn__contact-address-icon">
+                        <img src="~/Content/img/icons/12_2.png" alt="Icon Image">
+                    </div>
+                    <h3>Địa chỉ liên hệ</h3>
+                    <p>
+                        248A Nơ Trang Long, P.12  <br>
+                        Q.Bình Thạnh, TP.HCM
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- CONTACT ADDRESS AREA END -->
+<!-- CONTACT MESSAGE AREA START -->
+@model Web_DrugStore.Models.TinNhanLienHe
+
+<div class="ltn__contact-message-area mb-120 mb--100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ltn__form-box contact-form-box box-shadow white-bg">
+                    <h4 class="title-2">PHARMAVILLAGE XIN HÂN HẠNH ĐƯỢC HỖ TRỢ QUÝ KHÁCH</h4>
+                    <form action="/About/Contact" method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-item input-item-name ltn__custom-icon">
+                                    <input name="HoTen" type="text" placeholder="Họ và tên của quý khách" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-item input-item-email ltn__custom-icon">
+                                    <input name="Email" type="email" placeholder="Email của quý khách (không bắt buộc)" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-item input-item-subject ltn__custom-icon">
+                                    <input name="TieuDe" type="text" placeholder="Tiêu đề" />
+                                    <span asp-validation-for="Subject" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-item input-item-phone ltn__custom-icon">
+                                    <input name="SDT" type="text" placeholder="Số điện thoại của quý khách" />
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-item input-item-textarea ltn__custom-icon">
+                            <textarea name="NoiDung" placeholder="Nội dung (xin quý khách mô tả chi tiết) *"></textarea>
+                            <span asp-validation-for="Message" class="text-danger"></span>
+                        </div>
+                        <div class="btn-wrapper mt-0">
+                            <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">GỬI GÓP Ý</button>
+                        </div>
+                        @Html.Partial("_ValidationScriptsPartial")
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        // Kiểm tra nếu TempData có thông báo thành công
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <text>
+                alert('@TempData["SuccessMessage"]');
+            </text>
+        }
+    </script>
+}
+
+<!-- Thêm validation script
+<!-- CONTACT MESSAGE AREA END -->
+<!-- GOOGLE MAP AREA START -->
+<div class="google-map mb-120">
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.9685096163244!2d106.69498671153919!3d10.813721758458362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528eafd15351f%3A0x71b059884334d818!2sPharmacity%20Pharmacy%20Joint%20Stock%20Company!5e0!3m2!1svi!2s!4v1726743415047!5m2!1svi!2s" width="100%" height="100%" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+</div>
+<!-- GOOGLE MAP AREA END -->

@@ -1,0 +1,388 @@
+﻿
+@{
+    ViewBag.Title = "FAQ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="ltn__utilize-overlay"></div>
+
+<!-- BREADCRUMB AREA START -->
+<div class="ltn__breadcrumb-area text-left bg-overlay-white-30 bg-image " data-bs-bg="img/bg/14.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ltn__breadcrumb-inner">
+                    <h1 class="page-title">Câu hỏi thường gặp</h1>
+                    <div class="ltn__breadcrumb-list">
+                        <ul>
+                            <li><a href="@Url.Action("Index","Home")"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Home</a></li>
+                            <li>FAQ</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BREADCRUMB AREA END -->
+<!-- FAQ AREA START (faq-2) (ID > accordion_2) -->
+<div class="ltn__faq-area mb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="ltn__faq-inner ltn__faq-inner-2">
+                    <div id="accordion_2">
+                        <!-- card -->
+                        <div class="card">
+                            <h6 class="collapsed ltn__card-title" data-bs-toggle="collapse" data-bs-target="#faq-item-2-1" aria-expanded="false">
+                                Tôi cần hỗ trợ/ liên hệ (phản ánh dịch vụ mua hàng: thiếu thuốc/ sai quy cách/ thối tiền nhầm/cách sử dụng thuốc..)
+                            </h6>
+                            <div id="faq-item-2-1" class="collapse" data-bs-parent="#accordion_2">
+                                <div class="card-body">
+                                    <p>Mọi thông tin phản hồi về chất lượng dịch vụ quý khách hàng có thể gửi về hòm thư: cskh@PharmaVillage.com hoặc liên hệ trực tiếp Hotline 1800 6821 đội ngũ PharmaVillagehỗ trợ nhanh nhất nhé.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card -->
+                        <div class="card">
+                            <h6 class="ltn__card-title" data-bs-toggle="collapse" data-bs-target="#faq-item-2-2" aria-expanded="true">
+                                Nhà thuốc có thanh toán online không
+                            </h6>
+                            <div id="faq-item-2-2" class="collapse show" data-bs-parent="#accordion_2">
+                                <div class="card-body">
+
+                                    <div class="container">
+
+                                        <h4>Thông Tin Thanh Toán</h4>
+                                        <p>Quý khách có thể thực hiện thanh toán trực tuyến thông qua chuyển khoản ngân hàng với thông tin sau:</p>
+                                        <div class="payment-info">
+                                            <p><strong>Ngân hàng:</strong> MBBank - PGD Gia Lai</p>
+                                            <p><strong>Chủ tài khoản:</strong> TRAN NGOC MINH</p>
+                                            <p><strong>Số tài khoản:</strong> 061 2771 0111</p>
+                                        </div>
+                                        <p>Sau khi hoàn tất chuyển khoản, xin vui lòng chờ xác nhận từ nhân viên của chúng tôi. Chúng tôi sẽ hỗ trợ Quý khách kiểm tra và hoàn tất giao dịch một cách nhanh chóng.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card -->
+                        <div class="card">
+                            <h6 class="collapsed ltn__card-title" data-bs-toggle="collapse" data-bs-target="#faq-item-2-3" aria-expanded="false">
+                                Tôi muốn đặt hàng và giao tận nơi
+                            </h6>
+                            <div id="faq-item-2-3" class="collapse" data-bs-parent="#accordion_2">
+                                <div class="card-body">
+                                    <div class="container">
+                                        <h3>Hướng Dẫn Đặt Hàng</h3>
+                                        <ul class="steps">
+                                            <li>
+                                                <strong>Bước 1:</strong> Quý khách tìm kiếm và sau đó chọn sản phẩm cần mua.
+                                            </li>
+                                            <li>
+                                                <strong>Bước 2:</strong> Xem thông tin chi tiết sản phẩm đó ở nội dung bên dưới sản phẩm.
+                                                Quý khách đồng ý muốn đặt hàng, quý khách chọn số lượng cần mua sau đó ấn vào nút “Chọn mua” và tới giỏ hàng điền thông tin mua hàng.
+                                                Với các sản phẩm cần được hỗ trợ tư vấn, quý khách chọn “chat với nhân viên” để được tư vấn và hỗ trợ.
+                                            </li>
+                                            <li>
+                                                <strong>Bước 3:</strong> Quý khách điền đầy đủ thông tin mua hàng theo mẫu:
+                                                <ul>
+                                                    <li>Họ tên</li>
+                                                    <li>Số điện thoại</li>
+                                                    <li>Email</li>
+                                                    <li>Địa chỉ</li>
+                                                </ul>
+                                                <br>
+                                                Chọn phương thức thanh toán: trả tiền mặt khi nhận hàng, hoặc thanh toán bằng thẻ ATM nội địa/ internet banking hoặc thẻ thanh toán quốc tế visa, master, JCB,...
+                                            </li>
+                                            <li>
+                                                <strong>Bước 4:</strong> Sau khi đã điền đầy đủ thông tin, quý khách chọn “hoàn tất đặt hàng” để hoàn thành đơn hàng.
+                                            </li>
+                                            <li>
+                                                <strong>Bước 5:</strong> Sau khi nhận được đơn hàng từ quý khách, Huy Mai Pharmacy sẽ liên hệ đến quý khách và xác nhận đơn hàng.
+                                            </li>
+                                            <li>
+                                                <strong>Bước 6:</strong> Huy Mai Pharmacy phục vụ giao hàng đến tận nhà quý khách.
+                                            </li>
+                                            </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card -->
+                        <div class="card">
+                            <h6 class="collapsed ltn__card-title" data-bs-toggle="collapse" data-bs-target="#faq-item-2-4" aria-expanded="false">
+                                Nhà thuốc có sản phẩm này không? Bên mình có bán thuốc này không?
+                            </h6>
+                            <div id="faq-item-2-4" class="collapse" data-bs-parent="#accordion_2">
+                                <div class="card-body">
+                                    <p>Dạ quý khách vui lòng gửi hình ảnh kèm một số thông tin như tên thuốc, công dụng để PharmaVillage hỗ trợ kiểm tra cho mình nhé.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card -->
+                        <div class="card">
+                            <h6 class="collapsed ltn__card-title" data-bs-toggle="collapse" data-bs-target="#faq-item-2-5" aria-expanded="false">
+                                Nhà thuốc có toa thuốc này không?
+                            </h6>
+                            <div id="faq-item-2-5" class="collapse" data-bs-parent="#accordion_2">
+                                <div class="card-body">
+                                    <p>Dạ quý khách có thể cung cấp thông tin số điện thoại để dược sĩ khu vực liên hệ hỗ trợ cung cấp thông tin cho mình nhé.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="need-support text-center mt-100">
+                        <h2>Vẫn cần hỗ trợ? Kết nối ngay để nhận hỗ trợ 24/7:</h2>
+                        <div class="btn-wrapper mb-30">
+                            <a href="@Url.Action("Contact","About")" class="theme-btn-1 btn">Liên hệ với chúng tôi</a>
+                        </div>
+                        <h3><i class="fas fa-phone"></i> 1800 6821</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <aside class="sidebar-area ltn__right-sidebar">
+                    <!-- Newsletter Widget
+                    <div class="widget ltn__search-widget ltn__newsletter-widget">
+                        <h6 class="ltn__widget-sub-title">// subscribe</h6>
+                        <h4 class="ltn__widget-title">Nhận thông tin mới</h4>
+                        <form action="#">
+                            <input type="text" name="search" placeholder="Search">
+                            <button type="submit"><i class="fas fa-search"></i></button>
+                        </form>
+                        <div class="ltn__newsletter-bg-icon">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                    </div> -->
+                    <!-- Banner Widget -->
+                    <div class="widget ltn__banner-widget">
+                        <a href="@Url.Action("AllProducts","Product")"><img src="img/banner/banner-3.jpg" alt="Banner Image"></a>
+                    </div>
+
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FAQ AREA START -->
+<!-- COUNTER UP AREA START -->
+<div class="ltn__counterup-area section-bg-1 bg-image bg-overlay-theme-black-80--- pt-115 pb-70" data-bs-bg="img/bg/30.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 align-self-center">
+                <div class="ltn__counterup-item text-center">
+                    <div class="counter-icon">
+                        <!-- <img src="img/icons/icon-img/2.png" alt="#">  -->
+                        <i class="flaticon-add-user-1"></i>
+                    </div>
+                    <h1><span class="counter">733</span><span class="counterUp-icon">+</span> </h1>
+                    <h6>Active Clients</h6>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 align-self-center">
+                <div class="ltn__counterup-item text-center">
+                    <div class="counter-icon">
+                        <!-- <img src="img/icons/icon-img/3.png" alt="#">  -->
+                        <i class="flaticon-dining-table-with-chairs"></i>
+                    </div>
+                    <h1><span class="counter">33</span><span class="counterUp-letter">K</span><span class="counterUp-icon">+</span> </h1>
+                    <h6>Cup Of Coffee</h6>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 align-self-center">
+                <div class="ltn__counterup-item text-center">
+                    <div class="counter-icon">
+                        <!-- <img src="img/icons/icon-img/3.png" alt="#">  -->
+                        <i class="flaticon-package"></i>
+                    </div>
+                    <h1><span class="counter">100</span><span class="counterUp-icon">+</span> </h1>
+                    <h6>Get Rewards</h6>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 align-self-center">
+                <div class="ltn__counterup-item text-center">
+                    <div class="counter-icon">
+                        <!-- <img src="img/icons/icon-img/3.png" alt="#">  -->
+                        <i class="flaticon-maps-and-location"></i>
+                    </div>
+                    <h1><span class="counter">21</span><span class="counterUp-icon">+</span> </h1>
+                    <h6>Country Cover</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- COUNTER UP AREA END -->
+<!-- BLOG AREA START (blog-3) -->
+<div class="ltn__blog-area pt-120 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title-area ltn__section-title-2--- text-center">
+                    <h6 class="section-subtitle section-subtitle-2 ltn__secondary-color">News & Blogs</h6>
+                    <h1 class="section-title">Leatest News Feeds</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row  ltn__blog-slider-one-active slick-arrow-1 ltn__blog-item-3-normal">
+            <!-- Blog Item -->
+            <div class="col-lg-12">
+                <div class="ltn__blog-item ltn__blog-item-3">
+                    <div class="ltn__blog-img">
+                        <a href="blog-details.html"><img src="img/blog/1.jpg" alt="#"></a>
+                    </div>
+                    <div class="ltn__blog-brief">
+                        <div class="ltn__blog-meta">
+                            <ul>
+                                <li class="ltn__blog-author">
+                                    <a href="#"><i class="far fa-user"></i>by: Admin</a>
+                                </li>
+                                <li class="ltn__blog-tags">
+                                    <a href="#"><i class="fas fa-tags"></i>Decorate</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <h3 class="ltn__blog-title"><a href="blog-details.html">10 Brilliant Ways To Decorate Your Home</a></h3>
+                        <div class="ltn__blog-meta-btn">
+                            <div class="ltn__blog-meta">
+                                <ul>
+                                    <li class="ltn__blog-date"><i class="far fa-calendar-alt"></i>June 24, 2021</li>
+                                </ul>
+                            </div>
+                            <div class="ltn__blog-btn">
+                                <a href="blog-details.html">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog Item -->
+            <div class="col-lg-12">
+                <div class="ltn__blog-item ltn__blog-item-3">
+                    <div class="ltn__blog-img">
+                        <a href="blog-details.html"><img src="img/blog/2.jpg" alt="#"></a>
+                    </div>
+                    <div class="ltn__blog-brief">
+                        <div class="ltn__blog-meta">
+                            <ul>
+                                <li class="ltn__blog-author">
+                                    <a href="#"><i class="far fa-user"></i>by: Admin</a>
+                                </li>
+                                <li class="ltn__blog-tags">
+                                    <a href="#"><i class="fas fa-tags"></i>Interior</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <h3 class="ltn__blog-title"><a href="blog-details.html">The Most Inspiring Interior Design Of 2021</a></h3>
+                        <div class="ltn__blog-meta-btn">
+                            <div class="ltn__blog-meta">
+                                <ul>
+                                    <li class="ltn__blog-date"><i class="far fa-calendar-alt"></i>July 23, 2021</li>
+                                </ul>
+                            </div>
+                            <div class="ltn__blog-btn">
+                                <a href="blog-details.html">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog Item -->
+            <div class="col-lg-12">
+                <div class="ltn__blog-item ltn__blog-item-3">
+                    <div class="ltn__blog-img">
+                        <a href="blog-details.html"><img src="img/blog/3.jpg" alt="#"></a>
+                    </div>
+                    <div class="ltn__blog-brief">
+                        <div class="ltn__blog-meta">
+                            <ul>
+                                <li class="ltn__blog-author">
+                                    <a href="#"><i class="far fa-user"></i>by: Admin</a>
+                                </li>
+                                <li class="ltn__blog-tags">
+                                    <a href="#"><i class="fas fa-tags"></i>Estate</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <h3 class="ltn__blog-title"><a href="blog-details.html">Recent Commercial Real Estate Transactions</a></h3>
+                        <div class="ltn__blog-meta-btn">
+                            <div class="ltn__blog-meta">
+                                <ul>
+                                    <li class="ltn__blog-date"><i class="far fa-calendar-alt"></i>May 22, 2021</li>
+                                </ul>
+                            </div>
+                            <div class="ltn__blog-btn">
+                                <a href="blog-details.html">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog Item -->
+            <div class="col-lg-12">
+                <div class="ltn__blog-item ltn__blog-item-3">
+                    <div class="ltn__blog-img">
+                        <a href="blog-details.html"><img src="img/blog/4.jpg" alt="#"></a>
+                    </div>
+                    <div class="ltn__blog-brief">
+                        <div class="ltn__blog-meta">
+                            <ul>
+                                <li class="ltn__blog-author">
+                                    <a href="#"><i class="far fa-user"></i>by: Admin</a>
+                                </li>
+                                <li class="ltn__blog-tags">
+                                    <a href="#"><i class="fas fa-tags"></i>Room</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <h3 class="ltn__blog-title"><a href="blog-details.html">Renovating a Living Room? Experts Share Their Secrets</a></h3>
+                        <div class="ltn__blog-meta-btn">
+                            <div class="ltn__blog-meta">
+                                <ul>
+                                    <li class="ltn__blog-date"><i class="far fa-calendar-alt"></i>June 24, 2021</li>
+                                </ul>
+                            </div>
+                            <div class="ltn__blog-btn">
+                                <a href="blog-details.html">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog Item -->
+            <div class="col-lg-12">
+                <div class="ltn__blog-item ltn__blog-item-3">
+                    <div class="ltn__blog-img">
+                        <a href="blog-details.html"><img src="img/blog/5.jpg" alt="#"></a>
+                    </div>
+                    <div class="ltn__blog-brief">
+                        <div class="ltn__blog-meta">
+                            <ul>
+                                <li class="ltn__blog-author">
+                                    <a href="#"><i class="far fa-user"></i>by: Admin</a>
+                                </li>
+                                <li class="ltn__blog-tags">
+                                    <a href="#"><i class="fas fa-tags"></i>Trends</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <h3 class="ltn__blog-title"><a href="blog-details.html">7 home trends that will shape your house in 2021</a></h3>
+                        <div class="ltn__blog-meta-btn">
+                            <div class="ltn__blog-meta">
+                                <ul>
+                                    <li class="ltn__blog-date"><i class="far fa-calendar-alt"></i>June 24, 2021</li>
+                                </ul>
+                            </div>
+                            <div class="ltn__blog-btn">
+                                <a href="blog-details.html">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+        </div>
+    </div>
+</div>
+<!-- BLOG AREA END -->
