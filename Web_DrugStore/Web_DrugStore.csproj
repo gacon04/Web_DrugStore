@@ -52,6 +52,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.67.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.67\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -129,6 +132,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
@@ -145,6 +150,14 @@
     <Compile Include="Migrations\202410080552531_InitialCreate.Designer.cs">
       <DependentUpon>202410080552531_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410090307024_UpdateBlogModel.cs" />
+    <Compile Include="Migrations\202410090307024_UpdateBlogModel.Designer.cs">
+      <DependentUpon>202410090307024_UpdateBlogModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410090324024_AddHoTenToTaiKhoan.cs" />
+    <Compile Include="Migrations\202410090324024_AddHoTenToTaiKhoan.Designer.cs">
+      <DependentUpon>202410090324024_AddHoTenToTaiKhoan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ChiTietDonHang.cs" />
@@ -154,6 +167,7 @@
     <Compile Include="Models\DonHang.cs" />
     <Compile Include="Models\DS_DBContext.cs" />
     <Compile Include="Models\GioHang.cs" />
+    <Compile Include="Models\HinhAnhSanPham.cs" />
     <Compile Include="Models\SanPham.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\TinNhanLienHe.cs" />
@@ -594,6 +608,8 @@
     <Content Include="Content\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\webfonts\fa-solid-900.woff" />
     <Content Include="Content\webfonts\fa-solid-900.woff2" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Customer\Views\web.config" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -634,8 +650,18 @@
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Product\ProdDetail.cshtml" />
+    <Content Include="Views\Blog\Create.cshtml" />
+    <Content Include="Views\Blog\BlogDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Customer\Controllers\" />
+    <Folder Include="Areas\Customer\Data\" />
+    <Folder Include="Areas\Customer\Views\Shared\" />
+    <Folder Include="Area\" />
     <Folder Include="Content\img\TinTuc\" />
     <Folder Include="Content\media\" />
     <Folder Include="Views\Cart\" />
@@ -671,6 +697,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202410080552531_InitialCreate.resx">
       <DependentUpon>202410080552531_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410090307024_UpdateBlogModel.resx">
+      <DependentUpon>202410090307024_UpdateBlogModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410090324024_AddHoTenToTaiKhoan.resx">
+      <DependentUpon>202410090324024_AddHoTenToTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

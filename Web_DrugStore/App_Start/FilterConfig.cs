@@ -8,6 +8,7 @@ namespace Web_DrugStore
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new ValidateInputAttribute(false));
         }
     }
 }

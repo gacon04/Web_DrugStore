@@ -14,6 +14,7 @@ namespace Web_DrugStore.Controllers
         DS_DBContext db = new DS_DBContext();
 
         // Hiển thị danh sách tất cả sản phẩm
+        [Route("TatCaSanPham")]
         public ActionResult AllProducts()
         {
 
@@ -21,6 +22,11 @@ namespace Web_DrugStore.Controllers
             return View(sanphams);
         }
 
+        public ActionResult ProdDetail()
+        {
+
+            return View();
+        }
         // Hiển thị form tạo sản phẩm
         public ActionResult Create()
         {

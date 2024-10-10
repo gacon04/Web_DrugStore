@@ -21,6 +21,9 @@ namespace Web_DrugStore.Models
         public string Email { get; set; }
 
         [Required]
+        [StringLength(255)]
+        public string HoTen { get; set; }
+        [Required]
         [Phone]
         public string SDT { get; set; }
 

@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Tạo bài viết mới";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Web_DrugStore.Models.Blog
+
+
+<h2>Tạo bài viết mới</h2>
+
+@using (Html.BeginForm("Create", "Blog", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.TieuDe)
+        @Html.TextBoxFor(model => model.TieuDe, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.TieuDe)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NoiDung)
+        @Html.TextAreaFor(model => model.NoiDung, new { @class = "form-control", @id = "editor" })
+        @Html.ValidationMessageFor(model => model.NoiDung)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DuongDanHinhAnh)
+        @Html.TextBoxFor(model => model.DuongDanHinhAnh, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.DuongDanHinhAnh)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu bài viết</button>
+}
+
+@section Scripts {
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('editor'); // Biến textarea thành trình soạn thảo CKEditor
+    </script>
+}
+

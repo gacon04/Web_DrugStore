@@ -13,6 +13,10 @@ namespace Web_DrugStore
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // Bật Attribute Routing
+            routes.MapMvcAttributeRoutes();
+
+            // Route mặc định
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

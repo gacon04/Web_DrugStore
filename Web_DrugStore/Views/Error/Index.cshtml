@@ -1,8 +1,27 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "404 - Lỗi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-
+<div class="ltn__404-area ltn__404-area-1 mb-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="error-404-inner text-center">
+                    <div class="error-img mb-30">
+                        <img src="img/others/error-1.png" alt="#">
+                    </div>
+                    <h1 class="error-404-title d-none">404</h1>
+                    <h2>Trang Bạn Truy Cập Không Tồn Tại !</h2>
+                    <!-- <h3>Oops! Looks like something going rong</h3> -->
+                    
+                    <div class="btn-wrapper">
+                        <a href="@Url.Action("Index","Home")" class="btn btn-transparent"><i class="fas fa-long-arrow-alt-left"></i> TRỞ LẠI TRANG CHỦ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
