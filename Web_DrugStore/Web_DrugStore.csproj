@@ -158,6 +158,10 @@
     <Compile Include="Migrations\202410090324024_AddHoTenToTaiKhoan.Designer.cs">
       <DependentUpon>202410090324024_AddHoTenToTaiKhoan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410100255347_UpdateFullSanPhamFieldAndHinhAnhSP.cs" />
+    <Compile Include="Migrations\202410100255347_UpdateFullSanPhamFieldAndHinhAnhSP.Designer.cs">
+      <DependentUpon>202410100255347_UpdateFullSanPhamFieldAndHinhAnhSP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ChiTietDonHang.cs" />
@@ -703,6 +707,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410090324024_AddHoTenToTaiKhoan.resx">
       <DependentUpon>202410090324024_AddHoTenToTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410100255347_UpdateFullSanPhamFieldAndHinhAnhSP.resx">
+      <DependentUpon>202410100255347_UpdateFullSanPhamFieldAndHinhAnhSP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
