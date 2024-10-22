@@ -1,0 +1,246 @@
+﻿
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="ltn__utilize-overlay"></div>
+
+<!-- BREADCRUMB AREA START -->
+<div class="ltn__breadcrumb-area text-left bg-overlay-white-30 bg-image " data-bs-bg="img/bg/14.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ltn__breadcrumb-inner">
+                    <h1 class="page-title">Thanh toán</h1>
+                    <div class="ltn__breadcrumb-list">
+                        <ul>
+                            <li><a href="index.html"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Home</a></li>
+                            <li>Thanh toán</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BREADCRUMB AREA END -->
+<!-- WISHLIST AREA START -->
+<div class="ltn__checkout-area mb-105">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ltn__checkout-inner">
+                    <div class="ltn__checkout-single-content ltn__returning-customer-wrap">
+                        <h5>Đã có tài khoản? <a class="ltn__secondary-color" href="#ltn__returning-customer-login" data-bs-toggle="collapse">Đăng nhập</a></h5>
+                        <div id="ltn__returning-customer-login" class="collapse ltn__checkout-single-content-info">
+                            <div class="ltn_coupon-code-form ltn__form-box">
+                                <p>Vui lòng đăng nhập tài khoản của bạn</p>
+                                <form action="#">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-item input-item-name ltn__custom-icon">
+                                                <input type="text" name="ltn__name" placeholder="Enter your name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-item input-item-email ltn__custom-icon">
+                                                <input type="email" name="ltn__email" placeholder="Enter email address">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase">Đăng nhập</button>
+                                    <label class="input-info-save mb-0"><input type="checkbox" name="agree"> Lưu tài khoản</label>
+                                    <p class="mt-30"><a href="register.html">Quên mật khẩu?</a></p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ltn__checkout-single-content ltn__coupon-code-wrap">
+                        <h5>Có mã giảm giá? <a class="ltn__secondary-color" href="#ltn__coupon-code" data-bs-toggle="collapse">Click để nhập mã giảm giá</a></h5>
+                        <div id="ltn__coupon-code" class="collapse ltn__checkout-single-content-info">
+                            <div class="ltn__coupon-code-form">
+                                <p>Điền vào mã giảm giá (nếu có) </p>
+                                <form action="#">
+                                    <input type="text" name="coupon-code" placeholder="Coupon code">
+                                    <button class="btn theme-btn-2 btn-effect-2 text-uppercase">ÁP DỤNG</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ltn__checkout-single-content mt-50">
+                        <h4 class="title-2">Chi tiết hoá đơn</h4>
+                        <div class="ltn__checkout-single-content-info">
+                            <form action="#">
+                                <h6>Thông tin cá nhân</h6>
+                                <div class="row">
+                                    <!-- <div class="col-md-6">
+                                        <div class="input-item input-item-name ltn__custom-icon">
+                                            <input type="text" name="ltn__name" placeholder="Họn">
+                                        </div>
+                                    </div> -->
+                                    <div class="col-md-6">
+                                        <div class="input-item input-item-name ltn__custom-icon">
+                                            <input type="text" name="ltn__lastname" placeholder="Họ và tên">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-item input-item-email ltn__custom-icon">
+                                            <input type="email" name="ltn__email" placeholder="Địa chỉ email">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-item input-item-phone ltn__custom-icon">
+                                            <input type="text" name="ltn__phone" placeholder="Số điện thoại">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="input-item input-item-website ltn__custom-icon">
+                                            <input type="text" name="ltn__phone" placeholder="Địa chỉ nơi làm việc (Tuỳ chọn)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- <div class="col-lg-4 col-md-6">
+                                        <h6>Country</h6>
+                                        <div class="input-item">
+                                            <select class="nice-select">
+                                                <option>Select Country</option>
+                                                <option>Australia</option>
+                                                <option>Canada</option>
+                                                <option>China</option>
+                                                <option>Morocco</option>
+                                                <option>Saudi Arabia</option>
+                                                <option>United Kingdom (UK)</option>
+                                                <option>United States (US)</option>
+                                            </select>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-lg-12 col-md-12">
+                                        <h6>Địa chỉ</h6>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-item">
+                                                    <input type="text" placeholder="Số nhà, tên đường">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-item">
+                                                    <input type="text" placeholder="Số căn hộ ... (tuỳ chọn)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6">
+                                        <h6>Xã / Phường</h6>
+                                        <div class="input-item">
+                                            <input type="text" placeholder="Tên xã / Tên phường">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6">
+                                        <h6>Quận / Huyện </h6>
+                                        <div class="input-item">
+                                            <input type="text" placeholder="Tên quận / Tên huyện">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6">
+                                        <h6>Tỉnh</h6>
+                                        <div class="input-item">
+                                            <input type="text" placeholder="Tên Tỉnh">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <p><label class="input-info-save mb-0"><input type="checkbox" name="agree"> Create an account?</label></p> -->
+                                <h6>Ghi chú thêm (optional)</h6>
+                                <div class="input-item input-item-textarea ltn__custom-icon">
+                                    <textarea name="ltn__message" placeholder="Các yêu cầu đặc biệt về thời gian giao hàng, địa chỉ, vv..."></textarea>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="ltn__checkout-payment-method mt-50">
+                    <h4 class="title-2">Phương thức thanh toán</h4>
+                    <div id="checkout_accordion_1">
+                        <!-- card -->
+                        <!-- <div class="card">
+                            <h5 class="collapsed ltn__card-title" data-bs-toggle="collapse" data-bs-target="#faq-item-2-1" aria-expanded="false">
+                                Check payments
+                            </h5>
+                            <div id="faq-item-2-1" class="collapse" data-bs-parent="#checkout_accordion_1">
+                                <div class="card-body">
+                                    <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- card -->
+                        <div class="card">
+                            <h5 class="ltn__card-title" data-bs-toggle="collapse" data-bs-target="#faq-item-2-2" aria-expanded="true">
+                                Thanh toán khi nhận hàng (COD)
+                            </h5>
+                            <div id="faq-item-2-2" class="collapse show" data-bs-parent="#checkout_accordion_1">
+                                <div class="card-body">
+                                    <p>Trả tiền mặt khi nhận hàng, an tâm và thuận tiện!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card -->
+                        <div class="card">
+                            <h5 class="collapsed ltn__card-title" data-bs-toggle="collapse" data-bs-target="#faq-item-2-3" aria-expanded="false">
+                                PayPal <img src="img/icons/payment-3.png" alt="#">
+                            </h5>
+                            <div id="faq-item-2-3" class="collapse" data-bs-parent="#checkout_accordion_1">
+                                <div class="card-body">
+                                    <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ltn__payment-note mt-30 mb-30">
+                        <p>Dữ liệu cá nhân của bạn sẽ được sử dụng để xử lý đơn hàng, hỗ trợ trải nghiệm của bạn trên trang web này, và cho các mục đích khác được mô tả trong chính sách bảo mật của chúng tôi.</p>
+                    </div>
+                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Hoàn tất đặt hàng</button>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="shoping-cart-total mt-50">
+                    <h4 class="title-2">Cart Totals</h4>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Digital Stethoscope <strong>× 2</strong></td>
+                                <td>$298.00</td>
+                            </tr>
+                            <tr>
+                                <td>Cosmetic Containers <strong>× 2</strong></td>
+                                <td>$170.00</td>
+                            </tr>
+                            <tr>
+                                <td>Antiseptic Spray <strong>× 2</strong></td>
+                                <td>$150.00</td>
+                            </tr>
+                            <tr>
+                                <td>Shipping and Handing</td>
+                                <td>$15.00</td>
+                            </tr>
+                            <tr>
+                                <td>Vat</td>
+                                <td>$00.00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Order Total</strong></td>
+                                <td><strong>$633.00</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- WISHLIST AREA START -->
+

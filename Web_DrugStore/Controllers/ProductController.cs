@@ -19,6 +19,8 @@ namespace Web_DrugStore.Controllers
         {
 
             List<SanPham> sanphams = db.SanPhams.ToList();
+            List<DanhMuc> danhmuc_left = db.DanhMucs.Where(d => d.DanhMucCha == null).ToList();
+            ViewBag.ListDanhMuc = danhmuc_left;
             return View(sanphams);
         }
 

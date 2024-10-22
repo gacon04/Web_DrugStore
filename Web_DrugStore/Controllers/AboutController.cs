@@ -31,7 +31,7 @@ namespace Web_DrugStore.Controllers
                 _context.TinNhanLienHes.Add(tinnhan);
                 _context.SaveChanges();
 
-                TempData["SuccessMessage"] = "PharmaVillage ghi nhận phản hồi!";
+                TempData["SuccessMessage"] = "PharmaVillage đã ghi nhận phản hồi của bạn, chúng tôi sẽ hồi đáp sớm nhất!";
                 // Chuyển hướng đến trang thành công
                 return RedirectToAction("Contact");
             }

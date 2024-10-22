@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Tất cả sản phẩm - PharmaVillage";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var danhmucList = ViewBag.ListDanhMuc as List<Web_DrugStore.Models.DanhMuc>; 
 }
 <div class="ltn__utilize-overlay"></div>
 
@@ -500,13 +501,12 @@
                     <div class="widget ltn__menu-widget">
                         <h4 class="ltn__widget-title ltn__widget-title-border">Danh mục sản phẩm</h4>
                         <ul>
-                            <li><a href="portfolio-details.html">Hand Sanitizer <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                            <li><a href="portfolio-details.html">Lab N95 Face Mask <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                            <li><a href="portfolio-details.html">Hand Gloves <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                            <li><a href="portfolio-details.html">Medical Equipment <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                            <li><a href="portfolio-details.html">Mới Arrival Product <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                            <li><a href="portfolio-details.html">Uncategorized <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                            <li><a href="portfolio-details.html">Special Offers <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
+                            @foreach (var danhmuc in danhmucList)
+                            {
+                                <li><a href="portfolio-details.html">@danhmuc.TenDanhMuc<span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
+
+                            }
+
                         </ul>
                     </div>
                     <!-- Price Filter Widget -->
