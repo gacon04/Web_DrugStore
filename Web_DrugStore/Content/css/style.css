@@ -365,7 +365,7 @@ body {
   color: var(--ltn__paragraph-color);
   font-weight: 350;
   font-style: normal;
-  font-size: 13px;
+  font-size: 15px;
   font-family: var(--ltn__body-font);
   line-height: 1.8;
   margin: 0 auto; }
@@ -3578,7 +3578,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
     .ltn__tagcloud-widget ul li a {
       display: block;
       padding: 8px 24px 6px;
-      font-size: 13px;
+      font-size: 14px;
       text-transform: uppercase;
       background-color: var(--section-bg-1);
       font-weight: 700;
