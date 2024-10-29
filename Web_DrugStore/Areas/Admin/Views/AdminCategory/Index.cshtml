@@ -1,13 +1,16 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách danh mục - PharmaVillage";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.ManageAction = "Quản lý danh mục";
+    ViewBag.RealisticAction = "Xem danh sách danh mục";
+    ViewBag.ManageActionName = "Index";
+    ViewBag.ManageControllerName = "AdminCategory";
 }
 @model List<Web_DrugStore.Models.DanhMuc>
-<div class="text-right mb-3">
-    
-    <button class="btn btn-primary m-r-5"> <i class="anticon anticon-plus"></i> Thêm danh mục</button>
-</div>
+
+@Html.Partial("_PageHeader")
+
 @* Hiện thông báo về tình trạng xoá danh mục*@
 @if (TempData["Message"] != null)
 {
@@ -15,7 +18,12 @@
         @TempData["Message"]
     </div>
 }
-<h1>DANH SÁCH DANH MỤC</h1>
+<h1 style="text-align:center">DANH SÁCH DANH MỤC</h1>
+<div class="text-right mb-3">
+    <a href="@Url.Action("AddCategory", "AdminCategory")" class="btn btn-primary m-r-5">
+        <i class="anticon anticon-plus"></i> Thêm danh mục
+    </a>
+</div>
 <div class="table-responsive">
     <table class="table table-hover">
         <thead>
@@ -33,9 +41,9 @@
                     <th scope="row">@item.Id</th>
                     <td>
                         @item.TenDanhMuc
-                        @if (item.DanhMucCha==null)
+                        @if (item.DanhMucCha == null)
                         {
-                           <span class="badge badge-pill badge-volcano">Danh mục cha </span>
+                            <span class="badge badge-pill badge-volcano">Danh mục cha </span>
                         }
                     </td>
                     <td>
@@ -50,8 +58,9 @@
                     </td>
                     <td>
                         <div class="button-container" style="display: flex; gap: 10px;">
-                            <button class="btn btn-info m-r-5">Chi tiết</button>
-                            <button class="btn btn-warning m-r-5">Chỉnh sửa</button>
+
+                            
+                            @Html.ActionLink("Chỉnh sửa", "Edit", "AdminCategory", new { @class = "btn btn-warning m-r-5" })
 
                             @using (Html.BeginForm("Delete", "AdminCategory", new { id = item.Id }, FormMethod.Post))
                             {

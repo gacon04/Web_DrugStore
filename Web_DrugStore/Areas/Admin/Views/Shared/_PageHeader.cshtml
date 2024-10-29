@@ -1,0 +1,16 @@
+﻿@{
+    var ManageAction = ViewBag.ManageAction as string;
+    var RealisticAction = ViewBag.RealisticAction as string;
+    var ManageActionName = ViewBag.ManageActionName as string;
+    var ManageControllerName = ViewBag.ManageControllerName as string;
+}
+
+<div class="page-header">
+    <a href="@Url.Action("Index","Home")"><h2 class="header-title">Quản trị</h2></a>
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a href="@Url.Action(@ManageActionName,@ManageControllerName)" class="breadcrumb-item">@ManageAction</a>
+            <a class="breadcrumb-item" href="#">@RealisticAction</a>
+        </nav>
+    </div>
+</div>

@@ -196,6 +196,14 @@
     <Compile Include="Migrations\202410100255347_UpdateFullSanPhamFieldAndHinhAnhSP.Designer.cs">
       <DependentUpon>202410100255347_UpdateFullSanPhamFieldAndHinhAnhSP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410281550085_ThemMoTaVaoDanhMuc.cs" />
+    <Compile Include="Migrations\202410281550085_ThemMoTaVaoDanhMuc.Designer.cs">
+      <DependentUpon>202410281550085_ThemMoTaVaoDanhMuc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410291455078_AddHoatDongfieldToDanhMucs.cs" />
+    <Compile Include="Migrations\202410291455078_AddHoatDongfieldToDanhMucs.Designer.cs">
+      <DependentUpon>202410291455078_AddHoatDongfieldToDanhMucs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ChiTietDonHang.cs" />
@@ -1364,6 +1372,7 @@
     <Content Include="Content\Admin_assets\vendors\popper.js\package.json" />
     <Content Include="Content\Admin_assets\vendors\popper.js\README.md" />
     <Content Include="Areas\Admin\Views\AdminCategory\CategoryDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_PageHeader.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -1456,6 +1465,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410100255347_UpdateFullSanPhamFieldAndHinhAnhSP.resx">
       <DependentUpon>202410100255347_UpdateFullSanPhamFieldAndHinhAnhSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410281550085_ThemMoTaVaoDanhMuc.resx">
+      <DependentUpon>202410281550085_ThemMoTaVaoDanhMuc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410291455078_AddHoatDongfieldToDanhMucs.resx">
+      <DependentUpon>202410291455078_AddHoatDongfieldToDanhMucs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

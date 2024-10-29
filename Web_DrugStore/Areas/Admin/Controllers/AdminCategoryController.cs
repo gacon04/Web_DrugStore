@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -19,6 +20,31 @@ namespace Web_DrugStore.Areas.Admin.Controllers
             return View(danhmucs);
         }
         public ActionResult AddCategory()
+        {
+            DS_DBContext db = new DS_DBContext();
+            var danhMucCha = db.DanhMucs
+                .Where(cate => cate.ParentId == null) 
+                .ToList();
+
+            ViewBag.DanhMucList = danhMucCha;
+            return View(new DanhMuc());
+        }
+
+
+
+        [HttpPost]
+        public ActionResult AddCategory(DanhMuc model)
+        {
+            if (ModelState.IsValid)
+            {
+                DS_DBContext db = new DS_DBContext();
+                db.DanhMucs.Add(model);
+                db.SaveChanges();
+                
+            }
+            return RedirectToAction("Index");
+        }
+        public ActionResult EditCategory(int id)
         {
             return View();
         }

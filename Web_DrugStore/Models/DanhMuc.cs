@@ -17,6 +17,12 @@ namespace Web_DrugStore.Models
         [StringLength(255)]
         public string TenDanhMuc { get; set; }
 
+        [StringLength(1000)]
+        public string MoTa { get; set; }
+        
+        [Required]        
+        public bool HoatDong { get; set; }
+
         public int? ParentId { get; set; }
 
         [ForeignKey("ParentId")]
