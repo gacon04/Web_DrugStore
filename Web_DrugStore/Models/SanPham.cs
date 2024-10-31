@@ -29,9 +29,11 @@ namespace Web_DrugStore.Models
         [Required]
         public string PhanLoai { get; set; }
 
+        public Boolean HoatDong { get; set; }
         // Danh mục sản phẩm
         [Required]
         [ForeignKey("DanhMuc")]
+        
         public int DanhMucId { get; set; }
         public virtual DanhMuc DanhMuc { get; set; }
 

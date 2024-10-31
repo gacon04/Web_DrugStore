@@ -1,0 +1,58 @@
+﻿@model Web_DrugStore.Models.DanhMuc
+@{
+    ViewBag.Title = "Thêm danh mục mới - PharmaVillage";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-center" style="margin-bottom: 20px;">CẬP NHẬT DANH MỤC - @Model.TenDanhMuc </h2>
+
+<form method="post" action="@Url.Action("Edit", "AdminCategory", new { area = "Admin" })">
+    <div class="form-group row">
+        <label for="TenDanhMuc" class="col-sm-2 col-form-label">Tên danh mục</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.TenDanhMuc, new { @class = "form-control", placeholder = "Nhập vào tên danh mục" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="ParentId" class="col-sm-2 col-form-label">Danh mục cha</label>
+        <div class="col-sm-10">
+            @Html.DropDownListFor(model => model.ParentId, new SelectList(ViewBag.DanhMucList, "Id", "TenDanhMuc"), "Chọn danh mục cha", new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="MoTa" class="col-sm-2 col-form-label">Miêu tả</label>
+        <div class="col-sm-10">
+            @Html.TextAreaFor(model => model.MoTa, new { @class = "form-control", placeholder = "Nhập vào miêu tả danh mục (tuỳ chọn)", rows = 4 })
+        </div>
+    </div>
+
+    <div class="form-group form-check row">
+        <div class="col-sm-10 offset-sm-2">
+            @Html.CheckBoxFor(model => model.HoatDong, new { @id = "checkbox1" })
+            @Html.Label("checkbox1", "Hoạt động", new { @class = "form-check-label" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2" style="text-align: right;">
+            <button type="submit" class="btn btn-primary btn-tone">Cập nhật</button>
+            <a href="@Url.Action("Index")" class="btn btn-danger btn-tone">Thoát</a>
+        </div>
+    </div>
+</form>
+
+<style>
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .btn-tone {
+        margin-right: 0.5rem;
+    }
+</style>

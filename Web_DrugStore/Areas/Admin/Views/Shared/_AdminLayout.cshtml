@@ -151,7 +151,7 @@
                 <div class="side-nav-inner">
                     <ul class="side-nav-menu scrollable">
                         <li class="nav-item dropdown">
-                            <a href="@Url.Action("Index","Home")">
+                            <a href="@Url.Action("Index","Dashboard")">
                                 <span class="icon-holder">
                                     <i class="anticon anticon-dashboard"></i>
                                 </span>
@@ -177,7 +177,7 @@
                         <li class="nav-item dropdown">
                             <a href="">
                                 <span class="icon-holder">
-                                    <i class="anticon anticon-bell"></i>
+                                    <i class="anticon anticon-ordered-list"></i>
                                 </span>
                                 <span class="title">Quản lý đơn hàng</span>
                             </a>
@@ -186,7 +186,7 @@
                         <li class="nav-item dropdown">
                             <a href="">
                                 <span class="icon-holder">
-                                    <i class="anticon anticon-mail"></i>
+                                    <i class="anticon anticon-book"></i>
                                 </span>
                                 <span class="title">Quản lý tin tức</span>
                             </a>
@@ -199,7 +199,14 @@
                                 <span class="title">Quản lý khách hàng</span>
                             </a>
                         </li>
-
+                        <li class="nav-item dropdown">
+                            <a href="@Url.Action("Index","Message")">
+                                <span class="icon-holder">
+                                    <i class="anticon anticon-message"></i>
+                                </span>
+                                <span class="title">Tin nhắn liên hệ</span>
+                            </a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a href="">
                                 <span class="icon-holder">
@@ -209,53 +216,53 @@
                             </a>
                         </li>
                         <!-- <li class="nav-item dropdown">
-                                  <a class="dropdown-toggle" href="javascript:void(0);">
-                                      <span class="icon-holder">
-                                          <i class="anticon anticon-pie-chart"></i>
-                                      </span>
-                                      <span class="title">Danh mục sản phẩm</span>
-                                      <span class="arrow">
-                                          <i class="arrow-icon"></i>
-                                      </span>
-                                  </a>
-                                  <ul class="dropdown-menu">
-                                      <li>
-                                          <a href="">Danh sách danh mục</a>
-                                      </li>
-                                      <li>
-                                          <a href="">Thêm mới danh mục</a>
-                                      </li>
-                                  </ul>
-                              </li>
-                              <li class="nav-item dropdown">
-                                  <a class="dropdown-toggle" href="javascript:void(0);">
-                                      <span class="icon-holder">
-                                          <i class="anticon anticon-file"></i>
-                                      </span>
-                                      <span class="title">Multi Level</span>
-                                      <span class="arrow">
-                                          <i class="arrow-icon"></i>
-                                      </span>
-                                  </a>
-                                  <ul class="dropdown-menu">
-                                      <li class="nav-item dropdown">
-                                          <a href="javascript:void(0);">
-                                              <span>Level 1</span>
-                                              <span class="arrow">
-                                                  <i class="arrow-icon"></i>
-                                              </span>
-                                          </a>
-                                          <ul class="dropdown-menu">
-                                              <li>
-                                                  <a href="">Level 2.1</a>
-                                              </li>
-                                              <li>
-                                                  <a href="">Level 2.2</a>
-                                              </li>
-                                          </ul>
-                                      </li>
-                                  </ul>
-                              </li> -->
+              <a class="dropdown-toggle" href="javascript:void(0);">
+                  <span class="icon-holder">
+                      <i class="anticon anticon-pie-chart"></i>
+                  </span>
+                  <span class="title">Danh mục sản phẩm</span>
+                  <span class="arrow">
+                      <i class="arrow-icon"></i>
+                  </span>
+              </a>
+              <ul class="dropdown-menu">
+                  <li>
+                      <a href="">Danh sách danh mục</a>
+                  </li>
+                  <li>
+                      <a href="">Thêm mới danh mục</a>
+                  </li>
+              </ul>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="dropdown-toggle" href="javascript:void(0);">
+                  <span class="icon-holder">
+                      <i class="anticon anticon-file"></i>
+                  </span>
+                  <span class="title">Multi Level</span>
+                  <span class="arrow">
+                      <i class="arrow-icon"></i>
+                  </span>
+              </a>
+              <ul class="dropdown-menu">
+                  <li class="nav-item dropdown">
+                      <a href="javascript:void(0);">
+                          <span>Level 1</span>
+                          <span class="arrow">
+                              <i class="arrow-icon"></i>
+                          </span>
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li>
+                              <a href="">Level 2.1</a>
+                          </li>
+                          <li>
+                              <a href="">Level 2.2</a>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </li> -->
                     </ul>
                 </div>
             </div>
@@ -272,7 +279,7 @@
                 <footer class="footer">
                     <div class="footer-content">
                         <p class="m-b-0">Hệ thống quản lí nhà thuốc PharmaVillage - @time</p>
-                        
+
                     </div>
                 </footer>
                 <!-- Footer END -->
@@ -286,13 +293,13 @@
     </div>
 
 
+    <script src="~/Plugin/ckeditor/ckeditor.js"></script>
     <!-- Core Vendors JS -->
     <script src="~/Content/Admin_assets/js/vendors.min.js"></script>
-
     <!-- page js -->
     <!-- Core JS -->
     <script src="~/Content/Admin_assets/js/app.min.js"></script>
-
+    @RenderSection("scriptForCKEditor",false)
 </body>
 
 </html>

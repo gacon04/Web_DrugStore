@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Web_DrugStore.Models.DanhMuc>
 @{
     ViewBag.Title = "Danh sách danh mục - PharmaVillage";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -7,7 +7,7 @@
     ViewBag.ManageActionName = "Index";
     ViewBag.ManageControllerName = "AdminCategory";
 }
-@model List<Web_DrugStore.Models.DanhMuc>
+
 
 @Html.Partial("_PageHeader")
 
@@ -24,6 +24,7 @@
         <i class="anticon anticon-plus"></i> Thêm danh mục
     </a>
 </div>
+
 <div class="table-responsive">
     <table class="table table-hover">
         <thead>
@@ -59,8 +60,8 @@
                     <td>
                         <div class="button-container" style="display: flex; gap: 10px;">
 
-                            
-                            @Html.ActionLink("Chỉnh sửa", "Edit", "AdminCategory", new { @class = "btn btn-warning m-r-5" })
+
+                            <a href="@Url.Action("Edit", "AdminCategory", new { id = item.Id })" class="btn btn-warning m-r-5">Chỉnh sửa</a>
 
                             @using (Html.BeginForm("Delete", "AdminCategory", new { id = item.Id }, FormMethod.Post))
                             {

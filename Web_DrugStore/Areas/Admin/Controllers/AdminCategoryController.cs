@@ -16,7 +16,7 @@ namespace Web_DrugStore.Areas.Admin.Controllers
         public ActionResult Index()
         {
             DS_DBContext db = new DS_DBContext();
-            List<DanhMuc> danhmucs = db.DanhMucs.Include("DanhMucCha").ToList();
+            List<DanhMuc> danhmucs = db.DanhMucs.OrderBy(dm => dm.ParentId == null ? 0 : 1).Include("DanhMucCha").ToList();
             return View(danhmucs);
         }
         public ActionResult AddCategory()
@@ -44,13 +44,39 @@ namespace Web_DrugStore.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
-        public ActionResult EditCategory(int id)
+        public ActionResult Edit(int id)
         {
-            return View();
+            DS_DBContext db = new DS_DBContext();
+            DanhMuc temp = db.DanhMucs.Where( cate => cate.Id == id ).FirstOrDefault() ;
+            var danhMucCha = db.DanhMucs
+                .Where(cate => cate.ParentId == null)
+                .ToList();
+
+            ViewBag.DanhMucList = danhMucCha;
+
+            return View(temp);
         }
-        public ActionResult CategoryDetails(int id)
+        [HttpPost]
+        public ActionResult Edit(DanhMuc cateNew)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                using (var db = new DS_DBContext())
+                {
+                    var temp = db.DanhMucs.FirstOrDefault(cate => cate.Id == cateNew.Id);
+                    if (temp != null)
+                    {
+                        // Gán các thuộc tính từ cateNew sang temp
+                        temp.TenDanhMuc = cateNew.TenDanhMuc;
+                        temp.ParentId = cateNew.ParentId;
+                        temp.MoTa = cateNew.MoTa;
+                        temp.HoatDong = cateNew.HoatDong;
+
+                        db.SaveChanges();
+                    }
+                }
+            }
+            return RedirectToAction("Index");
         }
         [HttpPost]
         public ActionResult Delete(int id)

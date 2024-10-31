@@ -1,0 +1,119 @@
+﻿@model Web_DrugStore.Models.SanPham
+@{
+    ViewBag.Title = "Thêm sản phẩm mới - PharmaVillage";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section scriptForCKEditor{
+        <script>
+            CKEDITOR.replace("MoTa")
+        </script>
+}
+<h1 class="text-center" style="margin-bottom: 20px;">THÊM MỚI SẢN PHẨM</h1>
+
+<form method="post" action="@Url.Action("AddProd", "AdminProduct", new { area = "Admin" })">
+
+    <div class="form-group row">
+        <label for="DanhMucId" class="col-sm-2 col-form-label">Danh mục</label>
+        <div class="col-sm-10">
+            @Html.DropDownListFor(model => model.DanhMucId, new SelectList(ViewBag.DanhMucList, "Id", "TenDanhMuc"), "Chọn danh mục", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="TenSanPham" class="col-sm-2 col-form-label">Tên sản phẩm</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.TenSanPham, new { @class = "form-control", placeholder = "Nhập vào tên sản phẩm" })
+        </div>
+    </div>
+    <div class="form-group form-check row">
+        <div class="col-sm-10 offset-sm-2">
+            @Html.CheckBoxFor(model => model.HoatDong, new { @id = "checkbox1" })
+            <label for="checkbox1" class="form-check-label">Hoạt động</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="DonGia" class="col-sm-2 col-form-label">Đơn giá</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.DonGia, new { @class = "form-control", placeholder = "Nhập vào đơn giá" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="SoLuong" class="col-sm-2 col-form-label">Số lượng trong kho</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.SoLuong, new { @class = "form-control", placeholder = "Nhập vào số lượng có trong kho hàng" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="HinhAnh" class="col-sm-2 col-form-label">Hình ảnh</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.HinhAnh, new { @class = "form-control", placeholder = "URL hình ảnh sản phẩm" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="PhanLoai" class="col-sm-2 col-form-label">Phân loại</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.PhanLoai, new { @class = "form-control", placeholder = "Phân loại (hộp,gói, chai...)" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group row">
+        <label for="CongDung" class="col-sm-2 col-form-label">Công dụng</label>
+        <div class="col-sm-10">
+            @Html.TextAreaFor(model => model.CongDung, new { @class = "form-control", placeholder = "Nhập vào công dụng sản phẩm", rows = 3 })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="QuyCach" class="col-sm-2 col-form-label">Quy cách sản phẩm</label>
+        <div class="col-sm-10">
+            @Html.TextAreaFor(model => model.QuyCach, new { @class = "form-control", placeholder = "Nhập vào quy cách sản phẩm", rows = 3 })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="LuuY" class="col-sm-2 col-form-label">Lưu ý</label>
+        <div class="col-sm-10">
+            @Html.TextAreaFor(model => model.LuuY, new { @class = "form-control", placeholder = "Nhập vào lưu ý khi sử dụng sản phẩm", rows = 3 })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="NhaSanXuat" class="col-sm-2 col-form-label">Nhà sản xuất</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.NhaSanXuat, new { @class = "form-control", placeholder = "Nhập vào tên nhà sản xuất, nhà cung cấp" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="MoTa" class="col-sm-2 col-form-label">Mô tả chi tiết</label>
+        <div class="col-sm-10">
+            @Html.TextAreaFor(model => model.MoTa, new { @class = "form-control", placeholder = "Nhập vào mô tả sản phẩm (có rich text editor hỗ trợ)", rows = 4 })
+            
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2" style="text-align: right;">
+            <button type="submit" class="btn btn-primary btn-tone">Thêm sản phẩm</button>
+            <a href="@Url.Action("Index")" class="btn btn-danger btn-tone">Thoát</a>
+        </div>
+    </div>
+</form>
+
+<style>
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .btn-tone {
+        margin-right: 0.5rem;
+    }
+</style>

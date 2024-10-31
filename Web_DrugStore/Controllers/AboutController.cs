@@ -58,5 +58,36 @@ namespace Web_DrugStore.Controllers
 
             return View();
         }
+        // quy chế hđ
+        public ActionResult OperatingRegulations()
+        {
+            return View();
+        }
+        // chính sách giao hàng
+        public ActionResult ShippingPolicy()
+        {
+            return View();
+        }
+        // chính sách đổi trả
+        public ActionResult ReturnPolicy()
+        {
+            return View();
+        }
+        // chính sách bảo mật
+        public ActionResult PrivacyPolicy()
+        {
+            return View();
+        }
+        // chính sách thanh toán
+        public ActionResult PaymentPolicy()
+        {
+            return View();
+        }
+        // chính sách quyền riêng tư
+        public ActionResult ConfidentialityPolicy()
+        {
+            return View();
+        }
+
     }
 }
