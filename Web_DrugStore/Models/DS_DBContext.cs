@@ -20,6 +20,8 @@ namespace Web_DrugStore.Models
         public DbSet<GioHang> GioHangs { get; set; }
         public DbSet<ChiTietGioHang> ChiTietGioHangs { get; set; }
         public DbSet<DanhSachYeuThich> DanhSachYeuThichs { get; set; }
+        public DbSet<DanhMucBlog> DanhMucBlogs { get; set; }
+        public DbSet<HinhAnhSanPham> HinhAnhSanPhams { get; set; }
 
     }
 }

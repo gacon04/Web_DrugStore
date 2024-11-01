@@ -163,7 +163,7 @@
                                 <span class="icon-holder">
                                     <i class="anticon anticon-right"></i>
                                 </span>
-                                <span class="title">Quản lý danh mục</span>
+                                <span class="title">Danh mục sản phẩm</span>
                             </a>
                         </li>
                         <li class="nav-item dropdown">
@@ -171,7 +171,7 @@
                                 <span class="icon-holder">
                                     <i class="anticon anticon-project"></i>
                                 </span>
-                                <span class="title">Quản lý sản phẩm</span>
+                                <span class="title">Sản phẩm</span>
                             </a>
                         </li>
                         <li class="nav-item dropdown">
@@ -179,24 +179,36 @@
                                 <span class="icon-holder">
                                     <i class="anticon anticon-ordered-list"></i>
                                 </span>
-                                <span class="title">Quản lý đơn hàng</span>
+                                <span class="title">Đơn hàng</span>
                             </a>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a href="">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
                                 <span class="icon-holder">
                                     <i class="anticon anticon-book"></i>
                                 </span>
-                                <span class="title">Quản lý tin tức</span>
+                                <span class="title">Quản trị bài viết</span>
+                                <span class="arrow">
+                                    <i class="arrow-icon"></i>
+                                </span>
                             </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="@Url.Action("BlogCateIndex","AdminBlog")">Danh mục bài viết</a>
+                                </li>
+                                <li>
+                                    <a href="alert.html">Danh sách bài viết</a>
+                                </li>
+                               
+                            </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a href="">
                                 <span class="icon-holder">
                                     <i class="anticon anticon-user"></i>
                                 </span>
-                                <span class="title">Quản lý khách hàng</span>
+                                <span class="title">Khách hàng</span>
                             </a>
                         </li>
                         <li class="nav-item dropdown">
@@ -204,7 +216,7 @@
                                 <span class="icon-holder">
                                     <i class="anticon anticon-message"></i>
                                 </span>
-                                <span class="title">Tin nhắn liên hệ</span>
+                                <span class="title">Tin nhắn - liên hệ</span>
                             </a>
                         </li>
                         <li class="nav-item dropdown">
@@ -216,53 +228,53 @@
                             </a>
                         </li>
                         <!-- <li class="nav-item dropdown">
-              <a class="dropdown-toggle" href="javascript:void(0);">
-                  <span class="icon-holder">
-                      <i class="anticon anticon-pie-chart"></i>
-                  </span>
-                  <span class="title">Danh mục sản phẩm</span>
-                  <span class="arrow">
-                      <i class="arrow-icon"></i>
-                  </span>
-              </a>
-              <ul class="dropdown-menu">
-                  <li>
-                      <a href="">Danh sách danh mục</a>
-                  </li>
-                  <li>
-                      <a href="">Thêm mới danh mục</a>
-                  </li>
-              </ul>
-          </li>
-          <li class="nav-item dropdown">
-              <a class="dropdown-toggle" href="javascript:void(0);">
-                  <span class="icon-holder">
-                      <i class="anticon anticon-file"></i>
-                  </span>
-                  <span class="title">Multi Level</span>
-                  <span class="arrow">
-                      <i class="arrow-icon"></i>
-                  </span>
-              </a>
-              <ul class="dropdown-menu">
-                  <li class="nav-item dropdown">
-                      <a href="javascript:void(0);">
-                          <span>Level 1</span>
-                          <span class="arrow">
-                              <i class="arrow-icon"></i>
-                          </span>
-                      </a>
-                      <ul class="dropdown-menu">
-                          <li>
-                              <a href="">Level 2.1</a>
-                          </li>
-                          <li>
-                              <a href="">Level 2.2</a>
-                          </li>
-                      </ul>
-                  </li>
-              </ul>
-          </li> -->
+        <a class="dropdown-toggle" href="javascript:void(0);">
+            <span class="icon-holder">
+                <i class="anticon anticon-pie-chart"></i>
+            </span>
+            <span class="title">Danh mục sản phẩm</span>
+            <span class="arrow">
+                <i class="arrow-icon"></i>
+            </span>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="">Danh sách danh mục</a>
+            </li>
+            <li>
+                <a href="">Thêm mới danh mục</a>
+            </li>
+        </ul>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="dropdown-toggle" href="javascript:void(0);">
+            <span class="icon-holder">
+                <i class="anticon anticon-file"></i>
+            </span>
+            <span class="title">Multi Level</span>
+            <span class="arrow">
+                <i class="arrow-icon"></i>
+            </span>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="nav-item dropdown">
+                <a href="javascript:void(0);">
+                    <span>Level 1</span>
+                    <span class="arrow">
+                        <i class="arrow-icon"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="">Level 2.1</a>
+                    </li>
+                    <li>
+                        <a href="">Level 2.2</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li> -->
                     </ul>
                 </div>
             </div>
@@ -293,7 +305,8 @@
     </div>
 
 
-    <script src="~/Plugin/ckeditor/ckeditor.js"></script>
+    <script src="~/Plugin/ckfinder/ckfinder.js"></script>
+    <script src="~/Plugin/ckeditor/ckeditor.js"></script>  <!-- nhúng file js của ckfinder và ckeditor-->
     <!-- Core Vendors JS -->
     <script src="~/Content/Admin_assets/js/vendors.min.js"></script>
     <!-- page js -->

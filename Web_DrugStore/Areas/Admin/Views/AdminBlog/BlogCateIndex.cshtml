@@ -1,0 +1,55 @@
+﻿@model List<Web_DrugStore.Models.DanhMucBlog>
+@{
+    ViewBag.Title = "Quản lý danh mục bài viết - PharmaVillage";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 style="text-align:center">QUẢN LÝ DANH MỤC BÀI VIẾT</h1>
+<div class="text-right mb-3">
+    <a href="@Url.Action("BlogCateAdd", "AdminBlog")" class="btn btn-primary m-r-5">
+        <i class="anticon anticon-plus"></i> Thêm danh mục bài viết
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Danh mục bài viết</th>
+                <th scope="col">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.Id</th>
+                    <td>
+                        @item.TenDanhMuc
+                    </td>
+                    
+                    <td>
+                        <div class="button-container" style="display: flex; gap: 10px;">
+
+
+                            <a href="@Url.Action("BlogCateEdit", "AdminBlog", new { id = item.Id })" class="btn btn-warning m-r-5">Chỉnh sửa</a>
+
+                            @using (Html.BeginForm("BlogCateDelete", "AdminBlog", new { id = item.Id }, FormMethod.Post))
+                            {
+                                <button type="submit" class="btn btn-danger m-r-5"
+                                        onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục bài viết này?');">
+                                    <i class="anticon anticon-delete"></i> Xoá
+                                </button>
+                            }
+                        </div>
+
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
