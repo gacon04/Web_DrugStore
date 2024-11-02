@@ -11,8 +11,8 @@ namespace Web_DrugStore.Areas.Admin.Controllers
 {
     public class AdminBlogController : Controller
     {
-        // GET: Admin/Blog
-        public ActionResult BlogCateIndex()
+        // PHẦN QUẢN LÝ DANH MỤC BÀI VIẾT
+        public ActionResult BlogCateIndex() // trang chính xem danh sách danh mục bài viết
         {
             DS_DBContext db = new DS_DBContext();
             List<DanhMucBlog> danhmucblogs = db.DanhMucBlogs.ToList();
@@ -65,6 +65,101 @@ namespace Web_DrugStore.Areas.Admin.Controllers
         public ActionResult BlogCateDelete()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult BlogDelete(int id)
+        {
+            try
+            {
+                using (var db = new DS_DBContext())
+                {
+                    var blog = db.Blogs.Find(id);
+                    if (blog != null)
+                    {
+                        db.Blogs.Remove(blog);
+                        db.SaveChanges();
+                        TempData["Message"] = "Xóa bài viết thành công!";
+                    }
+                    else
+                    {
+                        TempData["Message"] = "Bài viết không tồn tại!";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Message"] = "Có lỗi xảy ra khi xóa bài viết, vui lòng thử lại";
+            }
+
+            return RedirectToAction("BlogCateIndex"); // Sau khi xóa, quay lại trang danh sách
+        }
+
+
+        // PHẦN QUẢN LÝ BÀI VIẾT
+        public ActionResult BlogIndex()  // trang chính xem danh sách bài viết
+        {
+            DS_DBContext db = new DS_DBContext();
+            List<Blog> blogs = db.Blogs.ToList();
+            return View(blogs);
+        }
+        public ActionResult BlogAdd()
+        {
+            DS_DBContext db = new DS_DBContext();
+            var danhMucBaiViet = db.DanhMucBlogs
+                .Where(cate => cate.HoatDong == true)
+                .ToList();
+
+            ViewBag.DanhMucList = danhMucBaiViet;
+            return View();
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult BlogAdd(Blog model)
+        {
+            if (ModelState.IsValid)
+            {
+                DS_DBContext db = new DS_DBContext();
+                model.IdTacGia = 1;
+                model.CreatedAt = DateTime.Now;
+                db.Blogs.Add(model);
+                db.SaveChanges();
+
+            }
+            return RedirectToAction("BlogIndex");
+        }
+        public ActionResult BlogEdit(int id)
+        {
+            DS_DBContext db = new DS_DBContext();
+            Blog model = db.Blogs.Where(blog => blog.Id == id).FirstOrDefault();
+            var danhMucBaiViet = db.DanhMucBlogs
+                .Where(cate => cate.HoatDong != false)
+                .ToList();
+
+            ViewBag.DanhMucList = danhMucBaiViet;
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult BlogEdit(Blog model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var db = new DS_DBContext())
+                {
+                    var temp = db.Blogs.Where(blog => blog.Id == model.Id).FirstOrDefault();
+                    if (temp != null)
+                    {
+                        temp.DanhMucBlogId = model.DanhMucBlogId;
+                        temp.TieuDe = model.TieuDe;
+                        temp.HienThi = model.HienThi;
+                        temp.DuongDanHinhAnh = model.DuongDanHinhAnh;
+                        temp.NoiDung = model.NoiDung;
+
+                        db.SaveChanges();
+                    }
+                }
+            }
+            return RedirectToAction("BlogIndex");
         }
 
     }

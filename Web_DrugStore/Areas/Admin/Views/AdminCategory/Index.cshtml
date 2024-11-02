@@ -6,18 +6,31 @@
     ViewBag.RealisticAction = "Xem danh sách danh mục";
     ViewBag.ManageActionName = "Index";
     ViewBag.ManageControllerName = "AdminCategory";
+
 }
 
 
 @Html.Partial("_PageHeader")
 
-@* Hiện thông báo về tình trạng xoá danh mục*@
 @if (TempData["Message"] != null)
 {
-    <div class="alert alert-warning">
+    <div id="statusMess" class="alert alert-warning">
         @TempData["Message"]
     </div>
 }
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    //phải có jquery nhúng vô mới xài dc
+$(document).ready(function() {
+        var tempMessage = $('#statusMess');
+        if (tempMessage.length) {
+            setTimeout(function() {
+                tempMessage.fadeOut(); 
+            }, 2000); // 2k mili secs = 2secs
+        }
+    });</script>
+
+
 <h1 style="text-align:center">DANH SÁCH DANH MỤC</h1>
 <div class="text-right mb-3">
     <a href="@Url.Action("AddCategory", "AdminCategory")" class="btn btn-primary m-r-5">
@@ -26,10 +39,9 @@
 </div>
 
 <div class="table-responsive">
-    <table class="table table-hover">
+    <table class="table table-bordered">
         <thead>
             <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Tên danh mục</th>
                 <th scope="col">Danh mục cha</th>
                 <th scope="col">Thao tác</th>
@@ -39,7 +51,6 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <th scope="row">@item.Id</th>
                     <td>
                         @item.TenDanhMuc
                         @if (item.DanhMucCha == null)
@@ -59,25 +70,54 @@
                     </td>
                     <td>
                         <div class="button-container" style="display: flex; gap: 10px;">
+                            <a href="@Url.Action("Edit", "AdminCategory", new { id = item.Id })" class="btn btn-warning m-r-5">
+                                <i class="anticon anticon-edit"></i>
+                                Chỉnh sửa
+                            </a>
 
-
-                            <a href="@Url.Action("Edit", "AdminCategory", new { id = item.Id })" class="btn btn-warning m-r-5">Chỉnh sửa</a>
-
-                            @using (Html.BeginForm("Delete", "AdminCategory", new { id = item.Id }, FormMethod.Post))
-                            {
-                                <button type="submit" class="btn btn-danger m-r-5"
-                                        onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này?');">
-                                    <i class="anticon anticon-delete"></i> Xoá
-                                </button>
-                            }
+                            <button type="button" class="btn btn-danger m-r-5" onclick="showModal('@item.Id')">
+                                <i class="anticon anticon-delete"></i> Xoá
+                            </button>
                         </div>
-
                     </td>
                 </tr>
             }
-
-
         </tbody>
     </table>
 </div>
+
+<!-- Modal HTML -->
+<div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xác nhận xóa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa danh mục này?</p>
+            </div>
+            <div class="modal-footer">
+                <form id="deleteForm" method="post" action="@Url.Action("Delete", "AdminCategory")">
+                    <input type="hidden" name="id" id="deleteId" />
+                    <button type="button" class="btn btn-danger m-r-5" onclick="submitDeleteForm()">Xóa</button>
+                </form>
+                <button type="button" class="btn btn-default m-r-10" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showModal(id) {
+        $('#deleteId').val(id);
+        $('#deleteModal').modal('show');
+    }
+
+    function submitDeleteForm() {
+        $('#deleteForm').submit();
+    }
+</script>
 

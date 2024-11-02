@@ -12,10 +12,9 @@
 </div>
 
 <div class="table-responsive">
-    <table class="table table-hover">
+    <table class="table table-bordered">
         <thead>
             <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Danh mục bài viết</th>
                 <th scope="col">Thao tác</th>
             </tr>
@@ -24,7 +23,6 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <th scope="row">@item.Id</th>
                     <td>
                         @item.TenDanhMuc
                     </td>
@@ -33,7 +31,10 @@
                         <div class="button-container" style="display: flex; gap: 10px;">
 
 
-                            <a href="@Url.Action("BlogCateEdit", "AdminBlog", new { id = item.Id })" class="btn btn-warning m-r-5">Chỉnh sửa</a>
+                            <a href="@Url.Action("BlogCateEdit", "AdminBlog", new { id = item.Id })" class="btn btn-warning m-r-5">
+                                <i class="anticon anticon-edit"></i>
+                                Chỉnh sửa
+                            </a>
 
                             @using (Html.BeginForm("BlogCateDelete", "AdminBlog", new { id = item.Id }, FormMethod.Post))
                             {

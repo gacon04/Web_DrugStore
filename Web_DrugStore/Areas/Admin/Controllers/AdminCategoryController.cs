@@ -85,8 +85,8 @@ namespace Web_DrugStore.Areas.Admin.Controllers
             {
                 using (var db = new DS_DBContext())
                 {
-                    var danhMuc = db.DanhMucs.Find(id);
-                    if (danhMuc != null)
+                    DanhMuc danhMuc = db.DanhMucs.Find(id);
+                    if (danhMuc != null && danhMuc.DanhMucCon.Count==0)
                     {
                         db.DanhMucs.Remove(danhMuc);
                         db.SaveChanges();
@@ -94,13 +94,13 @@ namespace Web_DrugStore.Areas.Admin.Controllers
                     }
                     else
                     {
-                        TempData["Message"] = "Danh mục không tồn tại!";
+                        TempData["Message"] = "Xoá không thành công, hãy đảm bảo không xoá danh mục CHA!";
                     }
                 }
             }
             catch (Exception ex)
             {
-                TempData["Message"] = "Có lỗi xảy ra khi xóa danh mục. Đảm bảo không xoá danh mục cha";
+                TempData["Message"] = "Có lỗi xảy ra, thử lại sau nhé ^^";
             }
 
             return RedirectToAction("Index"); // Sau khi xóa, quay lại trang danh sách

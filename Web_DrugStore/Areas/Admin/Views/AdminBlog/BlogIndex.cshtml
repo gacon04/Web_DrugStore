@@ -1,0 +1,92 @@
+﻿@model List<Web_DrugStore.Models.Blog>
+@{
+    ViewBag.Title = "Quản lý bài viết - PharmaVillage";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 style="text-align:center">QUẢN LÝ BÀI VIẾT</h1>
+<div class="text-right mb-3">
+    <a href="@Url.Action("BlogAdd", "AdminBlog")" class="btn btn-primary m-r-5">
+        <i class="anticon anticon-plus"></i> Thêm bài viết mới
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Danh mục</th>
+                <th scope="col">Tiêu đề</th>
+                <th scope="col">Thumbnail</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Tác giả</th>
+                <th scope="col">Thời gian viết</th>
+                <th scope="col">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.DanhMucBlog.TenDanhMuc
+                    </td>
+                    <td style="max-width: 300px">
+                        @item.TieuDe
+                    </td>
+                    <td>
+                        <img src="@item.DuongDanHinhAnh" alt="Thumbnail" style="max-width: 150px; max-height: 150px;">
+                    </td>
+
+
+                    @if (item.HienThi == true)
+                    {
+                        <td>Đang hiện</td>
+                    }
+                    else
+                    {
+                        <td>Đang ẩn</td>
+                    }
+
+                    <td>
+                        @item.TacGia.HoTen
+                    </td>
+                    @if (item.CreatedAt != item.UpdatedAt)
+                    {
+                        <td>
+                            @item.UpdatedAt.ToString("dd/MM/yyyy HH:mm")
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @item.CreatedAt.ToString("dd/MM/yyyy HH:mm")
+                        </td>
+                    }
+                    <td>
+                        <div class="button-container" style="display: flex; gap: 10px;">
+
+
+                            <a href="@Url.Action("BlogEdit", "AdminBlog", new { id = item.Id })" class="btn btn-warning m-r-5">
+                                <i class="anticon anticon-edit"></i>
+                                Chỉnh sửa
+                            </a>
+
+                            @using (Html.BeginForm("BlogDelete", "AdminBlog", new { id = item.Id }, FormMethod.Post))
+                            {
+                                <button type="submit" class="btn btn-danger m-r-5"
+                                        onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục bài viết này?');">
+                                    <i class="anticon anticon-delete"></i> Xoá
+                                </button>
+                            }
+                        </div>
+
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+

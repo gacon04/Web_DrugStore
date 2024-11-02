@@ -73,11 +73,7 @@ namespace Web_DrugStore.Controllers
         {
             return View();
         }
-        // chính sách bảo mật
-        public ActionResult PrivacyPolicy()
-        {
-            return View();
-        }
+        
         // chính sách thanh toán
         public ActionResult PaymentPolicy()
         {

@@ -1,8 +1,9 @@
-﻿@model List<Web_DrugStore.Models.SanPham>
+﻿@using Web_DrugStore.Models
+@model List<Web_DrugStore.Models.SanPham>
 @{
     ViewBag.Title = "Tất cả sản phẩm - PharmaVillage";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var danhmucList = ViewBag.ListDanhMuc as List<Web_DrugStore.Models.DanhMuc>; 
+    var danhmucList = ViewBag.ListDanhMuc as List<Web_DrugStore.Models.DanhMuc>;
 }
 <div class="ltn__utilize-overlay"></div>
 

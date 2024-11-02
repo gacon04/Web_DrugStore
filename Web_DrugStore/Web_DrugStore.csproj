@@ -2388,6 +2388,9 @@
     <Content Include="Areas\Admin\Views\AdminBlog\BlogCateIndex.cshtml" />
     <Content Include="Areas\Admin\Views\AdminBlog\BlogCateAdd.cshtml" />
     <Content Include="Areas\Admin\Views\AdminBlog\BlogCateEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminBlog\BlogIndex.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminBlog\BlogAdd.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminBlog\BlogEdit.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -2437,7 +2440,6 @@
     <Content Include="Views\About\OperatingRegulations.cshtml" />
     <Content Include="Views\About\ShippingPolicy.cshtml" />
     <Content Include="Views\About\ReturnPolicy.cshtml" />
-    <Content Include="Views\About\PrivacyPolicy.cshtml" />
     <Content Include="Views\About\PaymentPolicy.cshtml" />
     <Content Include="Views\About\ConfidentialityPolicy.cshtml" />
   </ItemGroup>
