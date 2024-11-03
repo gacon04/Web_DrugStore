@@ -11,6 +11,9 @@
     </a>
 </div>
 
+<!-- Hiện thông báo khi xoá thành công nếu có sự thay đổi trong temp mess-->
+@Html.Partial("_DeleteNoti")
+
 <div class="table-responsive">
     <table class="table table-bordered">
         <thead>
@@ -72,13 +75,10 @@
                                 Chỉnh sửa
                             </a>
 
-                            @using (Html.BeginForm("BlogDelete", "AdminBlog", new { id = item.Id }, FormMethod.Post))
-                            {
-                                <button type="submit" class="btn btn-danger m-r-5"
-                                        onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục bài viết này?');">
-                                    <i class="anticon anticon-delete"></i> Xoá
-                                </button>
-                            }
+                            <!--click vào button sẽ bắt đầu gọi func trong partial view-->
+                            <button type="button" class="btn btn-danger m-r-5" onclick="showModal(@item.Id, '@Url.Action("BlogDelete", "AdminBlog")')">
+                                <i class="anticon anticon-delete"></i> Xoá
+                            </button>
                         </div>
 
                     </td>
@@ -89,4 +89,7 @@
         </tbody>
     </table>
 </div>
+
+<!-- Xử lý khi bấm vào nút xoá -->
+@Html.Partial("_DelConfirmModal")
 

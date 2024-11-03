@@ -62,33 +62,30 @@ namespace Web_DrugStore.Areas.Admin.Controllers
             }
             return RedirectToAction("BlogCateIndex");
         }
-        public ActionResult BlogCateDelete()
-        {
-            return View();
-        }
+       
         [HttpPost]
-        public ActionResult BlogDelete(int id)
+        public ActionResult BlogCateDelete(int id)
         {
             try
             {
                 using (var db = new DS_DBContext())
                 {
-                    var blog = db.Blogs.Find(id);
-                    if (blog != null)
+                    var danhMucBlog = db.DanhMucBlogs.Find(id);
+                    if (danhMucBlog != null)
                     {
-                        db.Blogs.Remove(blog);
+                        db.DanhMucBlogs.Remove(danhMucBlog);
                         db.SaveChanges();
-                        TempData["Message"] = "Xóa bài viết thành công!";
+                        TempData["Message"] = "Xóa danh mục bài viết thành công!";
                     }
                     else
                     {
-                        TempData["Message"] = "Bài viết không tồn tại!";
+                        TempData["Message"] = "Xoá danh mục bài viết không thành công";
                     }
                 }
             }
             catch (Exception ex)
             {
-                TempData["Message"] = "Có lỗi xảy ra khi xóa bài viết, vui lòng thử lại";
+                TempData["Message"] = "Có lỗi xảy ra khi xóa danh mục bài viết, vui lòng thử lại";
             }
 
             return RedirectToAction("BlogCateIndex"); // Sau khi xóa, quay lại trang danh sách
@@ -160,6 +157,34 @@ namespace Web_DrugStore.Areas.Admin.Controllers
                 }
             }
             return RedirectToAction("BlogIndex");
+        }
+
+        [HttpPost]
+        public ActionResult BlogDelete(int id)
+        {
+            try
+            {
+                using (var db = new DS_DBContext())
+                {
+                    var blog = db.Blogs.Find(id);
+                    if (blog != null)
+                    {
+                        db.Blogs.Remove(blog);
+                        db.SaveChanges();
+                        TempData["Message"] = "Xóa bài viết thành công!";
+                    }
+                    else
+                    {
+                        TempData["Message"] = "Xoá bài viết không thành công, vui lòng kiểm tra lại";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Message"] = "Có lỗi xảy ra khi xóa bài viết, vui lòng thử lại";
+            }
+
+            return RedirectToAction("BlogIndex"); // Sau khi xóa, quay lại trang danh sách
         }
 
     }

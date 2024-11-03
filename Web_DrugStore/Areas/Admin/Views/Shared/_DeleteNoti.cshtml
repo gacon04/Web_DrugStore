@@ -1,0 +1,17 @@
+﻿@if (TempData["Message"] != null)
+{
+    <div id="statusMess" class="alert alert-warning">
+        @TempData["Message"]
+    </div>
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    //phải có jquery nhúng vô mới xài dc
+$(document).ready(function() {
+        var tempMessage = $('#statusMess');
+        if (tempMessage.length) {
+            setTimeout(function() {
+                tempMessage.fadeOut();
+            }, 2000); // 2k mili secs = 2secs
+        }
+    });</script>

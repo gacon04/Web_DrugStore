@@ -12,23 +12,6 @@
 
 @Html.Partial("_PageHeader")
 
-@if (TempData["Message"] != null)
-{
-    <div id="statusMess" class="alert alert-warning">
-        @TempData["Message"]
-    </div>
-}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    //phải có jquery nhúng vô mới xài dc
-$(document).ready(function() {
-        var tempMessage = $('#statusMess');
-        if (tempMessage.length) {
-            setTimeout(function() {
-                tempMessage.fadeOut(); 
-            }, 2000); // 2k mili secs = 2secs
-        }
-    });</script>
 
 
 <h1 style="text-align:center">DANH SÁCH DANH MỤC</h1>
@@ -37,6 +20,9 @@ $(document).ready(function() {
         <i class="anticon anticon-plus"></i> Thêm danh mục
     </a>
 </div>
+
+<!-- Hiện thông báo khi xoá thành công nếu có sự thay đổi trong temp mess-->
+@Html.Partial("_DeleteNoti")
 
 <div class="table-responsive">
     <table class="table table-bordered">
@@ -74,8 +60,8 @@ $(document).ready(function() {
                                 <i class="anticon anticon-edit"></i>
                                 Chỉnh sửa
                             </a>
-
-                            <button type="button" class="btn btn-danger m-r-5" onclick="showModal('@item.Id')">
+                            <!--click vào button sẽ bắt đầu gọi func trong partial view-->
+                            <button type="button" class="btn btn-danger m-r-5" onclick="showModal(@item.Id, '@Url.Action("Delete", "AdminCategory")')">
                                 <i class="anticon anticon-delete"></i> Xoá
                             </button>
                         </div>
@@ -85,39 +71,6 @@ $(document).ready(function() {
         </tbody>
     </table>
 </div>
-
-<!-- Modal HTML -->
-<div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Xác nhận xóa</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Bạn có chắc chắn muốn xóa danh mục này?</p>
-            </div>
-            <div class="modal-footer">
-                <form id="deleteForm" method="post" action="@Url.Action("Delete", "AdminCategory")">
-                    <input type="hidden" name="id" id="deleteId" />
-                    <button type="button" class="btn btn-danger m-r-5" onclick="submitDeleteForm()">Xóa</button>
-                </form>
-                <button type="button" class="btn btn-default m-r-10" data-dismiss="modal">Đóng</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    function showModal(id) {
-        $('#deleteId').val(id);
-        $('#deleteModal').modal('show');
-    }
-
-    function submitDeleteForm() {
-        $('#deleteForm').submit();
-    }
-</script>
+<!-- Xử lý khi bấm vào nút xoá -->
+@Html.Partial("_DelConfirmModal")
 

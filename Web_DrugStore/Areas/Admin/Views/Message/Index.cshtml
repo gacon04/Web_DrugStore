@@ -1,8 +1,58 @@
-﻿
+﻿@model List<Web_DrugStore.Models.TinNhanLienHe>
 @{
-    ViewBag.Title = "TIN NHẮN LIÊN HỆ";
+    ViewBag.Title = "Quản lý tin nhắn - PharmaVillage";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h1 style="text-align:center">QUẢN LÝ TIN NHẮN LIÊN HỆ - PHẢN HỒI</h1>
 
+<!-- Hiện thông báo khi xoá thành công nếu có sự thay đổi trong temp mess-->
+@Html.Partial("_DeleteNoti")
+
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Thời gian gửi</th>
+                <th scope="col">Họ tên</th>
+                <th scope="col">Nội dung</th>
+                <th scope="col">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.ThoiGian.ToString("dd/MM/yyyy HH:mm")
+                    </td>
+                    <td>
+                        @item.HoTen
+                    </td>
+                    
+                    <td>
+                        @item.NoiDung
+                    </td>
+                    <td>
+                        <div class="button-container" style="display: flex; gap: 10px;">
+                            <button class="btn btn-success btn-tone m-r-5"> <i class="anticon anticon-smile"></i> Tích cực </button>
+                            <button class="btn btn-warning m-r-5"> <i class="anticon anticon-frown"></i> Tiêu cực</button>
+                            <button class="btn btn-info m-r-5"><i class="anticon anticon-mail"></i> Trả lời (Mail) </button>
+                            <button class="btn btn-secondary m-r-5"><i class="anticon anticon-phone"></i> Trả lời (SDT) </button>
+                            <!--click vào button sẽ bắt đầu gọi func trong partial view-->
+                            <button type="button" class="btn btn-danger m-r-5" onclick="showModal(@item.Id, '@Url.Action("BlogCateDelete", "AdminBlog")')">
+                                <i class="anticon anticon-delete"></i> Xoá
+                            </button>
+                        </div>
+
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+<!-- Xử lý khi bấm vào nút xoá -->
+@Html.Partial("_DelConfirmModal")

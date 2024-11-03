@@ -2391,6 +2391,9 @@
     <Content Include="Areas\Admin\Views\AdminBlog\BlogIndex.cshtml" />
     <Content Include="Areas\Admin\Views\AdminBlog\BlogAdd.cshtml" />
     <Content Include="Areas\Admin\Views\AdminBlog\BlogEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_DeleteNoti.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_DelConfirmModal.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminProduct\Index.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
