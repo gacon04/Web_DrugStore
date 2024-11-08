@@ -1,0 +1,304 @@
+﻿@model Web_DrugStore.Models.SanPham
+@{
+    ViewBag.Title = "Cập nhật sản phẩm - PharmaVillage";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+    </style>
+</head>
+
+<h1 class="text-center" style="margin-bottom: 20px;">CẬP NHẬT SẢN PHẨM</h1>
+
+<form method="post" action="@Url.Action("EditProd", "AdminProduct", new { area = "Admin" })">
+
+    @Html.HiddenFor(model => model.SanPhamId)
+
+    <div class="form-group row">
+        <label for="DanhMucId" class="col-sm-2 col-form-label">Danh mục sản phẩm</label>
+        <div class="col-sm-10">
+            @Html.DropDownListFor(model => model.DanhMucId, new SelectList(ViewBag.DanhMucList, "Id", "TenDanhMuc", Model.DanhMucId), "Chọn danh mục sản phẩm", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group form-check row">
+        <div class="col-sm-10 offset-sm-2">
+            @Html.CheckBoxFor(model => model.HoatDong, new { @id = "checkboxActive" })
+            <label for="checkboxActive" class="form-check-label">Hoạt động</label>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="NhaSanXuat" class="col-sm-2 col-form-label">Nhà sản xuất</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.NhaSanXuat, new { @class = "form-control", placeholder = "Nhập nhà sản xuất" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="TenSanPham" class="col-sm-2 col-form-label">Tên sản phẩm</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.TenSanPham, new { @class = "form-control", placeholder = "Nhập tên sản phẩm" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="DonGia" class="col-sm-2 col-form-label">Đơn giá</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.DonGia, new { @class = "form-control", placeholder = "Nhập đơn giá" })
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="SoLuong" class="col-sm-2 col-form-label">Số lượng</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.SoLuong, new { @class = "form-control", placeholder = "Nhập số lượng" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="Thumbnail" class="col-sm-2 col-form-label">Thumbnail bài viết</label>
+        <div class="col-sm-10 input-group">
+            @Html.TextBoxFor(model => model.Thumbnail, new { @class = "form-control", placeholder = "Đường dẫn thumbnail sản phẩm", aria_label = "Thumbnail" })
+            <div class="input-group-append">
+                <button type="button" onclick="OpenCkFinder()" class="btn btn-info btn-tone">Chọn hình ảnh</button>
+            </div>
+            
+            <img id="thumbnailImg" src="@Model.Thumbnail" alt="Chưa có thumbnail hợp lệ" style="max-width: 150px; max-height: 150px;">
+
+            
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="PhanLoai" class="col-sm-2 col-form-label">Hình ảnh sản phẩm</label>
+    </div>
+    <input class="collapse"
+           type="file"
+           id="selectFileUpload"
+           onchange="AutoUploadPhoto()" />
+    <span class="btn btn-primary" onclick="ClickButtonUpload() ">Thêm hình</span><br />
+    <!-- Khối chứa ảnh đã tải lên -->
+    <div id="box-photo-upload" class="photo-upload" data-id="@Model.SanPhamId">
+        @* Các khối hình ảnh được ajax gọi load lên chèn vào box thực tế sẽ vô đây *@
+    </div>
+    <br />
+    <div class="form-group row">
+        <label for="PhanLoai" class="col-sm-2 col-form-label">Phân loại</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.PhanLoai, new { @class = "form-control", placeholder = "Nhập phân loại sản phẩm" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="CongDung" class="col-sm-2 col-form-label">Công dụng</label>
+        <div class="col-sm-10">
+            @Html.TextAreaFor(model => model.CongDung, new { @class = "form-control", placeholder = "Nhập công dụng sản phẩm", rows = 3 })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="QuyCach" class="col-sm-2 col-form-label">Quy cách</label>
+        <div class="col-sm-10">
+            @Html.TextAreaFor(model => model.QuyCach, new { @class = "form-control", placeholder = "Nhập quy cách sản phẩm", rows = 3 })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="LuuY" class="col-sm-2 col-form-label">Lưu ý</label>
+        <div class="col-sm-10">
+            @Html.TextAreaFor(model => model.LuuY, new { @class = "form-control", placeholder = "Nhập lưu ý về sản phẩm", rows = 3 })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="MoTa" class="col-sm-2 col-form-label">Mô tả</label>
+        <div class="col-sm-10">
+            @Html.TextAreaFor(model => model.MoTa, new { @class = "form-control", placeholder = "Nhập mô tả sản phẩm", rows = 5 })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2" style="text-align: right;">
+            <button type="submit" class="btn btn-primary btn-tone">Cập nhật sản phẩm</button>
+            <a href="@Url.Action("Index")" class="btn btn-danger btn-tone">Thoát</a>
+        </div>
+    </div>
+</form>
+
+<style>
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .btn-tone {
+        margin-right: 0.5rem;
+    }
+
+    /* CSS cho khối hiển thị hình ảnh */
+    #box-photo-upload {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .photo-item {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Ẩn nút xóa mặc định */
+        .photo-item .delete-button {
+            display: none;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 12px;
+            padding: 4px 6px;
+            cursor: pointer;
+        }
+
+        /* Hiện nút xóa khi di chuột vào ảnh */
+        .photo-item:hover .delete-button {
+            display: inline-block;
+            background-color: rgba(255, 0, 0, 0.8);
+            color: white;
+            border-radius: 4px;
+        }
+</style>
+@section Scripts {
+    @* Bật textarea mô tả sản phẩm thành CkEditor*@
+    <script>
+        CKEDITOR.replace("MoTa");
+    </script>
+
+     <script>
+      function OpenCkFinder() {
+        var finder = new CKFinder();
+        finder.selectActionFunction = SetUrlHinhAnh;
+        finder.popup();
+    }
+
+    function SetUrlHinhAnh(fileUrl) {
+        $('input[name="Thumbnail"]').val(fileUrl);
+        $('#thumbnailImg').attr('src', fileUrl);
+}
+    </script>
+
+    <script>
+    function AutoUploadPhoto(){
+        var formData = new FormData();
+
+        var id = $("#box-photo-upload").data("id");
+
+        formData.append("id", id);
+
+        var countFile = document.getElementById("selectFileUpload").files.length;
+
+        if (countFile==0) return;
+        var fileData = document.getElementById("selectFileUpload").files[0]
+        formData.append("FileUpload",fileData)
+        var urlUpload = "@Url.Action("UploadPhotoAPI")";
+
+        $.ajax({
+            data: formData,
+            cache:false,
+            url: urlUpload,
+            type: "POST",
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                LoadPhotos();
+            }
+        });
+    }
+    function ClickButtonUpload(){
+        $("#selectFileUpload").click();
+
+    }
+    function setClickDeletePhoto() {
+        $("#box-photo-upload .photo-item span").click(function () {
+
+            if (confirm("Bạn có chắc chắn muốn xoá ảnh này ?")!= true) return;
+
+            var spanButton = $(this);
+            var imageId = spanButton.data("id");
+
+            var formData = new FormData();
+            formData.append("id", imageId);
+
+            var urlDeletePhoto = "@Url.Action("DeletePhoto")";
+
+            $.ajax({
+                data: formData,
+                url: urlDeletePhoto,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    LoadPhotos(); // Sau khi xóa hình thì load lại hình
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error: " + error);
+                }
+            });
+        });
+    }
+
+    function LoadPhotos() {
+        var box = $("#box-photo-upload"); // Phần tử sẽ hiển thị hình
+        var ProductID = box.data("id"); // Lấy ID sản phẩm
+        box.empty(); // Xóa hết ảnh hiển thị
+
+        var formData = new FormData();
+        formData.append("id", ProductID);
+
+        var urlListPhoto = "@Url.Action("ListPhotos")";
+
+        $.ajax({
+            data: formData,
+            url: urlListPhoto,
+            type: "POST",
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                var basePath = '@Url.Content("~/")';
+                data.photos.forEach(function (item) { // Duyệt từng phần tử item trong data
+                    var e = $(
+                        '<div class="photo-item">' +
+                            '<img src="' + basePath + item.path + '" alt="Ảnh sản phẩm" />' +
+                            '<span class="btn btn-danger delete-button" data-id="' + item.id + '">Xoá</span>' +
+                        '</div>'
+                    );
+                    box.append(e);
+                });
+                setClickDeletePhoto();
+            },
+            error: function (xhr, status, error) {
+                console.error("Error: " + error);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        LoadPhotos();
+    });
+    </script>
+
+}

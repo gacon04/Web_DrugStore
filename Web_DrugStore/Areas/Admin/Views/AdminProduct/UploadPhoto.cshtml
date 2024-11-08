@@ -1,0 +1,181 @@
+﻿@model Web_DrugStore.Areas.Admin.Controllers.AdminProductController.UploadOneFile
+@{
+    ViewBag.Title = "UploadPhoto";
+    Web_DrugStore.Models.SanPham sp = ViewData["sanpham"] as Web_DrugStore.Models.SanPham;
+}
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* CSS cho khối hiển thị hình ảnh */
+        #box-photo-upload {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .photo-item {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+            .photo-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            /* Ẩn nút xóa mặc định */
+            .photo-item .delete-button {
+                display: none;
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                font-size: 12px;
+                padding: 4px 6px;
+                cursor: pointer;
+            }
+
+            /* Hiện nút xóa khi di chuột vào ảnh */
+            .photo-item:hover .delete-button {
+                display: inline-block;
+                background-color: rgba(255, 0, 0, 0.8);
+                color: white;
+                border-radius: 4px;
+            }
+    </style>
+</head>
+
+<h2>CẬP NHẬT HÌNH ẢNH: @sp.TenSanPham</h2>
+
+<!-- Form upload ảnh -->
+@using (Html.BeginForm("UploadPhoto", "AdminProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.Hidden("id", sp.SanPhamId)
+
+    <div>
+        @Html.LabelFor(m => m.FileUpload)
+        @Html.TextBoxFor(m => m.FileUpload, new { type = "file" })
+        @Html.ValidationMessageFor(m => m.FileUpload)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Đăng hình</button>
+}
+<hr />
+<input 
+       class="collapse"
+       type="file"
+       id="selectFileUpload"
+       onchange="AutoUploadPhoto()"
+       />
+<span class="btn btn-primary" onclick="ClickButtonUpload() ">Thêm hình</span>
+<!-- Khối chứa ảnh đã tải lên -->
+<div id="box-photo-upload" class="photo-upload" data-id="@sp.SanPhamId">
+    @* Các khối hình ảnh được ajax gọi load lên chèn vào box thực tế sẽ vô đây *@
+</div>
+
+@section Scripts {
+    <script>
+        function AutoUploadPhoto(){
+            var formData = new FormData();
+
+            var id = $("#box-photo-upload").data("id");
+
+            formData.append("id", id);
+
+            var countFile = document.getElementById("selectFileUpload").files.length;
+
+            if (countFile==0) return;
+            var fileData = document.getElementById("selectFileUpload").files[0]
+            formData.append("FileUpload",fileData)
+            var urlUpload = "@Url.Action("UploadPhotoAPI")";
+
+            $.ajax({
+                data: formData,
+                cache:false,
+                url: urlUpload,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    LoadPhotos();
+                }
+            });
+        }
+        function ClickButtonUpload(){
+            $("#selectFileUpload").click();
+
+        }
+        function setClickDeletePhoto() {
+            $("#box-photo-upload .photo-item span").click(function () {
+                
+                if (confirm("Bạn có chắc chắn muốn xoá ảnh này ?")!= true) return;
+
+                var spanButton = $(this);
+                var imageId = spanButton.data("id");
+
+                var formData = new FormData();
+                formData.append("id", imageId);
+
+                var urlDeletePhoto = "@Url.Action("DeletePhoto")";
+
+                $.ajax({
+                    data: formData,
+                    url: urlDeletePhoto,
+                    type: "POST",
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        LoadPhotos(); // Sau khi xóa hình thì load lại hình
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error: " + error);
+                    }
+                });
+            });
+        }
+
+        function LoadPhotos() {
+            var box = $("#box-photo-upload"); // Phần tử sẽ hiển thị hình
+            var ProductID = box.data("id"); // Lấy ID sản phẩm
+            box.empty(); // Xóa hết ảnh hiển thị
+
+            var formData = new FormData();
+            formData.append("id", ProductID);
+
+            var urlListPhoto = "@Url.Action("ListPhotos")";
+
+            $.ajax({
+                data: formData,
+                url: urlListPhoto,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    var basePath = '@Url.Content("~/")';
+                    data.photos.forEach(function (item) { // Duyệt từng phần tử item trong data
+                        var e = $(
+                            '<div class="photo-item">' +
+                                '<img src="' + basePath + item.path + '" alt="Ảnh sản phẩm" />' +
+                                '<span class="btn btn-danger delete-button" data-id="' + item.id + '">Xoá</span>' +
+                            '</div>'
+                        );
+                        box.append(e);
+                    });
+                    setClickDeletePhoto();
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error: " + error);
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            LoadPhotos();
+        });
+    </script>
+}

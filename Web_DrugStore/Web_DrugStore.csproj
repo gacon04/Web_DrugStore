@@ -229,6 +229,18 @@
     <Compile Include="Migrations\202411011620391_AddHoatDongToBlogCate.Designer.cs">
       <DependentUpon>202411011620391_AddHoatDongToBlogCate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202411051608473_UpdateSanPham.cs" />
+    <Compile Include="Migrations\202411051608473_UpdateSanPham.Designer.cs">
+      <DependentUpon>202411051608473_UpdateSanPham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411071614582_UpdateSanPham1.cs" />
+    <Compile Include="Migrations\202411071614582_UpdateSanPham1.Designer.cs">
+      <DependentUpon>202411071614582_UpdateSanPham1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411081321436_AddThumbnailToSanPham.cs" />
+    <Compile Include="Migrations\202411081321436_AddThumbnailToSanPham.Designer.cs">
+      <DependentUpon>202411081321436_AddThumbnailToSanPham.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ChiTietDonHang.cs" />
@@ -743,6 +755,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\css\custom.css" />
+    <Content Include="Content\Admin_assets\CssCustomForForm\CssForUploadImg.css" />
     <Content Include="Content\css\elements\_portfoli.css" />
     <Content Include="Content\css\font-icons.css" />
     <Content Include="Content\css\plugins.css" />
@@ -2394,6 +2407,8 @@
     <Content Include="Areas\Admin\Views\Shared\_DeleteNoti.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_DelConfirmModal.cshtml" />
     <Content Include="Areas\Admin\Views\AdminProduct\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminProduct\UploadPhoto.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminProduct\EditProd.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -2513,6 +2528,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202411011620391_AddHoatDongToBlogCate.resx">
       <DependentUpon>202411011620391_AddHoatDongToBlogCate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411051608473_UpdateSanPham.resx">
+      <DependentUpon>202411051608473_UpdateSanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411071614582_UpdateSanPham1.resx">
+      <DependentUpon>202411071614582_UpdateSanPham1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411081321436_AddThumbnailToSanPham.resx">
+      <DependentUpon>202411081321436_AddThumbnailToSanPham.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

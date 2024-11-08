@@ -15,7 +15,7 @@
     <!-- Core css -->
     <link href="~/Content/Admin_assets/css/app.min.css" rel="stylesheet">
 
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -290,7 +290,7 @@
                 <!-- Footer START -->
                 <footer class="footer">
                     <div class="footer-content">
-                        <p class="m-b-0">Hệ thống quản lí nhà thuốc PharmaVillage - @time</p>
+                        <p class="m-b-0">Hệ thống quản lí nhà thuốc PharmaVillage - @DateTime.Now.ToString("dd/MM/yyyy")</p>
 
                     </div>
                 </footer>
@@ -315,6 +315,7 @@
     <!-- Core JS -->
     <script src="~/Content/Admin_assets/js/app.min.js"></script>
     @RenderSection("scriptForCKEditor", false)
+    @RenderSection("Scripts", false)
 </body>
 
 </html>

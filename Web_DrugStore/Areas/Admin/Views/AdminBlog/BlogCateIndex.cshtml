@@ -17,6 +17,7 @@
         <thead>
             <tr>
                 <th scope="col">Danh mục bài viết</th>
+                <th scope="col">Trạng thái</th>
                 <th scope="col">Thao tác</th>
             </tr>
         </thead>
@@ -27,19 +28,29 @@
                     <td>
                         @item.TenDanhMuc
                     </td>
+                    @if (item.HoatDong == true)
+                    {
+                        <td><span class="badge badge-pill badge-success">Kích hoạt</span></td>
 
+                    }
+                    else
+                    {
+
+                        <td><span class="badge badge-pill badge-default">Không kích hoạt</span></td>
+
+                    }
                     <td>
                         <div class="button-container" style="display: flex; gap: 10px;">
 
 
-                            <a href="@Url.Action("BlogCateEdit", "AdminBlog", new { id = item.Id })" class="btn btn-warning m-r-5">
+                            <a href="@Url.Action("BlogCateEdit", "AdminBlog", new { id = item.Id })" class="btn btn-info m-r-5">
                                 <i class="anticon anticon-edit"></i>
-                                Chỉnh sửa
+                                <!--Nút chỉnh sửa-->
                             </a>
 
                             <!--click vào button sẽ bắt đầu gọi func trong partial view-->
                             <button type="button" class="btn btn-danger m-r-5" onclick="showModal(@item.Id, '@Url.Action("BlogCateDelete", "AdminBlog")')">
-                                <i class="anticon anticon-delete"></i> Xoá
+                                <i class="anticon anticon-delete"></i> <!--Nút xoá-->
                             </button>
                         </div>
 

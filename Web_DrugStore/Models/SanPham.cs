@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using Web_DrugStore.Models;
 
 namespace Web_DrugStore.Models
 {
@@ -21,41 +21,39 @@ namespace Web_DrugStore.Models
 
         public int SoLuong { get; set; }
 
-        public string HinhAnh { get; set; }
 
-        // Phân loại sản phẩm
         [Required]
         public string PhanLoai { get; set; }
 
         public bool HoatDong { get; set; }
 
-        // Danh mục sản phẩm
         [Required]
         [ForeignKey("DanhMuc")]
         public int DanhMucId { get; set; }
         public virtual DanhMuc DanhMuc { get; set; }
 
-        // Công dụng sản phẩm
         public string CongDung { get; set; }
 
-        // Quy cách sản phẩm
         public string QuyCach { get; set; }
 
-        // Lưu ý khi sử dụng
         public string LuuY { get; set; }
 
-        // Nhà sản xuất
         [Required]
         public string NhaSanXuat { get; set; }
 
-        // Điều hướng quan hệ - Một sản phẩm có nhiều hình ảnh
+        public string Thumbnail { get; set; }
+
         public virtual ICollection<HinhAnhSanPham> HinhAnhSanPhams { get; set; }
 
-        // Số lượt yêu thích
         public int LuotYeuThich { get; set; } = 0;
 
-        // Số lượt mua
         public int LuotMua { get; set; } = 0;
-    }
 
+        public bool Hot { get; set; } = false;
+
+        public DateTime NgayTao { get; set; } = DateTime.Now;
+
+        public DateTime? NgayCapNhat { get; set; }
+
+    }
 }

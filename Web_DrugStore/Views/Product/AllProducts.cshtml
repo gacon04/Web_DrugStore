@@ -63,53 +63,7 @@
                     <div class="tab-pane fade active show" id="liton_product_grid">
                         <div class="ltn__product-tab-content-inner ltn__product-grid-view">
                             <div class="row">
-                                <div class="col-xl-4 col-sm-6 col-6">
-                                    <div class="ltn__product-item ltn__product-item-3 text-center">
-                                        <div class="product-img">
-                                            <a href="product-details.html"><img src="~/Content/img/product/temp.png" alt="#"></a>
-                                            <div class="product-badge">
-                                                <ul>
-                                                    <li class="sale-badge">Mới</li>
-                                                </ul>
-                                            </div>
-                                            <div class="product-hover-action">
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
-                                                            <i class="far fa-eye"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
-                                                            <i class="fas fa-shopping-cart"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
-                                                            <i class="far fa-heart"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-info">
-                                            <div class="product-ratting">
-                                                <ul>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                    <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <h2 class="product-title"><a href="product-details.html">Thuốc nhỏ mũi xisat</a></h2>
-                                            <div class="product-price">
-                                                <span>30.000đ</span>
-                                                <del>35.000đ</del>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 @foreach (var item in Model)
                                 {
                                     <!-- ltn__product-item -->
@@ -117,9 +71,9 @@
                                         <div class="ltn__product-item ltn__product-item-3 text-center">
                                             <div class="product-img">
 
-                                                @if (!string.IsNullOrEmpty(item.HinhAnh)) // kiểm soát hình ảnh
+                                                @if (!string.IsNullOrEmpty(item.Thumbnail)) // kiểm soát hình ảnh
                                                 {
-                                                    <a href="@Url.Action("ProdInfo","Product")"><img src="~/Content/img/KhoSanPham/@item.HinhAnh" alt="#"></a>
+                                                    <a href="@Url.Action("ProdInfo","Product")"><img src="@Url.Content(item.Thumbnail)" alt="#"></a>
                                                 }
                                                 else
                                                 {
@@ -163,7 +117,10 @@
                                                 <h2 class="product-title"><a href="">@item.TenSanPham đ</a></h2>
                                                 <div class="product-price">
                                                     <span>@item.DonGia</span>
-                                                    <del>$162.00</del>
+                                                    <!--
+        <del>$162.00</del>
+    -->
+
                                                 </div>
                                             </div>
                                         </div>
@@ -278,205 +235,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- ltn__product-item -->
-                                <div class="col-lg-12">
-                                    <div class="ltn__product-item ltn__product-item-3">
-                                        <div class="product-img">
-                                            <a href="@Url.Action("ProdInfo","Product")"><img src="~/Content/img/product/temp.png" alt="#"></a>
-                                            <div class="product-badge">
-                                                <ul>
-                                                    <li class="sale-badge">Mới</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-info">
-                                            <h2 class="product-title"><a href="@Url.Action("ProdInfo","Product")">Thermometer Gun</a></h2>
-                                            <div class="product-ratting">
-                                                <ul>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                    <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product-price">
-                                                <span>$165.00</span>
-                                                <del>$1720.00</del>
-                                            </div>
-                                            <div class="product-brief">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae asperiores sit odit nesciunt,  aliquid, deleniti non et ut dolorem!</p>
-                                            </div>
-                                            <div class="product-hover-action">
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
-                                                            <i class="far fa-eye"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
-                                                            <i class="fas fa-shopping-cart"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
-                                                            <i class="far fa-heart"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- ltn__product-item -->
-                                <div class="col-lg-12">
-                                    <div class="ltn__product-item ltn__product-item-3">
-                                        <div class="product-img">
-                                            <a href="@Url.Action("ProdInfo","Product")"><img src="~/Content/img/product/temp.png" alt="#"></a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h2 class="product-title"><a href="@Url.Action("ProdInfo","Product")">Digital Stethoscope</a></h2>
-                                            <div class="product-ratting">
-                                                <ul>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                    <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product-price">
-                                                <span>$165.00</span>
-                                                <del>$1720.00</del>
-                                            </div>
-                                            <div class="product-brief">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae asperiores sit odit nesciunt,  aliquid, deleniti non et ut dolorem!</p>
-                                            </div>
-                                            <div class="product-hover-action">
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
-                                                            <i class="far fa-eye"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
-                                                            <i class="fas fa-shopping-cart"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
-                                                            <i class="far fa-heart"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- ltn__product-item -->
-                                <div class="col-lg-12">
-                                    <div class="ltn__product-item ltn__product-item-3">
-                                        <div class="product-img">
-                                            <a href="@Url.Action("ProdInfo","Product")"><img src="~/Content/img/product/temp.png" alt="#"></a>
-                                            <div class="product-badge">
-                                                <ul>
-                                                    <li class="sale-badge">Hot</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-info">
-                                            <h2 class="product-title"><a href="@Url.Action("ProdInfo","Product")">Thermometer Gun</a></h2>
-                                            <div class="product-ratting">
-                                                <ul>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                    <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product-price">
-                                                <span>$165.00</span>
-                                                <del>$1720.00</del>
-                                            </div>
-                                            <div class="product-brief">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae asperiores sit odit nesciunt,  aliquid, deleniti non et ut dolorem!</p>
-                                            </div>
-                                            <div class="product-hover-action">
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
-                                                            <i class="far fa-eye"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
-                                                            <i class="fas fa-shopping-cart"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
-                                                            <i class="far fa-heart"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- ltn__product-item -->
-                                <div class="col-lg-12">
-                                    <div class="ltn__product-item ltn__product-item-3">
-                                        <div class="product-img">
-                                            <a href="@Url.Action("ProdInfo","Product")"><img src="~/Content/img/product/temp.png" alt="#"></a>
-                                            <div class="product-badge">
-                                                <ul>
-                                                    <li class="sale-badge">Mới</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-info">
-                                            <h2 class="product-title"><a href="@Url.Action("ProdInfo","Product")">Thermometer Gun</a></h2>
-                                            <div class="product-ratting">
-                                                <ul>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                    <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product-price">
-                                                <span>$165.00</span>
-                                                <del>$1720.00</del>
-                                            </div>
-                                            <div class="product-brief">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae asperiores sit odit nesciunt,  aliquid, deleniti non et ut dolorem!</p>
-                                            </div>
-                                            <div class="product-hover-action">
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
-                                                            <i class="far fa-eye"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
-                                                            <i class="fas fa-shopping-cart"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
-                                                            <i class="far fa-heart"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <!-- ltn__product-item -->
                                 <div class="col-lg-12">
                                     <div class="ltn__product-item ltn__product-item-3">
@@ -717,3 +476,56 @@
     </div>
 </div>
 <!-- PRODUCT DETAILS AREA END -->
+<style>
+    /* 1. Đảm bảo các khối sản phẩm luôn có kích thước cố định */
+.ltn__product-item {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    justify-content: space-between;
+}
+
+/* 2. Giới hạn độ dài của tên sản phẩm, hiển thị tối đa 2 dòng */
+.product-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Giới hạn số dòng hiển thị */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; /* Cho phép xuống dòng */
+    font-size: 16px; /* Bạn có thể điều chỉnh kích thước chữ */
+    line-height: 1.4; /* Điều chỉnh line-height để điều chỉnh chiều cao dòng */
+}
+
+/* 3. Đảm bảo các phần tử trong khối sản phẩm không bị đẩy ra ngoài */
+.ltn__product-item-3 {
+    height: 90%;
+    padding: 15px;
+}
+
+/* 4. Đảm bảo hình ảnh sản phẩm có kích thước cố định */
+.product-img img {
+    width: 100%;
+    height: auto;
+    max-height: 200px; /* Bạn có thể điều chỉnh theo nhu cầu */
+    object-fit: cover;
+}
+
+/* 5. Đảm bảo thông tin giá sản phẩm luôn hiển thị ở vị trí cố định */
+.product-info {
+    margin-top: 10px;
+}
+
+.product-price {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+
+.product-ratting ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+</style>

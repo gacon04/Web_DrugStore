@@ -12,18 +12,18 @@
 /*---------------------------------
 -------- Depdencies Styles --------
 ---------------------------------*/
-@import 'plugins/bootstrap';//                 bootstrap
-@import 'plugins/perfect-scroll-bar';//        perfect-scroll-bar
-@import 'plugins/nouislider';//                nouislider
-@import 'plugins/datatables';//                datatables
-@import 'plugins/select2';//                   select2
-@import 'plugins/datepicker';//                datepicker
-@import 'plugins/quill';//                     quill
-@import 'plugins/chartist';//                  chartist
-@import 'plugins/chartjs';//                   chartjs
+@import 'plugins/bootstrap'; //                 bootstrap
+@import 'plugins/perfect-scroll-bar'; //        perfect-scroll-bar
+@import 'plugins/nouislider'; //                nouislider
+@import 'plugins/datatables'; //                datatables
+@import 'plugins/select2'; //                   select2
+@import 'plugins/datepicker'; //                datepicker
+@import 'plugins/quill'; //                     quill
+@import 'plugins/chartist'; //                  chartist
+@import 'plugins/chartjs'; //                   chartjs
 
 // Dependencies for Demo
-@import 'plugins/prism';//                     prism
+@import 'plugins/prism'; //                     prism
 
 /*---------------------------------
 -------------- common -------------
@@ -59,49 +59,48 @@
 /*---------------------------------
 ------------ Components -----------
 ---------------------------------*/
-@import 'components/accordion';//              accordion
-@import 'components/modal';//                  modal
-@import 'components/dropdown';//               dropdown
-@import 'components/tooltips';//               tooltips
-@import 'components/popovers';//               popovers
-@import 'components/tabs';//                   tabs
-@import 'components/carousel';//               carousel
-@import 'components/toasts';//                 toasts
-@import 'components/progress-bar';//           progress-bar
-@import 'components/menu';//                   menu
+@import 'components/accordion'; //              accordion
+@import 'components/modal'; //                  modal
+@import 'components/dropdown'; //               dropdown
+@import 'components/tooltips'; //               tooltips
+@import 'components/popovers'; //               popovers
+@import 'components/tabs'; //                   tabs
+@import 'components/carousel'; //               carousel
+@import 'components/toasts'; //                 toasts
+@import 'components/progress-bar'; //           progress-bar
+@import 'components/menu'; //                   menu
 
 /*---------------------------------
 ------------- Tables --------------
 ---------------------------------*/
-@import 'tables/tables';//                     tables
+@import 'tables/tables'; //                     tables
 
 /*---------------------------------
 -------------- Forms --------------
 ---------------------------------*/
-@import 'forms/input';//                       input
-@import 'forms/select';//                      select
-@import 'forms/checkbox';//                    checkbox
-@import 'forms/radio';//                       radio
-@import 'forms/switch';//                      switch
-@import 'forms/star_rating';//                 star_rating
-@import 'forms/validation';//                  validation
+@import 'forms/input'; //                       input
+@import 'forms/select'; //                      select
+@import 'forms/checkbox'; //                    checkbox
+@import 'forms/radio'; //                       radio
+@import 'forms/switch'; //                      switch
+@import 'forms/star_rating'; //                 star_rating
+@import 'forms/validation'; //                  validation
 
 /*---------------------------------
 -------------- Apps ---------------
 ---------------------------------*/
-@import 'apps/mail';//                         mail
-@import 'apps/file-manager';//                 file-manager
-@import 'apps/chat';//                         chat
-@import 'apps/e-commerce';//                   e-commerce
+@import 'apps/mail'; //                         mail
+@import 'apps/file-manager'; //                 file-manager
+@import 'apps/chat'; //                         chat
+@import 'apps/e-commerce'; //                   e-commerce
 
 /*---------------------------------
 ----------- Dashboard -------------
 ---------------------------------*/
-@import 'dashboard/projects.scss';//           projects
+@import 'dashboard/projects.scss'; //           projects
 
 
 /*---------------------------------
-------------- Custom -------------
+-------- Theme Configurator -------
 ---------------------------------*/
-@import 'custom';//                            custom
-
+@import 'theme-configurator/theme-configurator'

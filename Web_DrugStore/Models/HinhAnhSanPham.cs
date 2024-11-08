@@ -13,6 +13,7 @@ namespace Web_DrugStore.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+
         [ForeignKey("SanPham")]
         public int SanPhamId { get; set; } // Khóa ngoại tham chiếu đến bảng SanPham
 

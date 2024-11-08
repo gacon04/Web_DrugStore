@@ -1,7 +1,94 @@
-﻿
+﻿@model List<Web_DrugStore.Models.SanPham>
 @{
-    ViewBag.Title = "Danh sách sản phẩm";
+    ViewBag.Title = "Quản lý bài viết - PharmaVillage";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
+<h1 style="text-align:center">QUẢN LÝ SẢN PHẨM</h1>
+<div class="text-right mb-3">
+    <a href="@Url.Action("AddProd", "AdminProduct")" class="btn btn-primary m-r-5">
+        <i class="anticon anticon-plus"></i> Thêm sản phẩm mới
+    </a>
+</div>
+
+<!-- Hiện thông báo khi xoá thành công nếu có sự thay đổi trong temp mess-->
+@Html.Partial("_DeleteNoti")
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Danh mục</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Giá bán</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.DanhMuc.TenDanhMuc
+                    </td>
+                    <td style="max-width: 200px">
+                        @item.TenSanPham
+                    </td>
+
+                    <td>
+                        @item.DonGia.ToString("#,0.##").Replace(",", " ") đ
+                    </td>
+
+
+                    <td>
+                        @item.SoLuong
+                    </td>
+                    <td>
+                        <img src="@Url.Content(!string.IsNullOrEmpty(item.Thumbnail) ? item.Thumbnail : "abc")"
+                             alt="Chưa có thumbnail hợp lệ"
+                             style="max-width: 120px; max-height: 120px;">
+                    </td>
+                    
+                    @if (item.HoatDong == true)
+                    {
+                        <td><span class="badge badge-pill badge-success">Đang hiện</span></td>
+
+                    }
+                    else
+                    {
+
+                        <td><span class="badge badge-pill badge-default">Đang ẩn</span></td>
+
+                    }
+
+
+                    <td>
+                        <div class="button-container" style="display: flex; gap: 10px;">
+
+
+                            <a href="@Url.Action("EditProd", "AdminProduct", new { id = item.SanPhamId })" class="btn btn-info m-r-5">
+                                <i class="anticon anticon-edit"></i>
+                                <!--Nút chỉnh sửa-->
+                            </a>
+
+                            <!--click vào button sẽ bắt đầu gọi func trong partial view-->
+                            <button type="button" class="btn btn-danger m-r-5" onclick="showModal(@item.SanPhamId, '@Url.Action("DeleteProd", "AdminProduct")')">
+                                <i class="anticon anticon-delete"></i> <!--Nút xoá-->
+                            </button>
+                        </div>
+
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+<!-- Xử lý khi bấm vào nút xoá -->
+@Html.Partial("_DelConfirmModal")
 

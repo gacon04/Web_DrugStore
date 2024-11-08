@@ -34,21 +34,25 @@
                     <td>
                         @item.DanhMucBlog.TenDanhMuc
                     </td>
-                    <td style="max-width: 300px">
+                    <td style="max-width: 200px;
+                    ">
                         @item.TieuDe
                     </td>
                     <td>
-                        <img src="@item.DuongDanHinhAnh" alt="Thumbnail" style="max-width: 150px; max-height: 150px;">
+                        <img src="@item.DuongDanHinhAnh" alt="Thumbnail" style="max-width: 120px; max-height: 120px;">
                     </td>
 
 
                     @if (item.HienThi == true)
                     {
-                        <td>Đang hiện</td>
+                        <td><span class="badge badge-pill badge-success">Đang hiện</span></td>
+
                     }
                     else
                     {
-                        <td>Đang ẩn</td>
+                        
+                        <td><span class="badge badge-pill badge-default">Đang ẩn</span></td>
+
                     }
 
                     <td>
@@ -70,14 +74,14 @@
                         <div class="button-container" style="display: flex; gap: 10px;">
 
 
-                            <a href="@Url.Action("BlogEdit", "AdminBlog", new { id = item.Id })" class="btn btn-warning m-r-5">
+                            <a href="@Url.Action("BlogEdit", "AdminBlog", new { id = item.Id })" class="btn btn-info m-r-5">
                                 <i class="anticon anticon-edit"></i>
-                                Chỉnh sửa
+                                <!--Nút chỉnh sửa-->
                             </a>
 
                             <!--click vào button sẽ bắt đầu gọi func trong partial view-->
                             <button type="button" class="btn btn-danger m-r-5" onclick="showModal(@item.Id, '@Url.Action("BlogDelete", "AdminBlog")')">
-                                <i class="anticon anticon-delete"></i> Xoá
+                                <i class="anticon anticon-delete"></i> <!--Nút xoá-->
                             </button>
                         </div>
 
