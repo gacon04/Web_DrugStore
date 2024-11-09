@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -25,11 +26,21 @@ namespace Web_DrugStore.Controllers
 
         public ActionResult ProdDetail(int id)
         {
-            return View();
+
+            SanPham sp = db.SanPhams.Include("HinhAnhSanPhams").
+                                 FirstOrDefault(tmp => tmp.SanPhamId == id);
+
+            if (sp == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(sp);
         }
+
         // Hiển thị form tạo sản phẩm
 
-        
-        
+
+
     }
 }

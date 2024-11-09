@@ -28,10 +28,6 @@ namespace Web_DrugStore.Models
         public string SDT { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string TenNguoiDung { get; set; }
-
-        [Required]
         [StringLength(100)]
         public string MatKhau { get; set; }
 

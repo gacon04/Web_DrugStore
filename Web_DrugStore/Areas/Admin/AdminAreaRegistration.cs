@@ -20,6 +20,7 @@ namespace Web_DrugStore.Areas.Admin
                 defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional },
                 namespaces: new[] { "Web_DrugStore.Areas.Admin.Controllers" }
             );
+
         }
     }
 }

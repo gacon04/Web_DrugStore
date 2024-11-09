@@ -241,6 +241,10 @@
     <Compile Include="Migrations\202411081321436_AddThumbnailToSanPham.Designer.cs">
       <DependentUpon>202411081321436_AddThumbnailToSanPham.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202411090049598_DeleteUserNameTaiKhoan.cs" />
+    <Compile Include="Migrations\202411090049598_DeleteUserNameTaiKhoan.Designer.cs">
+      <DependentUpon>202411090049598_DeleteUserNameTaiKhoan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ChiTietDonHang.cs" />
@@ -2537,6 +2541,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202411081321436_AddThumbnailToSanPham.resx">
       <DependentUpon>202411081321436_AddThumbnailToSanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411090049598_DeleteUserNameTaiKhoan.resx">
+      <DependentUpon>202411090049598_DeleteUserNameTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

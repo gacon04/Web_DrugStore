@@ -134,10 +134,19 @@
                                     <li>
                                         <a href="#"><i class="icon-user"></i></a>
                                         <ul>
-                                            <li><a href="@Url.Action("Index","Login")">Đăng nhập</a></li>
-                                            <li><a href="@Url.Action("Register","Login")">Đăng ký</a></li>
-                                            <li><a href="@Url.Action("Index","Account")">Tài khoản của tôi</a></li>
-                                            <li><a href="@Url.Action("WishList","Account")">Danh sách yêu thích</a></li>
+                                            @if (Session["Tk"] == null)
+                                            {
+                                                <li><a href="@Url.Action("Index","Login")">Đăng nhập</a></li>
+                                                <li><a href="@Url.Action("Register","Login")">Đăng ký</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a href="@Url.Action("Index","Account")">Tài khoản của tôi</a></li>
+                                                <li><a href="@Url.Action("WishList","Account")">Danh sách yêu thích</a></li>
+                                                <li><a href="@Url.Action("Logout","Account")">Đăng xuất</a></li>
+                                            }
+
+
                                         </ul>
                                     </li>
                                 </ul>
@@ -151,7 +160,7 @@
                                         <i class="icon-shopping-cart"></i>
                                         <sup>2</sup>
                                     </span>
-                                    <h6><span>Giỏ hàng</span> <span class="ltn__secondary-color">120.000 Đ</span></h6>
+                                    <h6><span>Giỏ hàng</span> <span class="ltn__secondary-color">0 Đ</span></h6>
                                 </a>
                             </div>
                         </li>

@@ -13,7 +13,7 @@
                         <div class="ltn__blog-meta">
                             <ul>
                                 <li class="ltn__blog-category">
-                                    <a href="#">Kiến thức</a>
+                                    <a href="#">@Model.DanhMucBlog.TenDanhMuc</a>
                                 </li>
                             </ul>
                         </div>
@@ -26,13 +26,16 @@
                                     <a href="#">Bởi: @Model.TacGia.HoTen </a>
                                 </li>
                                 <li class="ltn__blog-date">
-                                    <i class="far fa-calendar-alt"></i>@Model.CreatedAt.ToString("MMMM dd, yyyy")
+                                    <i class="far fa-calendar-alt"></i> @Model.CreatedAt.ToString("dd/MM/yyyy")
+
                                 </li>
                                 @if (!string.IsNullOrEmpty(Model.DuongDanHinhAnh))
                                 {
                                     <img src="@Url.Content(Model.DuongDanHinhAnh)" alt="@Model.TieuDe" style="max-width:100%;" />
                                 }
-                             <div>@Html.Raw(Model.NoiDung)</div>
+                             <div>
+                                @Html.Raw(Model.NoiDung)
+                             </div>
                             </ul>
                         </div>
 
@@ -69,30 +72,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <!-- Blog Item -->
-                                <div class="ltn__blog-item ltn__blog-item-6">
-                                    <div class="ltn__blog-img">
-                                        <a href="blog-details.html"><img src="img/blog/blog-details/12.jpg" alt="Image"></a>
-                                    </div>
-                                    <div class="ltn__blog-brief">
-                                        <div class="ltn__blog-meta">
-                                            <ul>
-                                                <li class="ltn__blog-date ltn__secondary-color">
-                                                    <i class="far fa-calendar-alt"></i>June 22, 2020
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <h3 class="ltn__blog-title">
-                                            <a href="blog-details.html">
-                                                A series of iOS 7 inspire
-                                                vector icons sense.
-                                            </a>
-                                        </h3>
-                                        <p>Lorem ipsum dolor sit amet, conse ctet ur adipisicing elit, sed doing.</p>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
 

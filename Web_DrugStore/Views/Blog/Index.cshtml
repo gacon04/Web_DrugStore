@@ -53,7 +53,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <h3 class="ltn__blog-title"><a href="blog-details.html">@item.TieuDe</a></h3>
+                            <h3 class="ltn__blog-title"><a href="@Url.Action("BlogDetail", new {id = item.Id})">@item.TieuDe</a></h3>
                             <div class="ltn__blog-meta-btn">
                                 <div class="ltn__blog-meta">
                                     <ul>
@@ -62,7 +62,7 @@
                                     </ul>
                                 </div>
                                 <div class="ltn__blog-btn">
-                                    <a href="blog-details.html">Đọc ngay</a>
+                                    <a href="@Url.Action("BlogDetail", new {id = item.Id})">Đọc ngay</a>
                                 </div>
                             </div>
                         </div>
@@ -92,3 +92,59 @@
     </div>
 </div>
 <!-- BLOG AREA END -->
+
+<style>
+    /* Đặt chiều cao cố định cho mỗi khối blog để chúng cùng kích thước */
+    .ltn__blog-item {
+        display: flex;
+        flex-direction: column;
+        height: 450px; /* Điều chỉnh chiều cao theo ý muốn */
+        box-sizing: border-box;
+    }
+
+    /* Hình ảnh cùng kích thước */
+    .ltn__blog-img img {
+        width: 100%;
+        height: 200px; /* Điều chỉnh chiều cao hình ảnh theo ý muốn */
+        object-fit: cover; /* Đảm bảo ảnh không bị méo và lấp đầy khung */
+    }
+
+    /* Phần chứa tiêu đề và nội dung ngắn */
+    .ltn__blog-brief {
+        padding: 15px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* Giới hạn tiêu đề hiển thị tối đa 3 dòng */
+    .ltn__blog-title a {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        max-height: 4.5em; /* 1.5em line-height x 3 lines */
+    }
+    /* Căn giữa nút "Đọc ngay" ở cuối mỗi khối blog */
+    .ltn__blog-meta-btn {
+        margin-top: auto;
+    }
+
+    .ltn__blog-btn a {
+        display: inline-block;
+        padding: 8px 20px;
+        background-color: deepskyblue; /* Màu sắc cho nút, tùy chỉnh theo giao diện */
+        color: white;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+
+        .ltn__blog-btn a:hover {
+            background-color: dodgerblue; /* Màu khi hover */
+        }
+
+
+</style>
