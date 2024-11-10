@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using Web_DrugStore.Models;
@@ -59,6 +60,11 @@ namespace Web_DrugStore.Controllers
                 ModelState.AddModelError("", "Mật khẩu và xác nhận mật khẩu không khớp.");
                 return View(tk);
             }
+            if (Regex.IsMatch(tk.SDT, @"[a-zA-Z]"))
+            {
+                ModelState.AddModelError("", "Số điện thoại không hợp lệ. Vui lòng chỉ nhập số.");
+                return View(tk);
+            }
 
             // Kiểm tra email đã tồn tại chưa
             if (db.TaiKhoans.Any(t => t.Email == tk.Email))
@@ -73,6 +79,7 @@ namespace Web_DrugStore.Controllers
                 ModelState.AddModelError("", "Số điện thoại đã tồn tại.");
                 return View(tk);
             }
+
             Session["TK"] = tk;
             db.TaiKhoans.Add(tk);
             db.SaveChanges();

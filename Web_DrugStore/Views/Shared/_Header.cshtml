@@ -134,17 +134,15 @@
                                     <li>
                                         <a href="#"><i class="icon-user"></i></a>
                                         <ul>
-                                            @if (Session["Tk"] == null)
-                                            {
+                                            
                                                 <li><a href="@Url.Action("Index","Login")">Đăng nhập</a></li>
                                                 <li><a href="@Url.Action("Register","Login")">Đăng ký</a></li>
-                                            }
-                                            else
-                                            {
+                                            
+                                            
                                                 <li><a href="@Url.Action("Index","Account")">Tài khoản của tôi</a></li>
                                                 <li><a href="@Url.Action("WishList","Account")">Danh sách yêu thích</a></li>
                                                 <li><a href="@Url.Action("Logout","Account")">Đăng xuất</a></li>
-                                            }
+                                            
 
 
                                         </ul>

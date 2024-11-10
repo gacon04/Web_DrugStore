@@ -1,0 +1,73 @@
+﻿@model List<Web_DrugStore.Models.Blog>
+<div class="related-post-area mb-50">
+    <h4 class="title-2">Bài viết cùng chủ đề</h4>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6">
+                <!-- Blog Item -->
+                <div class="ltn__blog-item ltn__blog-item-6">
+                    <div class="ltn__blog-img">
+                        <a href="@Url.Action("BlogDetail", "Blog", new { id = item.Id })">
+                            <img src="@Url.Content(item.DuongDanHinhAnh)" alt="Hình ảnh bài viết">
+                        </a>
+                    </div>
+                    <div class="ltn__blog-brief">
+                        <div class="ltn__blog-meta">
+                            <ul>
+                                <li class="ltn__blog-date">
+                                    <i class="far fa-calendar-alt"></i> @item.UpdatedAt.ToString("dd/MM/yyyy")
+                                </li>
+                            </ul>
+                        </div>
+                        <h3 class="ltn__blog-title">
+                            <a href="@Url.Action("BlogDetail", "Blog", new { id = item.Id })">@item.TieuDe</a>
+                        </h3>
+                        <p> Tác giả: @item.TacGia.HoTen </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<style>
+    .related-post-area .ltn__blog-item {
+        display: flex;
+        flex-direction: column;
+        height: 450px;
+        box-sizing: border-box;
+        padding: 15px;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    .ltn__blog-item .ltn__blog-img img {
+        width: 100%;
+        height: 200px; 
+        object-fit: cover; /* Đảm bảo ảnh không bị méo */
+    }
+
+    .ltn__blog-item .ltn__blog-brief {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-top: 10px;
+    }
+
+    
+
+    .ltn__blog-item .ltn__blog-title a {
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Giới hạn tối đa 3 dòng */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        text-decoration: none;
+    }
+
+</style>

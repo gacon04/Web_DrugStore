@@ -2464,6 +2464,8 @@
     <Content Include="Views\About\ReturnPolicy.cshtml" />
     <Content Include="Views\About\PaymentPolicy.cshtml" />
     <Content Include="Views\About\ConfidentialityPolicy.cshtml" />
+    <Content Include="Views\Blog\NewestBlog.cshtml" />
+    <Content Include="Views\Blog\RelatedBlog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

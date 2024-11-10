@@ -20,22 +20,21 @@
                         <h2 class="ltn__blog-title">
                            @Model.TieuDe
                         </h2>
+                       
                         <div class="ltn__blog-meta">
                             <ul>
                                 <li class="ltn__blog-author">
                                     <a href="#">Bởi: @Model.TacGia.HoTen </a>
                                 </li>
+                                <br />
                                 <li class="ltn__blog-date">
                                     <i class="far fa-calendar-alt"></i> @Model.CreatedAt.ToString("dd/MM/yyyy")
 
                                 </li>
-                                @if (!string.IsNullOrEmpty(Model.DuongDanHinhAnh))
-                                {
-                                    <img src="@Url.Content(Model.DuongDanHinhAnh)" alt="@Model.TieuDe" style="max-width:100%;" />
-                                }
-                             <div>
+     
+                             
                                 @Html.Raw(Model.NoiDung)
-                             </div>
+                             
                             </ul>
                         </div>
 
@@ -45,36 +44,7 @@
 
                     <hr>
                     <!-- related-post -->
-                    <div class="related-post-area mb-50">
-                        <h4 class="title-2">Bài viết liên quan</h4>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <!-- Blog Item -->
-                                <div class="ltn__blog-item ltn__blog-item-6">
-                                    <div class="ltn__blog-img">
-                                        <a href="blog-details.html"><img src="img/blog/blog-details/11.jpg" alt="Image"></a>
-                                    </div>
-                                    <div class="ltn__blog-brief">
-                                        <div class="ltn__blog-meta">
-                                            <ul>
-                                                <li class="ltn__blog-date ltn__secondary-color">
-                                                    <i class="far fa-calendar-alt"></i>June 22, 2020
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <h3 class="ltn__blog-title">
-                                            <a href="blog-details.html">
-                                                A series of iOS 7 inspire
-                                                vector icons sense.
-                                            </a>
-                                        </h3>
-                                        <p>Lorem ipsum dolor sit amet, conse ctet ur adipisicing elit, sed doing.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
+                    @Html.Action("RelatedBlog","Blog", new { cateId = Model.DanhMucBlogId, thisBlogId = Model.Id })
 
                     <hr>
 
