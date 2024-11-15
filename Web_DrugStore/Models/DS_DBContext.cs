@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -22,6 +23,8 @@ namespace Web_DrugStore.Models
         public DbSet<DanhSachYeuThich> DanhSachYeuThichs { get; set; }
         public DbSet<DanhMucBlog> DanhMucBlogs { get; set; }
         public DbSet<HinhAnhSanPham> HinhAnhSanPhams { get; set; }
+
+
 
     }
 }

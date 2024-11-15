@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using Web_DrugStore.Identity;
 
 namespace Web_DrugStore.Models
 {
@@ -29,6 +31,7 @@ namespace Web_DrugStore.Models
         [StringLength(255)]
         public string Email { get; set; } // Email khách hàng
 
+      
         public double TongTien { get; set; } // Tổng tiền giỏ hàng
 
         // Quan hệ một-nhiều với ChiTietGioHang

@@ -37,6 +37,8 @@ namespace Web_DrugStore.Models
 
         public string CongDung { get; set; }
 
+        public decimal GiaGoc { get; set; }
+
         public string QuyCach { get; set; }
 
         public string LuuY { get; set; }
@@ -53,7 +55,7 @@ namespace Web_DrugStore.Models
         public int LuotMua { get; set; } = 0;
 
         public bool Hot { get; set; } = false;
-
+        
 
         public DateTime NgayTao { get; set; } = DateTime.Now;
 

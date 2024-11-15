@@ -98,11 +98,7 @@ namespace Web_DrugStore.Controllers
         {
             return View();
         }
-        [AuthenticationFilter]
-        public ActionResult Cart()                  
-        {
-            return View();
-        }
+        
         [AuthenticationFilter]
         public ActionResult Checkout()
         {

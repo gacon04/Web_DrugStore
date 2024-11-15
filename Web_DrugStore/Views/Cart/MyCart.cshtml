@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Cart";
+    ViewBag.Title = "Giỏ hàng của tôi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="ltn__utilize-overlay"></div>
@@ -43,17 +43,19 @@
                             <tbody>
                                 <tr>
                                     <td class="cart-product-remove">x</td>
-                                   
-                                    <td class="cart-product-info">
-                                        <h4><a href="product-details.html">Thuốc nhỏ mũi xisat</a></h4>
+                                    <td class="cart-product-image">
+                                        <a href="product-details.html"><img src="img/product/2.png" alt="#"></a>
                                     </td>
-                                    <td class="cart-product-price">30.000đ</td>
+                                    <td class="cart-product-info">
+                                        <h4><a href="product-details.html">Bông tăm</a></h4>
+                                    </td>
+                                    <td class="cart-product-price">10.000đ</td>
                                     <td class="cart-product-quantity">
                                         <div class="cart-plus-minus">
-                                            <input type="text" value="04" name="qtybutton" class="cart-plus-minus-box">
+                                            <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
                                         </div>
                                     </td>
-                                    <td class="cart-product-subtotal">120.000đ</td>
+                                    <td class="cart-product-subtotal">20.000đ</td>
                                 </tr>
                                 <tr>
                                 
@@ -65,9 +67,7 @@
                                             <button type="submit" class="btn theme-btn-2 btn-effect-2">Áp dụng</button>
                                         </div>
                                     </td>
-                                    <td>
-                                        <button type="submit" class="btn theme-btn-2 btn-effect-2-- disabled">Cập nhật giỏ hàng</button>
-                                    </td>
+                                    
                                 </tr>
                             </tbody>
                         </table>

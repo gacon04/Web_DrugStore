@@ -177,6 +177,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
@@ -262,6 +263,10 @@
     <Compile Include="Migrations\202411090049598_DeleteUserNameTaiKhoan.cs" />
     <Compile Include="Migrations\202411090049598_DeleteUserNameTaiKhoan.Designer.cs">
       <DependentUpon>202411090049598_DeleteUserNameTaiKhoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411152222404_AddGiaCuToSanPham.cs" />
+    <Compile Include="Migrations\202411152222404_AddGiaCuToSanPham.Designer.cs">
+      <DependentUpon>202411152222404_AddGiaCuToSanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
@@ -2465,7 +2470,7 @@
     <Content Include="Views\About\FAQ.cshtml" />
     <Content Include="Views\Account\MyAccount.cshtml" />
     <Content Include="Views\Account\WishList.cshtml" />
-    <Content Include="Views\Account\Cart.cshtml" />
+    <Content Include="Views\Cart\MyCart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
@@ -2575,6 +2580,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202411090049598_DeleteUserNameTaiKhoan.resx">
       <DependentUpon>202411090049598_DeleteUserNameTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411152222404_AddGiaCuToSanPham.resx">
+      <DependentUpon>202411152222404_AddGiaCuToSanPham.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
