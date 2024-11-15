@@ -13,7 +13,7 @@
                     <h1 class="page-title">Tài khoản </h1>
                     <div class="ltn__breadcrumb-list">
                         <ul>
-                            <li><a href="index.html"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Home</a></li>
+                            <li><a href="index.html"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> PharmaVillage</a></li>
                             <li>Đăng nhập</li>
                         </ul>
                     </div>
@@ -37,7 +37,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="account-login-inner">
-                    <form action="/Login" method="post" class="ltn__form-box contact-form-box">
+                    <form action="@Url.Action("Login","Account")" method="post" class="ltn__form-box contact-form-box">
                         @Html.AntiForgeryToken()
                         <input type="text" name="Email" placeholder="Nhập vào tài khoản*" required>
                         <input type="password" name="MatKhau" placeholder="Mật khẩu" required>
