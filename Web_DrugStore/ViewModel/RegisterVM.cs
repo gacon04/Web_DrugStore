@@ -11,12 +11,12 @@ namespace Web_DrugStore.ViewModel
         public string HoTen { get; set; }
 
         [Required(ErrorMessage = "Vui lòng không để trống số điện thoại")]
-        [RegularExpression(@"^\d+$", ErrorMessage = "Số điện thoại chỉ được chứa chữ số")]
+        [RegularExpression(@"^\d{5,15}$", ErrorMessage = "Gãy nhập vào số điện thoại hợp lệ")]
         public string SDT { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng không để trống mật khẩu")]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$",
-            ErrorMessage = "Mật khẩu phải từ 6 ký tự trở lên, có ít nhất 1 chữ cái hoa, 1 chữ cái thường, 1 ký tự đặc biệt và 1 chữ số")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\.])[A-Za-z\d@$!%*?&\.]{6,}$",
+    ErrorMessage = "Mật khẩu phải từ 6 ký tự trở lên, có ít nhất 1 chữ cái hoa, 1 chữ cái thường, 1 ký tự đặc biệt và 1 chữ số")]
+
         public string MatKhau { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập lại mật khẩu")]

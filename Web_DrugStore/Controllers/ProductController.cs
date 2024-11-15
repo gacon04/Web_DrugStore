@@ -13,7 +13,7 @@ namespace Web_DrugStore.Controllers
     {
         // Khởi tạo DbContext
         DS_DBContext db = new DS_DBContext();
-
+       
         // Hiển thị danh sách tất cả sản phẩm
         public ActionResult AllProducts()
         {
@@ -21,6 +21,7 @@ namespace Web_DrugStore.Controllers
             List<SanPham> sanphams = db.SanPhams.ToList();
             List<DanhMuc> danhmuc_left = db.DanhMucs.Where(d => d.DanhMucCha == null).ToList();
             ViewBag.ListDanhMuc = danhmuc_left;
+            
             return View(sanphams);
         }
 

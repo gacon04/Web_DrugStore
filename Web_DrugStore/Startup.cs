@@ -18,7 +18,9 @@ namespace Web_DrugStore
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 // cấu hình đường dẫn trang được điều hướng tới khi sử dụng các chức năng cần authen
-                LoginPath = new PathString("/Login/Index")
+                LoginPath = new PathString("/Account/Login"),
+                SlidingExpiration = true, // Làm mới thời gian hết hạn cookie khi hoạt động
+                ExpireTimeSpan = TimeSpan.FromMinutes(15) // Thời gian hết hạn cookie
             });
 
             this.CreateRolesAndUsers();

@@ -9,12 +9,13 @@ using System.Web.Mvc;
 using Web_DrugStore.Identity;
 using Web_DrugStore.Models;
 using Web_DrugStore.ViewModel;
-
+using Web_DrugStore.Filters;
 namespace Web_DrugStore.Controllers
 {
     public class AccountController : Controller
     {
         // GET: Account
+        [AuthenticationFilter]
         public ActionResult MyAccount()
         {
             return View();
@@ -59,7 +60,6 @@ namespace Web_DrugStore.Controllers
             }
             return View();
         }
-        
 
         public ActionResult Login()
         {
@@ -80,6 +80,10 @@ namespace Web_DrugStore.Controllers
                 var authenManager = HttpContext.GetOwinContext().Authentication;
                 var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 authenManager.SignIn(new Microsoft.Owin.Security.AuthenticationProperties(), userIdentity);
+                if (userManager.IsInRole(user.Id,"Admin"))
+                {
+                    return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+                }    
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -89,30 +93,23 @@ namespace Web_DrugStore.Controllers
             return View();
         }
 
+        [AuthenticationFilter]
         public ActionResult WishList()
         {
-            if (Session["Tk"]==null)
-            {
-                return RedirectToAction("Login", "Account");
-            }    
             return View();
         }
-        public ActionResult Cart()
+        [AuthenticationFilter]
+        public ActionResult Cart()                  
         {
-            if (Session["Tk"] == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
             return View();
         }
+        [AuthenticationFilter]
         public ActionResult Checkout()
         {
-            if (Session["Tk"] == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
+           
             return View();
         }
+        [AuthenticationFilter]
         public ActionResult Logout()
         {
             var authenManager = HttpContext.GetOwinContext().Authentication;

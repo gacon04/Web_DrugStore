@@ -6,7 +6,7 @@
                 <div class="ltn__top-bar-menu">
                     <ul>
                         <li><a href="mailto:cskh@pharmacity.vn"><i class="icon-mail"></i> cskh@PharmaVillage.com</a></li>
-                        <li><a href="locations.html"><i class="icon-placeholder"></i>248A Đ. Nơ Trang Long, P.12, Q.Bình Thạnh, TP.Hồ Chí Minh</a></li>
+                        <li><a href="https://maps.app.goo.gl/Q2RA3geGXpVdepqY9"><i class="icon-placeholder"></i>248A Đ. Nơ Trang Long, P.12, Q.Bình Thạnh, TP.Hồ Chí Minh</a></li>
 
 
                     </ul>
@@ -151,18 +151,22 @@
                                 </ul>
                             </div>
                         </li>
-                        <li>
-                            <!-- mini-cart 2 -->
-                            <div class="mini-cart-icon mini-cart-icon-2">
-                                <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
-                                    <span class="mini-cart-icon">
-                                        <i class="icon-shopping-cart"></i>
-                                        <sup>2</sup>
-                                    </span>
-                                    <h6><span>Giỏ hàng</span> <span class="ltn__secondary-color">0 Đ</span></h6>
-                                </a>
-                            </div>
-                        </li>
+                        
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li>
+                                    <!-- mini-cart 2 -->
+                                    <div class="mini-cart-icon mini-cart-icon-2">
+                                        <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
+                                            <span class="mini-cart-icon">
+                                                <i class="icon-shopping-cart"></i>
+                                                <sup>2</sup>
+                                            </span>
+                                            <h6><span>Giỏ hàng</span> <span class="ltn__secondary-color">0 Đ</span></h6>
+                                        </a>
+                                    </div>
+                                </li>
+                             } 
                     </ul>
                 </div>
             </div>

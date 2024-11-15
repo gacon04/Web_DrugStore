@@ -4,11 +4,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using Web_DrugStore.Filters;
 using Web_DrugStore.Models;
 
 namespace Web_DrugStore.Areas.Admin.Controllers
 {
+    [AuthenticationFilter]
+    [AuthorizationFilter]
     public class AdminCategoryController : Controller
     {
         

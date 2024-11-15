@@ -8,8 +8,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Web;
 using System.Data.Entity;
 using System.IO;
+using Web_DrugStore.Filters;
 namespace Web_DrugStore.Areas.Admin.Controllers
 {
+    [AuthenticationFilter]
+    [AuthorizationFilter]
     public class AdminProductController : Controller
     {
         DS_DBContext db = new DS_DBContext();

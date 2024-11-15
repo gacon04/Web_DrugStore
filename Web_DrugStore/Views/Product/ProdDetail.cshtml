@@ -75,7 +75,7 @@
                                     </div>
                                     <h3>@Model.TenSanPham</h3>
                                     <div class="product-price">
-                                        <span style="font-size:smaller">@Model.DonGia / <small>@Model.PhanLoai</small></span>
+                                        <span style="font-size:smaller">@Model.DonGia.ToString("#,0") đ/<small>@Model.PhanLoai</small></span>
                                         
                                     </div>
                                     <div class="modal-product-meta ltn__product-details-menu-1">
@@ -133,10 +133,21 @@
                                                 </div>
                                             </li>
                                             <li>
-                                                <a href="#" class="theme-btn-1 btn btn-effect-1" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                    <span>THÊM VÀO GIỎ</span>
-                                                </a>
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    <a href="#" class="theme-btn-1 btn btn-effect-1" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
+                                                        <i class="fas fa-shopping-cart"></i>
+                                                        <span>THÊM VÀO GIỎ</span>
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="@Url.Action("Login","Account")" class="theme-btn-1 btn btn-effect-1" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
+                                                        <i class="fas fa-shopping-cart"></i>
+                                                        <span>THÊM VÀO GIỎ</span>
+                                                    </a>
+                                                }
+
                                             </li>
                                         </ul>
                                     </div>

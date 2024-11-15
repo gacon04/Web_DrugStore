@@ -22,6 +22,8 @@ namespace Web_DrugStore.Models
         [StringLength(255)]
         public string DiaChi { get; set; } // Địa chỉ giao hàng
 
+        public string MGG { get; set; }
+
         [Required]
         [StringLength(20)]
         public string SoDienThoai { get; set; } // Số điện thoại khách hàng

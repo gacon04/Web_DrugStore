@@ -16,9 +16,12 @@ namespace Web_DrugStore.Models
 
         public string MoTa { get; set; }
 
+        public decimal DonGiaGoc { get; set; }
+
         [Required]
         public decimal DonGia { get; set; }
 
+        
         public int SoLuong { get; set; }
 
 
@@ -50,6 +53,7 @@ namespace Web_DrugStore.Models
         public int LuotMua { get; set; } = 0;
 
         public bool Hot { get; set; } = false;
+
 
         public DateTime NgayTao { get; set; } = DateTime.Now;
 

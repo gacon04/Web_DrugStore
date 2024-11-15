@@ -84,7 +84,7 @@
 
                                                 @if (!string.IsNullOrEmpty(item.Thumbnail)) // kiểm soát hình ảnh
                                                 {
-                                                    <a href="@Url.Action("ProdInfo","Product")"><img src="@Url.Content(item.Thumbnail)" alt="#"></a>
+                                                    <a href="@Url.Action("ProdDetail","Product", new {id = item.SanPhamId})"><img src="@Url.Content(item.Thumbnail)" alt="#"></a>
                                                 }
                                                 else
                                                 {
@@ -127,7 +127,7 @@
                                                 </div>
                                                 <a href="@Url.Action("ProdDetail","Product", new {id = item.SanPhamId})"><h2 class="product-title">@item.TenSanPham</h2></a>
                                                 <div class="product-price">
-                                                    <span>@item.DonGia</span>
+                                                    <span>@item.DonGia.ToString("#,0") đ/@item.PhanLoai</span>
                                                     <!--
             <del>$162.00</del>
         -->
