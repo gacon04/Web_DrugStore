@@ -9,8 +9,7 @@ namespace Web_DrugStore.Areas.Admin.Controllers
 {
     public class CustomerAccountController : Controller
     {
-        [AuthenticationFilter]
-        [AuthorizationFilter]
+
         // GET: Admin/CustomerAccount
         public ActionResult Index()
         {

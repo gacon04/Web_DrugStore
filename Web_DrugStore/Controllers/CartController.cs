@@ -9,7 +9,7 @@ using Web_DrugStore.Models;
 
 namespace Web_DrugStore.Controllers
 {
-    [AuthenticationFilter]
+   
     public class CartController : Controller
     {
         // GET: Cart

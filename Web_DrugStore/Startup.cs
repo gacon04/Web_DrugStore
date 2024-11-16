@@ -16,9 +16,12 @@ namespace Web_DrugStore
         {
             app.UseCookieAuthentication(new CookieAuthenticationOptions()
             {
-                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+                
+                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 // cấu hình đường dẫn trang được điều hướng tới khi sử dụng các chức năng cần authen
                 LoginPath = new PathString("/Account/Login"),
+                 
+
             });
 
             this.CreateRolesAndUsers();
@@ -43,7 +46,7 @@ namespace Web_DrugStore
                 user.UserName = "admin";
                 user.Email = "admin@gmail.com";
                 user.HoTen = "Trần Át Min";
-                string userPwd = "admin123";
+                string userPwd = "Admin123.";
                 var checkUser = userManager.Create(user, userPwd);
                
                 if (checkUser.Succeeded)

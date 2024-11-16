@@ -24,7 +24,8 @@ namespace Web_DrugStore.ViewModel
         public string NhapLaiMatKhau { get; set; }
         public string DiaChi { get; set; }
         [Required(ErrorMessage = "Vui lòng không để trống Email")]
-        [EmailAddress(ErrorMessage ="Email nhập vào không hợp lệ")]
+        [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Email nhập vào không hợp lệ")]
         public string Email { get; set; }
+
     }
 }

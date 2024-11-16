@@ -7,8 +7,7 @@ using Web_DrugStore.Filters;
 
 namespace Web_DrugStore.Areas.Admin.Controllers
 {
-    [AuthenticationFilter]
-    [AuthorizationFilter]
+   
     public class UserAccountController : Controller
     {
         // GET: Admin/UserAccount

@@ -49,7 +49,7 @@ namespace Web_DrugStore.Controllers
             ViewBag.ListDanhMuc = spLienQuan;
             return View(spLienQuan);
         }
-        // Hiển thị form tạo sản phẩm
+       
 
 
 

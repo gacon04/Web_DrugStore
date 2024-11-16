@@ -48,37 +48,28 @@
                     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "ltn__form-box contact-form-box" }))
                     {
                         @Html.AntiForgeryToken()
-                        @* Hiển thị thông báo lỗi nếu có *@
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                        @* Họ Tên *@
                         @Html.ValidationMessageFor(m => m.HoTen, "", new { @class = "text-danger" })
                         @Html.TextBoxFor(m => m.HoTen, new { placeholder = "Họ tên", @class = "form-control" })
 
-
-                        @* Email *@
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         @Html.TextBoxFor(m => m.Email, new { placeholder = "Địa chỉ Email*", @type = "email", @class = "form-control" })
 
-                        @* Số điện thoại *@
                         @Html.ValidationMessageFor(m => m.SDT, "", new { @class = "text-danger" })
                         @Html.TextBoxFor(m => m.SDT, new { placeholder = "Số điện thoại*", @class = "form-control" })
 
-                        @* Mật khẩu *@
                         @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })
                         @Html.PasswordFor(m => m.MatKhau, new { placeholder = "Mật khẩu*", @class = "form-control" })
 
-                        @* Nhập lại mật khẩu *@
                         @Html.ValidationMessageFor(m => m.NhapLaiMatKhau, "", new { @class = "text-danger" })
                         @Html.PasswordFor(m => m.NhapLaiMatKhau, new { placeholder = "Xác nhận mật khẩu", @class = "form-control" })
 
-                        @* Địa chỉ (tùy chọn) *@
                         @Html.TextBoxFor(m => m.DiaChi, new { placeholder = "Địa chỉ (tùy chọn)", @class = "form-control" })
 
-                        @* Các điều khoản *@
-                        <label class="checkbox-inline">
-                            <input type="checkbox" required /> Tôi đồng ý để PharmaVillage xử lý dữ liệu cá nhân của mình nhằm gửi các tài liệu tiếp thị cá nhân hóa, theo đúng nội dung mẫu đơn đồng ý và chính sách bảo mật.
-                        </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" required /> Tôi đồng ý để PharmaVillage xử lý dữ liệu cá nhân của mình nhằm gửi các tài liệu tiếp thị cá nhân hóa, theo đúng nội dung mẫu đơn đồng ý và chính sách bảo mật.
+                </label>
 
                         
 
