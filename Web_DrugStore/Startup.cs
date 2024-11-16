@@ -19,8 +19,6 @@ namespace Web_DrugStore
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 // cấu hình đường dẫn trang được điều hướng tới khi sử dụng các chức năng cần authen
                 LoginPath = new PathString("/Account/Login"),
-                SlidingExpiration = true, // Làm mới thời gian hết hạn cookie khi hoạt động
-                ExpireTimeSpan = TimeSpan.FromMinutes(15) // Thời gian hết hạn cookie
             });
 
             this.CreateRolesAndUsers();
@@ -44,7 +42,7 @@ namespace Web_DrugStore
                 var user = new AppUser();
                 user.UserName = "admin";
                 user.Email = "admin@gmail.com";
-                user.HoTen = "Ong Trum";
+                user.HoTen = "Trần Át Min";
                 string userPwd = "admin123";
                 var checkUser = userManager.Create(user, userPwd);
                

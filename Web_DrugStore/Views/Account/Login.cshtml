@@ -39,18 +39,13 @@
                 <div class="account-login-inner">
                     <form action="@Url.Action("Login","Account")" method="post" class="ltn__form-box contact-form-box">
                         @Html.AntiForgeryToken()
+                        <span class="error-message">@ViewData["Err1"]</span>
                         <input type="text" name="Email" placeholder="Nhập vào tài khoản*" required>
-                        <input type="password" name="MatKhau" placeholder="Mật khẩu" required>
-
-                        @if (ViewBag.ErrorMessage != null)
-                        {
-                            <div class="alert alert-danger">
-                                @ViewBag.ErrorMessage
-                            </div>
-                        }
-
+                        <span class="error-message">@ViewData["Err2"]</span>
+                        <input type="password" name="MatKhau" placeholder="Mật khẩu" required />
+                        <span class="error-message">@ViewData["Err3"]</span>
                         <div class="btn-wrapper mt-0">
-                            <button class="theme-btn-1 btn btn-block" type="submit">ĐĂNG NHẬP</button>
+                            <button class="theme-btn-1 btn btn-block" style="text-align:center" type="submit">ĐĂNG NHẬP</button>
                         </div>
                         <div class="go-to-btn mt-20">
                             <a href="#"><small>QUÊN MẬT KHẨU?</small></a>
@@ -71,3 +66,24 @@
         </div>
     </div>
 </div>
+<style>
+    .error-message {
+        color: #ff4d4d; /* Màu đỏ nổi bật */
+        font-size: 14px;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    /* Đặt lỗi gần input */
+    input + .error-message {
+        margin-top: 4px;
+    }
+    .btn-wrapper {
+        display: flex; /* Sử dụng flexbox */
+        justify-content: center; /* Căn giữa nội dung theo chiều ngang */
+        align-items: center; /* Căn giữa nội dung theo chiều dọc (nếu cần) */
+        width: 100%; /* Đảm bảo width của thẻ div chiếm toàn bộ chiều rộng */
+        margin-top: 20px; /* Tạo khoảng cách phía trên */
+    }
+
+</style>

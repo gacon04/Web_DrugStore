@@ -39,6 +39,16 @@ namespace Web_DrugStore.Controllers
             return View(sp);
         }
 
+        public ActionResult RelatedProd(int cateId, int id)
+        {
+            var spHienTai = db.SanPhams.FirstOrDefault(sp => sp.SanPhamId == cateId);
+            var spLienQuan = db.SanPhams
+         .Where(sp => sp.DanhMucId == cateId && sp.SanPhamId != id)
+         .ToList();
+
+            ViewBag.ListDanhMuc = spLienQuan;
+            return View(spLienQuan);
+        }
         // Hiển thị form tạo sản phẩm
 
 

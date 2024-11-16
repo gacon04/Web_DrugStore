@@ -2491,6 +2491,8 @@
     <Content Include="Views\About\ConfidentialityPolicy.cshtml" />
     <Content Include="Views\Blog\NewestBlog.cshtml" />
     <Content Include="Views\Blog\RelatedBlog.cshtml" />
+    <Content Include="Views\Cart\GioHangMenuPar.cshtml" />
+    <Content Include="Views\Product\RelatedProd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

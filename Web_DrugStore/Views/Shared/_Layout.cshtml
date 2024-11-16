@@ -34,7 +34,7 @@
         <!-- HEADER AREA START (header-3) -->
         <header class="ltn__header-area ltn__header-3">
             @Html.Partial("_Header")
-            
+
             <!-- header-bottom-area start -->
             <div class="header-bottom-area ltn__border-top ltn__header-sticky  ltn__sticky-bg-white--- ltn__sticky-bg-secondary ltn__secondary-bg section-bg-1 menu-color-white d-none d-lg-block">
                 <div class="container">
@@ -51,7 +51,7 @@
                                         <ul>
                                             <li>
                                                 <a href="@Url.Action("Index", "Home")">Trang chủ</a>
-                                                
+
                                             </li>
                                             <li>
                                                 <a href="@Url.Action("AllProducts","Product")">Kho sản phẩm</a>
@@ -61,7 +61,7 @@
                                                 <a href="@Url.Action("Index","Blog")">Góc sức khoẻ</a>
 
                                             </li>
-                                            
+
                                             <li><a href="@Url.Action("Contact", "About")">Liên hệ</a></li>
                                             <li class="menu-icon">
                                                 <a href="#">Giới thiệu</a>
@@ -105,51 +105,7 @@
             </div>
         </div>
         <!-- MOBILE MENU END -->
-        <!-- Utilize Cart Menu Start -->
-        <div id="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu">
-            <div class="ltn__utilize-menu-inner ltn__scrollbar">
-                <div class="ltn__utilize-menu-head">
-                    <span class="ltn__utilize-menu-title">Giỏ hàng</span>
-                    <button class="ltn__utilize-close">×</button>
-                </div>
-                <div class="mini-cart-product-area ltn__scrollbar">
-                    <div class="mini-cart-item clearfix">
-                        <div class="mini-cart-img">
-                            <a href="#"><img src="~/Content/img/product/1.png" alt="Image"></a>
-                            <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
-                        </div>
-                        <div class="mini-cart-info">
-                            <h6><a href="#">Antiseptic Spray</a></h6>
-                            <span class="mini-cart-quantity">1 x $65.00</span>
-                        </div>
-                    </div>
-                    <div class="mini-cart-item clearfix">
-                        <div class="mini-cart-img">
-                            <a href="#"><img src="~/Content/img/product/2.png" alt="Image"></a>
-                            <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
-                        </div>
-                        <div class="mini-cart-info">
-                            <h6><a href="#">Digital Stethoscope</a></h6>
-                            <span class="mini-cart-quantity">1 x $85.00</span>
-                        </div>
-                    </div>
-                    
-                    </div>
-                </div>
-                <div class="mini-cart-footer">
-                    <div class="mini-cart-sub-total">
-                        <h5>Subtotal: <span>$310.00</span></h5>
-                    </div>
-                    <div class="btn-wrapper">
-                        <a href="@Url.Action("Cart","Account")" class="theme-btn-1 btn btn-effect-1">Xem Giỏ Hàng</a>
-                        <a href="@Url.Action("Checkout","Account")" class="theme-btn-2 btn btn-effect-2">Thanh toán</a>
-                    </div>
-                    <p>Miễn phí giao hàng cho đơn từ 300.000Đ!</p>
-                </div>
-
-            </div>
-        </div>
-        <!-- Utilize Cart Menu End -->
+        @Html.Action("GioHangMenuPar", "Cart");
         <!-- Utilize Mobile Menu Start -->
         <div id="ltn__utilize-mobile-menu" class="ltn__utilize ltn__utilize-mobile-menu">
             <div class="ltn__utilize-menu-inner ltn__scrollbar">
@@ -169,7 +125,7 @@
                     <ul>
                         <li>
                             <a href="@Url.Action("Index")">Trang chủ</a>
-                           
+
                         </li>
                         <li>
                             <a href="#">Về chúng tôi</a>
@@ -289,7 +245,7 @@
             </div>
         </div>
         <!-- CALL TO ACTION END -->
-        
+
         @Html.Partial("_Footer")
     </div>
     <!-- Body main wrapper end -->

@@ -14,8 +14,7 @@ namespace Web_DrugStore.Controllers
 {
     public class AccountController : Controller
     {
-        // GET: Account
-        [AuthenticationFilter]
+
         public ActionResult MyAccount()
         {
             return View();
@@ -71,9 +70,23 @@ namespace Web_DrugStore.Controllers
         {
             string tk = f["Email"];
             string mk = f["MatKhau"];
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            string passwordPattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]{6,}$";
+            if (!Regex.IsMatch(tk, emailPattern))
+            {
+                ViewData["Err1"] = "Vui lòng nhập tài khoản Email có định dạng hợp lệ";
+                return this.Login();
+            }
+            if (!Regex.IsMatch(mk, passwordPattern))
+            {
+                ViewData["Err2"] = "Nhập mật khẩu hợp lệ có ký tự hoa, thường, chữ số, đặc biệt";
+                return this.Login();
+            }  
+            
             var appDBContext = new AppDBContext();
             var userStore = new AppUserStore(appDBContext);
             var userManager = new AppUserManager(userStore);
+            
             var user = userManager.FindByEmail(tk);
             if (user != null && userManager.CheckPassword(user, mk))
             {
@@ -88,24 +101,24 @@ namespace Web_DrugStore.Controllers
             }
             else
             {
-                ModelState.AddModelError("Lỗi", "Tài khoản và mật khẩu nhập vào không hợp lệ.");
+                ViewData["Err3"] = "Tài khoản/Mật khẩu không hợp lệ. Vui lòng kiểm tra lại";
+                return this.Login();
             }
             return View();
         }
 
-        [AuthenticationFilter]
         public ActionResult WishList()
         {
             return View();
         }
         
-        [AuthenticationFilter]
+
         public ActionResult Checkout()
         {
            
             return View();
         }
-        [AuthenticationFilter]
+
         public ActionResult Logout()
         {
             var authenManager = HttpContext.GetOwinContext().Authentication;
