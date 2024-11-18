@@ -12,9 +12,10 @@ using Web_DrugStore.ViewModel;
 using Web_DrugStore.Filters;
 namespace Web_DrugStore.Controllers
 {
+    
     public class AccountController : Controller
     {
-
+        [AuthenticationFilter]
         public ActionResult MyAccount()
         {
             return View();
@@ -106,19 +107,19 @@ namespace Web_DrugStore.Controllers
             }
             return View();
         }
-
+        [AuthenticationFilter]
         public ActionResult WishList()
         {
             return View();
         }
-        
 
+        [AuthenticationFilter]
         public ActionResult Checkout()
         {
            
             return View();
         }
-
+        [AuthenticationFilter]
         public ActionResult Logout()
         {
             var authenManager = HttpContext.GetOwinContext().Authentication;

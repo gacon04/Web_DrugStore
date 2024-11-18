@@ -17,9 +17,10 @@ namespace Web_DrugStore.Controllers
         // Hiển thị danh sách tất cả sản phẩm
         public ActionResult AllProducts()
         {
-
-            List<SanPham> sanphams = db.SanPhams.ToList();
-            List<DanhMuc> danhmuc_left = db.DanhMucs.Where(d => d.DanhMucCha == null).ToList();
+            
+           
+            List<DanhMuc> danhmuc_left = db.DanhMucs.Where(d => d.DanhMucCha == null ).ToList();
+            List<SanPham> sanphams = db.SanPhams.Where(prod => prod.HoatDong == true).ToList();
             ViewBag.ListDanhMuc = danhmuc_left;
             
             return View(sanphams);
@@ -50,7 +51,7 @@ namespace Web_DrugStore.Controllers
             return View(spLienQuan);
         }
        
-
+        public ActionResult 
 
 
     }

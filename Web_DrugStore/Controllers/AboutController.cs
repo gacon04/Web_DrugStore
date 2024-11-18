@@ -52,7 +52,6 @@ namespace Web_DrugStore.Controllers
         {
             return View();
         }
-        [Route("CauHoiThuongGap")]
         public ActionResult FAQ()
         {
 
