@@ -51,7 +51,6 @@ namespace Web_DrugStore.Controllers
             return View(spLienQuan);
         }
        
-        public ActionResult 
 
 
     }
