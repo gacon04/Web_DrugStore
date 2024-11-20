@@ -19,7 +19,10 @@ namespace Web_DrugStore.Controllers
            
             return PartialView();
         }
-       
+        public ActionResult MyCart()
+        {
+            return View();
+        }
 
 
 
