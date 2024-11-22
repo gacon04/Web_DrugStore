@@ -4,8 +4,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Web_DrugStore.Filters;
 using Web_DrugStore.Models;
+using Web_DrugStore.ViewModel;
 
 namespace Web_DrugStore.Controllers
 {
@@ -14,17 +16,51 @@ namespace Web_DrugStore.Controllers
     {
         // GET: Cart
         DS_DBContext db = new DS_DBContext();
+
+
         public ActionResult GioHangMenuPar()
         {
-           
+            ShoppingCart cart = (ShoppingCart)Session["Cart"];
             return PartialView();
         }
-        public ActionResult MyCart()
+        public ActionResult Index()
         {
             return View();
         }
+        public ActionResult ShowCount()
+        {
+            ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            if (cart!=null)
+            {
+                return Json(new { Count = cart.Items.Count }, JsonRequestBehavior.AllowGet);
+            }    
+            return Json(new {Count = 0});
 
-
-
+        }
+        [HttpPost]
+        public ActionResult AddToCart(int id, int quantity)
+        {
+            var code = new { Success = false, msg = "", code = -1 , Count=0};
+            var getProd = db.SanPhams.FirstOrDefault(x => x.SanPhamId == id);
+            if (getProd!=null)
+            {
+                ShoppingCart cart = (ShoppingCart)Session["Cart"];
+                if (cart == null)
+                {
+                    cart = new ShoppingCart();
+                }
+                ShoppingCartItem item = new ShoppingCartItem
+                {
+                    SanPhamId = getProd.SanPhamId,
+                    sanpham = getProd,
+                    SoLuong = quantity,
+                    TongTien = quantity * getProd.DonGia
+                };
+                cart.AddToCart(item, quantity);
+                Session["Cart"] = cart;
+                code = new { Success = true, msg = "Thêm sản phẩm vào giỏ hàng thành công", code = 1, Count = cart.Items.Count };
+            }
+            return Json(code);
+        }
     }
 }

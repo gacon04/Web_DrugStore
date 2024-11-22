@@ -37,7 +37,6 @@ namespace Web_DrugStore.Models
 
         public string CongDung { get; set; }
 
-        public decimal GiaGoc { get; set; }
 
         public string QuyCach { get; set; }
 

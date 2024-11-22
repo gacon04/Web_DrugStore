@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
-using Web_DrugStore.Identity;
 
 namespace Web_DrugStore.Models
 {
@@ -15,6 +14,13 @@ namespace Web_DrugStore.Models
 
         [Required]
         public DateTime NgayDat { get; set; } = DateTime.Now; // Ngày đặt hàng
+
+        public DateTime? NgayGiao { get; set; }
+
+        public string CachThanhToan { get; set; } = null;
+
+        public string CachVanChuyen { get; set; }
+
 
         [Required]
         [StringLength(255)]

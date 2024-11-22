@@ -129,24 +129,16 @@
                                         <ul>
                                             <li>
                                                 <div class="cart-plus-minus">
-                                                    <input type="text" value="1" name="qtybutton" class="cart-plus-minus-box">
+                                                    <input type="text" value="1" id="quantity_value" name="qtybutton" class="cart-plus-minus-box">
                                                 </div>
                                             </li>
                                             <li>
-                                                @if (User.Identity.IsAuthenticated == true)
-                                                {
-                                                    <a href="@Url.Action("ThemGioHang","Cart", new { id = @Model.SanPhamId, url= Request.Url.ToString()})" class="theme-btn-1 btn btn-effect-1" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
-                                                        <i class="fas fa-shopping-cart"></i>
-                                                        <span>THÊM VÀO GIỎ</span>
-                                                    </a>
-                                                }
-                                                else
-                                                {
-                                                    <a href="@Url.Action("Login","Account")" class="theme-btn-1 btn btn-effect-1" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
-                                                        <i class="fas fa-shopping-cart"></i>
-                                                        <span>THÊM VÀO GIỎ</span>
-                                                    </a>
-                                                }
+                                                <button class="theme-btn-1 btn btn-effect-1 btnAddToCart"
+                                                        data-id="@Model.SanPhamId"
+                                                        title="Thêm vào giỏ hàng">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                    <span>THÊM VÀO GIỎ</span>
+                                                </button>
 
                                             </li>
                                         </ul>

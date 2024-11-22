@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="CKFinder, Version=2.4.1.2663, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\tnmin\Downloads\CKFinder-20241029T160839Z-001\CKFinder\ckfinder-ckeditor\ckfinder\bin\Release\CKFinder.dll</HintPath>
@@ -268,6 +271,10 @@
     <Compile Include="Migrations\202411152222404_AddGiaCuToSanPham.Designer.cs">
       <DependentUpon>202411152222404_AddGiaCuToSanPham.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202411210654211_UpdateDonHang.cs" />
+    <Compile Include="Migrations\202411210654211_UpdateDonHang.Designer.cs">
+      <DependentUpon>202411210654211_UpdateDonHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ChiTietDonHang.cs" />
@@ -284,6 +291,7 @@
     <Compile Include="Models\TinNhanLienHe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\ShoppingCart.cs" />
     <Compile Include="ViewModel\RegisterVM.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2439,6 +2447,8 @@
     <Content Include="Areas\Admin\Views\AdminProduct\UploadPhoto.cshtml" />
     <Content Include="Areas\Admin\Views\AdminProduct\EditProd.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Scripts\jsHeader.js" />
+    <Content Include="Scripts\jsShopping.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
     <Content Include="Scripts\jquery-3.7.0.slim.js" />
@@ -2470,7 +2480,7 @@
     <Content Include="Views\About\FAQ.cshtml" />
     <Content Include="Views\Account\MyAccount.cshtml" />
     <Content Include="Views\Account\WishList.cshtml" />
-    <Content Include="Views\Cart\MyCart.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
@@ -2585,6 +2595,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202411152222404_AddGiaCuToSanPham.resx">
       <DependentUpon>202411152222404_AddGiaCuToSanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411210654211_UpdateDonHang.resx">
+      <DependentUpon>202411210654211_UpdateDonHang.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
