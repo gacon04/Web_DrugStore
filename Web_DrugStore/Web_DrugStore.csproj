@@ -91,6 +91,9 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -2447,7 +2450,6 @@
     <Content Include="Areas\Admin\Views\AdminProduct\UploadPhoto.cshtml" />
     <Content Include="Areas\Admin\Views\AdminProduct\EditProd.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
-    <Content Include="Scripts\jsHeader.js" />
     <Content Include="Scripts\jsShopping.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -2493,7 +2495,6 @@
     <Content Include="Views\Blog\BlogDetail.cshtml" />
     <Content Include="Views\Account\Checkout.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\About\OperatingRegulations.cshtml" />
     <Content Include="Views\About\ShippingPolicy.cshtml" />
     <Content Include="Views\About\ReturnPolicy.cshtml" />

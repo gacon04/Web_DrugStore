@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Web_DrugStore.ViewModel.ShoppingCartItem>
 @{
     ViewBag.Title = "Giỏ hàng của tôi";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,146 +14,221 @@
                     <h1 class="page-title">Giỏ hàng</h1>
                     <div class="ltn__breadcrumb-list">
                         <ul>
-                            <li><a href="index.html"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Tài khoản</a></li>
-                            <li>Giỏ hàng</li>
+                            <li>Giỏ hàng của tôi</li>
                         </ul>
                     </div>
-                </div>  
+                </div>
             </div>
         </div>
     </div>
 </div>
 <!-- BREADCRUMB AREA END -->
 <!-- SHOPING CART AREA START -->
-<div class="liton__shoping-cart-area mb-120">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="shoping-cart-inner">
 
-                    @if (false)
-                    {
-                        <div class="empty-cart">
-                            <div class="text-content">
-                                <h2>Giỏ hàng trống</h2>
-                                <p>Xem PharmaVillage, lựa hàng ngay đi !</p>
-                            </div>
-                            <img src="~/Content/img/EmptyCart.png" alt="Giỏ hàng trống" class="cart-image" />
-                        </div>
-                        <br />
-                        <button onclick="window.location.href='@Url.Action("Index", "Home")';" style="background-color: rgb(50, 166, 233)" class="btn theme-btn-2">Mua sắm ngay !</button>
-
-                    }
-                    else
-                    {
+@if (Model != null && Model.Any())
+{
+    <div class="liton__shoping-cart-area mb-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping-cart-inner">
                         <div class="shoping-cart-table table-responsive">
                             <table class="table">
-                                <thead>
-                                    <tr>
-                                        <td class="cart-product-remove">Huỷ</td>
-                                        <td class="cart-product-image">Hình ảnh</td>
-                                        <td class="cart-product-info">Tên sản phẩm</td>
-                                        <td class="cart-product-price">Giá tiền</td>
-                                        <td class="cart-product-quantity">Số lượng</td>
-                                        <td class="cart-product-subtotal">Thành tiền</td>
-                                    </tr>
-
-                                </thead>
                                 <tbody>
-
-                                    
                                     @foreach (var item in Model)
                                     {
+
+
+
                                         <tr>
                                             <td class="cart-product-remove">x</td>
                                             <td class="cart-product-image">
-                                                <a href="@Url.Action("ProdDetail","Product",new {id = item.SanPhamId})"><img src="@item.HinhAnh" alt="#"></a>
+                                                <a href="@Url.Action("ProdDetail", "Product", new { id = item.sanpham.SanPhamId })"><img src="@item.sanpham.Thumbnail" alt="#"></a>
                                             </td>
                                             <td class="cart-product-info">
-                                                <h4><a href="product-details.html">@item.TenSanPham</a></h4>
+                                                <h5>
+                                                    <a href="@Url.Action("ProdDetail", "Product", new { id = item.sanpham.SanPhamId })">
+                                                        @(item.sanpham.TenSanPham.Length > 25
+? item.sanpham.TenSanPham.Substring(0, 25) + "..."
+: item.sanpham.TenSanPham)
+                                                    </a>
+                                                </h5>
                                             </td>
-                                            <td class="cart-product-price">@item.Gia.ToString("#,0") đ</td>
+                                            <td class="cart-product-price">@item.sanpham.DonGia.ToString("#,0") ₫</td>
                                             <td class="cart-product-quantity">
                                                 <div class="cart-plus-minus">
                                                     <input type="text" value="@item.SoLuong" name="qtybutton" class="cart-plus-minus-box">
                                                 </div>
                                             </td>
-                                            <td class="cart-product-subtotal">@item.ThanhTien</td>
+                                            <td class="cart-product-subtotal">@item.TongTien.ToString("#,0") ₫</td>
                                         </tr>
-
                                     }
-
-
-                                    <tr class="cart-coupon-row">
-                                        <td colspan="6">
-                                            <div class="cart-coupon">
-                                                <input type="text" name="cart-coupon" placeholder="Mã giảm giá">
-                                                <button type="submit" class="btn theme-btn-2 btn-effect-2">Áp dụng</button>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <button type="submit" class="btn theme-btn-2 btn-effect-2-- disabled"><i class="bi bi-arrow-bar-left"></i> Tiếp tục mua sắm</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                        <tr class="cart-coupon-row">
+                                            <td colspan="6">
+                                                <div class="cart-coupon">
+                                                    <input type="text" name="cart-coupon" placeholder="Nhập mã giảm giá (nếu có)">
+                                                    <button type="submit" class="theme-btn-1 btn btn-effect-1">Áp mã giảm giá</button>
+                                                </div>
+                                            </td>
+                                            <td colspan="6">
+                                                <button type="submit" class="theme-btn-1 btn btn-effect-1">Tiếp tục mua sắm</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                         </div>
-
                         <div class="shoping-cart-total mt-50">
-                            <h4>Giỏ hàng Totals</h4>
+                            <h4>Tổng giỏ hàng</h4>
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td>Tổng tiền hàng trong giỏ</td>
+                                        <td>Tổng đơn giá</td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>Phí đóng gói & vận chuyển</td>
+                                        <td>Phí vận chuyển</td>
+                                        <td>20.000 ₫</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phí VAT (10%) </td>
                                         <td></td>
                                     </tr>
-
                                     <tr>
-                                        <td><strong>TỔNG THÀNH TIỀN</strong></td>
+                                        <td><strong>Tổng cộng</strong></td>
                                         <td><strong></strong></td>
                                     </tr>
+
                                 </tbody>
                             </table>
                             <div class="btn-wrapper text-right">
-                                <a href="" class="theme-btn-1 btn btn-effect-1">ĐI TỚI THANH TOÁN</a>
+                                <a href="checkout.html" class="theme-btn-1 btn btn-effect-1">Thanh toán</a>
                             </div>
                         </div>
-                    }
-
-
-
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+}
+
+            
+            else
+            {
+
+<div class="empty-cart">
+    <div class="text-content">
+        <h2>Giỏ hàng trống</h2>
+        <p>Xem PharmaVillage, lựa hàng ngay đi !</p>
+    </div>
+    <img src="~/Content/img/EmptyCart.png" alt="Giỏ hàng trống" class="cart-image" />
 </div>
+<br />
+<button onclick="window.location.href='@Url.Action("Index", "Home")';" style="background-color: rgb(50, 166, 233)" id="btnlmao" class="btn theme-btn-2">Mua sắm ngay !</button>
+<br />
+<br />
+}
+
+
 <!-- SHOPING CART AREA END -->
 <style>
     .empty-cart {
-        display: flex; /* Sử dụng flexbox để căn ngang các phần tử */
-        align-items: center; /* Căn giữa hình ảnh theo chiều dọc với nội dung văn bản */
-        justify-content: center; /* Căn giữa theo chiều ngang */
-        height: 100vh; /* Chiều cao vùng chứa = toàn màn hình */
-        text-align: left; /* Đảm bảo văn bản căn lề trái */
-        gap: 20px; /* Khoảng cách giữa hình ảnh và nội dung văn bản */
-    }
-
-    .text-content {
         display: flex;
-        flex-direction: column; /* Sắp xếp thẻ h2 và p theo chiều dọc */
-        justify-content: center; /* Đảm bảo nội dung văn bản căn giữa theo chiều dọc */
+        align-items: center;
+        justify-content: center;
+        text-align: left;
+        gap: 20px;
     }
 
-    .cart-image {
-        max-width: 100px; /* Điều chỉnh kích thước hình ảnh */
+    #btnlmao {
+        display: block;
+        margin: 0 auto; /* Center the button */
+        background-color: rgb(50, 166, 233);
+        padding: 10px 20px;
+        border: none;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        #btnlmao:hover {
+            background-color: rgb(35, 145, 210); /* Slightly darker on hover */
+            /* Tổng quát */
+            .shoping-cart-table
+
+    {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+
+    .shoping-cart-table td {
+        text-align: center;
+        padding: 10px;
+        vertical-align: middle;
+    }
+
+        /* Kích thước cột */
+
+        .shoping-cart-table td:nth-child(1) {
+            width: 50px; /* Nút xóa */
+        }
+
+        .shoping-cart-table td:nth-child(2) {
+            width: 120px; /* Hình ảnh */
+        }
+
+
+        .shoping-cart-table td:nth-child(3) {
+            width: 280px; /* Tên sản phẩm */
+            text-align: left; /* Căn trái tên sản phẩm */
+        }
+
+
+        .shoping-cart-table td:nth-child(4) {
+            width: 170px;
+            text-align: left;
+        }
+
+
+        .shoping-cart-table td:nth-child(5) {
+            width: 100px; /* Tăng chiều rộng để ô input thoải mái hơn */
+            text-align: center;
+        }
+
+
+        .shoping-cart-table td:nth-child(6) {
+            width: 120px; /* Thành tiền */
+        }
+
+    /* Hình ảnh */
+    .shoping-cart-table .cart-product-image img {
+        width: 80px;
         height: auto;
-        align-self: flex-start; /* Đảm bảo đầu hàng ảnh thẳng với đầu thẻ h2 */
+        object-fit: cover;
     }
 
+    /* Khoảng cách giữa các hàng */
+    .shoping-cart-table tr {
+        border-bottom: 1px solid #ddd;
+    }
+
+        .shoping-cart-table tr:last-child {
+            border-bottom: none;
+        }
 
 
+    .cart-product-info h5 {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    .cart-product-subtotal {
+        font-weight: bold;
+    }
+
+    /* Căn chỉnh lại tiêu đề các cột */
+    .shoping-cart-table th {
+        vertical-align: middle;
+    }
 </style>

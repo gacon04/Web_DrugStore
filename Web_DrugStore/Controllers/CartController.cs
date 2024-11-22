@@ -21,18 +21,29 @@ namespace Web_DrugStore.Controllers
         public ActionResult GioHangMenuPar()
         {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
-            return PartialView();
+            if (cart != null)
+            {
+                return PartialView(cart.Items);
+            }    
+            var tmp = cart;
+            return PartialView(tmp);
         }
         public ActionResult Index()
         {
-            return View();
+            ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            if (cart != null)
+            {
+                return View(cart.Items);
+            }
+            var tmp = cart;
+            return View(tmp);
         }
         public ActionResult ShowCount()
         {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
             if (cart!=null)
             {
-                return Json(new { Count = cart.Items.Count }, JsonRequestBehavior.AllowGet);
+                return Json(new { Count = cart.GetTotalQuantity() }, JsonRequestBehavior.AllowGet);
             }    
             return Json(new {Count = 0});
 
@@ -58,7 +69,7 @@ namespace Web_DrugStore.Controllers
                 };
                 cart.AddToCart(item, quantity);
                 Session["Cart"] = cart;
-                code = new { Success = true, msg = "Thêm sản phẩm vào giỏ hàng thành công", code = 1, Count = cart.Items.Count };
+                code = new { Success = true, msg = "Thêm sản phẩm vào giỏ hàng thành công", code = 1, Count=1};
             }
             return Json(code);
         }

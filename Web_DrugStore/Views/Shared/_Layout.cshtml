@@ -34,8 +34,179 @@
 
         <!-- HEADER AREA START (header-3) -->
         <header class="ltn__header-area ltn__header-3">
-            @Html.Partial("_Header")
+            <!-- ltn__header-top-area start -->
+            <div class="ltn__header-top-area border-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="ltn__top-bar-menu">
+                                <ul>
+                                    <li><a href="mailto:cskh@pharmacity.vn"><i class="icon-mail"></i> cskh@PharmaVillage.com</a></li>
+                                    <li><a href="https://maps.app.goo.gl/Q2RA3geGXpVdepqY9"><i class="icon-placeholder"></i>248A Đ. Nơ Trang Long, P.12, Q.Bình Thạnh, TP.Hồ Chí Minh</a></li>
 
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="top-bar-right text-right text-end">
+                                <div class="ltn__top-bar-menu">
+                                    <ul>
+                                        <li>
+                                            <!-- ltn__language-menu -->
+                                            <div class="ltn__drop-menu ltn__currency-menu ltn__language-menu">
+                                                <ul>
+                                                    <!-- <li><a href="#" class="dropdown-toggle"><span class="active-currency">English</span></a>
+                                                <ul>
+                                                    <li><a href="#">Arabic</a></li>
+                                                    <li><a href="#">Bengali</a></li>
+                                                    <li><a href="#">Chinese</a></li>
+                                                    <li><a href="#">English</a></li>
+                                                    <li><a href="#">French</a></li>
+                                                    <li><a href="#">Hindi</a></li>
+                                                </ul>
+                                            </li> -->
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <!-- ltn__social-media -->
+                                            <div class="ltn__social-media">
+                                                <ul>
+                                                    <li><a href="https://www.facebook.com/PharmacityVN" title="Facebook PharmaVillage"><i class="fab fa-facebook-f"></i></a></li>
+                                                    <li><a href="https://www.linkedin.com/company/pharmacity/" title="Linkedin PharmaVillage"><i class="fab fa-linkedin"></i></a></li>
+                                                    <li><a href="https://www.youtube.com/channel/UC34rPqjyb_WCq6dMu2khYQA" title="Youtube PharmaVillage"><i class="fab fa-youtube"></i></a></li>
+                                                </ul>
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ltn__header-top-area end -->
+            <!-- ltn__header-middle-area start -->
+            <div class="ltn__header-middle-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="site-logo">
+                                <a href="@Url.Action("Index","Home")"><img src="~/Content/img/logo.png" alt="Logo"></a>
+                            </div>
+                        </div>
+                        <div class="col header-contact-serarch-column d-none d-lg-block">
+                            <div class="header-contact-search">
+                                <!-- header-feature-item -->
+                                <div class="header-feature-item">
+                                    <div class="header-feature-icon">
+                                        <i class="icon-call"></i>
+                                    </div>
+                                    <div class="header-feature-info">
+                                        <h6>HOTLINE</h6>
+                                        <p><a href="tel:0123456789">1800 6821</a></p>
+                                    </div>
+                                </div>
+                                <!-- header-search-2 -->
+                                <div class="header-search-2">
+                                    <form id="#123" method="get" action="#">
+                                        <input type="text" name="search" value="" placeholder="Tên thuốc, vitamin, thực phẩm chức năng ..." />
+                                        <button type="submit">
+                                            <span><i class="icon-search"></i></span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- header-options -->
+                            <div class="ltn__header-options">
+                                <ul>
+                                    <li class="d-none">
+                                        <!-- ltn__currency-menu -->
+                                        <div class="ltn__drop-menu ltn__currency-menu">
+                                            <ul>
+                                                <li>
+                                                    <a href="#" class="dropdown-toggle"><span class="active-currency">USD</span></a>
+                                                    <ul>
+                                                        <li><a href="login.html">USD - US Dollar</a></li>
+                                                        <li><a href="wishlist.html">CAD - Canada Dollar</a></li>
+                                                        <li><a href="register.html">EUR - Euro</a></li>
+                                                        <li><a href="account.html">GBP - British Pound</a></li>
+                                                        <li><a href="wishlist.html">INR - Indian Rupee</a></li>
+                                                        <li><a href="wishlist.html">BDT - Bangladesh Taka</a></li>
+                                                        <li><a href="wishlist.html">JPY - Japan Yen</a></li>
+                                                        <li><a href="wishlist.html">AUD - Australian Dollar</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="d-lg-none">
+                                        <!-- header-search-1 -->
+                                        <div class="header-search-wrap">
+                                            <div class="header-search-1">
+                                                <div class="search-icon">
+                                                    <i class="icon-search  for-search-show"></i>
+                                                    <i class="icon-cancel  for-search-close"></i>
+                                                </div>
+                                            </div>
+                                            <div class="header-search-1-form">
+                                                <form id="#" method="get" action="#">
+                                                    <input type="text" name="search" value="" placeholder="Search here..." />
+                                                    <button type="submit">
+                                                        <span><i class="icon-search"></i></span>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="d-none---">
+                                        <!-- user-menu -->
+                                        <div class="ltn__drop-menu user-menu">
+                                            <ul>
+                                                <li>
+                                                    <a href="#"><i class="icon-user"></i></a>
+                                                    <ul>
+
+                                                        @if (User.Identity.IsAuthenticated)
+                                                        {
+                                                            <li><a href="@Url.Action("MyAccount","Account")">Tài khoản của tôi</a></li>
+                                                            <li><a href="@Url.Action("WishList","Account")">Danh sách yêu thích</a></li>
+                                                            <li><a href="@Url.Action("Logout","Account")">Đăng xuất</a></li>
+                                                        }
+                                                        else
+                                                        {
+                                                            <li><a href="@Url.Action("Login","Account")">Đăng nhập</a></li>
+                                                            <li><a href="@Url.Action("Register","Account")">Đăng ký</a></li>
+                                                        }
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <!-- mini-cart 2 -->
+                                        <div class="mini-cart-icon mini-cart-icon-2">
+                                            <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
+                                                <span class="mini-cart-icon">
+                                                    <i class="icon-shopping-cart"></i>
+                                                    <sup id="checkout-items">0</sup>
+                                                </span>
+                                                <h6><span>Giỏ hàng</span> <span class="ltn__secondary-color">0 Đ</span></h6>
+                                            </a>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ltn__header-middle-area end -->
             <!-- header-bottom-area start -->
             <div class="header-bottom-area ltn__border-top ltn__header-sticky  ltn__sticky-bg-white--- ltn__sticky-bg-secondary ltn__secondary-bg section-bg-1 menu-color-white d-none d-lg-block">
                 <div class="container">

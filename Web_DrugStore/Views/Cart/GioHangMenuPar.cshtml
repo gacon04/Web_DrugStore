@@ -1,4 +1,5 @@
 ﻿<!-- Utilize Cart Menu Start -->
+@model IEnumerable<Web_DrugStore.ViewModel.ShoppingCartItem>
 <div id="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu">
     <div class="ltn__utilize-menu-inner ltn__scrollbar">
         <div class="ltn__utilize-menu-head">
@@ -6,22 +7,30 @@
             <button class="ltn__utilize-close">×</button>
         </div>
         <div class="mini-cart-product-area ltn__scrollbar">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <div class="mini-cart-item clearfix">
+                        <div class="mini-cart-img">
+                            <a href=""><img src="@item.sanpham.Thumbnail" alt="Hình ảnh"></a>
+                            <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
+                        </div>
+                        <div class="mini-cart-info">
+                            <h6><a href="#">@item.sanpham.TenSanPham</a></h6>
+                            <span class="mini-cart-quantity">@item.SoLuong x @item.sanpham.DonGia</span>
+                        </div>
+                    </div>
+                }
+            }
 
-            <div class="mini-cart-item clearfix">
-                <div class="mini-cart-img">
-                    <a href="#"><img src="~/Content/img/product/temp.png" alt="Hình ảnh"></a>
-                    <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
-                </div>
-                <div class="mini-cart-info">
-                    <h6><a href="#">Tên sản phẩm</a></h6>
-                    <span class="mini-cart-quantity">1 x 85.00$</span>
-                </div>
-            </div>
 
+
+            
         </div>
         <div class="mini-cart-footer">
             <div class="mini-cart-sub-total">
-                <h5>Tổng tiền: <span>0 VNĐ</span></h5>
+                <h5>Tổng tiền: <span> VNĐ</span></h5>
             </div>
             <div class="btn-wrapper">
                 <a href="@Url.Action("Index")" class="theme-btn-1 btn btn-effect-1">Xem giỏ hàng</a>
