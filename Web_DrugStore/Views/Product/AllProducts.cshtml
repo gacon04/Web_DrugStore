@@ -1,5 +1,6 @@
-﻿@using Web_DrugStore.Models
-@model List<Web_DrugStore.Models.SanPham>
+﻿@using Web_DrugStore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SanPham>
 @{
     ViewBag.Title = "Tất cả sản phẩm - PharmaVillage";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -26,15 +27,15 @@
     </div>
 </div>
 <script>
-    $( ".slider-range" ).slider({
-    range: true,
-    min: 0,  // Giá trị min thay đổi theo ý muốn
-    max: 5000,  // Giá trị max thay đổi theo ý muốn
-    values: [ 0, 150000 ],  // Khoảng giá mặc định
-    slide: function( event, ui ) {
-        $( ".amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-    }
-});
+    $(".slider-range").slider({
+        range: true,
+        min: 0,  // Giá trị min thay đổi theo ý muốn
+        max: 5000,  // Giá trị max thay đổi theo ý muốn
+        values: [0, 150000],  // Khoảng giá mặc định
+        slide: function (event, ui) {
+            $(".amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+        }
+    });
 </script>
 <!-- BREADCRUMB AREA END -->
 <!-- PRODUCT DETAILS AREA START -->
@@ -54,7 +55,7 @@
                         </li>
                         <li>
                             <div class="showing-product-number text-right">
-                                <span>Hiển thị 1–12 của 18 kết quả</span>
+                                <span>Hiển thị ... của 18 kết quả</span>
                             </div>
                         </li>
                         <li>
@@ -74,7 +75,7 @@
                     <div class="tab-pane fade active show" id="liton_product_grid">
                         <div class="ltn__product-tab-content-inner ltn__product-grid-view">
                             <div class="row">
-                                
+
                                 @foreach (var item in Model)
                                 {
                                     <!-- ltn__product-item -->
@@ -142,7 +143,7 @@
                     </div>
                     <div class="tab-pane fade" id="liton_product_list">
                         <div class="ltn__product-tab-content-inner ltn__product-list-view">
-                            <div class="row">  
+                            <div class="row">
                                 <!-- ltn__product-item -->
                                 <div class="col-lg-12">
                                     <div class="ltn__product-item ltn__product-item-3">
@@ -195,16 +196,9 @@
                     </div>
                 </div>
                 <div class="ltn__pagination-area text-center">
-                    <div class="ltn__pagination">
-                        <ul>
-                            <li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
-                            <li><a href="#">1</a></li>
-                            <li class="active"><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">...</a></li>
-                            <li><a href="#">10</a></li>
-                            <li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
-                        </ul>
+                    Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount
+                    <div class="ltn__pagination d-flex justify-content-center">
+                        @Html.PagedListPager(Model, page => Url.Action("AllProducts","Product", new{ page = page }))
                     </div>
                 </div>
             </div>
@@ -237,7 +231,7 @@
                     <div class="widget ltn__top-rated-product-widget">
                         <h4 class="ltn__widget-title ltn__widget-title-border">Sản phẩm nổi bật</h4>
                         <ul>
-                            
+
                             <li>
                                 <div class="top-rated-product-item clearfix">
                                     <div class="top-rated-product-img">
@@ -261,7 +255,7 @@
                                     </div>
                                 </div>
                             </li>
-                            
+
                         </ul>
                     </div>
                     <!-- Search Widget
@@ -272,7 +266,7 @@
                             <button type="submit"><i class="fas fa-search"></i></button>
                         </form>
                     </div> -->
-                    <!-- Tagcloud Widget -->
+                    <!-- Tagcloud Widget 
                     <div class="widget ltn__tagcloud-widget">
                         <h4 class="ltn__widget-title ltn__widget-title-border">Popular Tags</h4>
                         <ul>
@@ -289,7 +283,7 @@
                             <li><a href="#">Virus</a></li>
                         </ul>
                     </div>
-                    <!-- Size Widget -->
+                    <!-- Size Widget 
                     <div class="widget ltn__tagcloud-widget ltn__size-widget">
                         <h4 class="ltn__widget-title ltn__widget-title-border">Product Size</h4>
                         <ul>
@@ -341,54 +335,53 @@
 <!-- PRODUCT DETAILS AREA END -->
 <style>
     /* 1. Đảm bảo các khối sản phẩm luôn có kích thước cố định */
-.ltn__product-item {
-    display: flex;
-    flex-direction: column;
-    height: 90%;
-    justify-content: space-between;
-}
+    .ltn__product-item {
+        display: flex;
+        flex-direction: column;
+        height: 90%;
+        justify-content: space-between;
+    }
 
-/* 2. Giới hạn độ dài của tên sản phẩm, hiển thị tối đa 2 dòng */
-.product-title {
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Giới hạn số dòng hiển thị */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal; /* Cho phép xuống dòng */
-    font-size: 16px; /* Bạn có thể điều chỉnh kích thước chữ */
-    line-height: 1.4; /* Điều chỉnh line-height để điều chỉnh chiều cao dòng */
-}
+    /* 2. Giới hạn độ dài của tên sản phẩm, hiển thị tối đa 2 dòng */
+    .product-title {
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Giới hạn số dòng hiển thị */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal; /* Cho phép xuống dòng */
+        font-size: 16px; /* Bạn có thể điều chỉnh kích thước chữ */
+        line-height: 1.4; /* Điều chỉnh line-height để điều chỉnh chiều cao dòng */
+    }
 
-/* 3. Đảm bảo các phần tử trong khối sản phẩm không bị đẩy ra ngoài */
-.ltn__product-item-3 {
-    height: 90%;
-    padding: 15px;
-}
+    /* 3. Đảm bảo các phần tử trong khối sản phẩm không bị đẩy ra ngoài */
+    .ltn__product-item-3 {
+        height: 90%;
+        padding: 15px;
+    }
 
-/* 4. Đảm bảo hình ảnh sản phẩm có kích thước cố định */
-.product-img img {
-    width: 100%;
-    height: auto;
-    max-height: 200px; /* Bạn có thể điều chỉnh theo nhu cầu */
-    object-fit: cover;
-}
+    /* 4. Đảm bảo hình ảnh sản phẩm có kích thước cố định */
+    .product-img img {
+        width: 100%;
+        height: auto;
+        max-height: 200px; /* Bạn có thể điều chỉnh theo nhu cầu */
+        object-fit: cover;
+    }
 
-/* 5. Đảm bảo thông tin giá sản phẩm luôn hiển thị ở vị trí cố định */
-.product-info {
-    margin-top: 10px;
-}
+    /* 5. Đảm bảo thông tin giá sản phẩm luôn hiển thị ở vị trí cố định */
+    .product-info {
+        margin-top: 10px;
+    }
 
-.product-price {
-    font-size: 16px;
-    color: #333;
-    font-weight: bold;
-}
+    .product-price {
+        font-size: 16px;
+        color: #333;
+        font-weight: bold;
+    }
 
-.product-ratting ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
+    .product-ratting ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
 </style>

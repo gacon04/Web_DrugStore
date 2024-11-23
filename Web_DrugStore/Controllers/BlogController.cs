@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Web_DrugStore.Models;
 using HtmlAgilityPack;
+using PagedList;
+using PagedList.Mvc;
 namespace Web_DrugStore.Controllers
 {
     public class BlogController : Controller
@@ -13,11 +15,13 @@ namespace Web_DrugStore.Controllers
         // GET: Blog
 
         [Route("GocSucKhoe")]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-
+            int Size = 9; 
+            int PageNumber = (page ?? 1);
             List<Blog> blogs = db.Blogs.Where(bl => bl.HienThi == true).ToList();
-            return View(blogs);
+            var listBlogs = blogs;
+            return View(listBlogs.ToPagedList(PageNumber, Size));
         }
         public ActionResult BlogDetail(int id)
         {

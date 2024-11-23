@@ -76,12 +76,12 @@ namespace Web_DrugStore.Controllers
             if (!Regex.IsMatch(tk, emailPattern))
             {
                 ViewData["Err1"] = "Vui lòng nhập tài khoản Email có định dạng hợp lệ";
-                return this.Login();
+                return View();
             }
             if (!Regex.IsMatch(mk, passwordPattern))
             {
                 ViewData["Err2"] = "Nhập mật khẩu hợp lệ có ký tự hoa, thường, chữ số, đặc biệt";
-                return this.Login();
+                return View();
             }  
             
             var appDBContext = new AppDBContext();

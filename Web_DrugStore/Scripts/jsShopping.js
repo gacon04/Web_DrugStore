@@ -22,6 +22,23 @@
 
         })
     });
+    $('body').on('click', '.btnDelete', function (e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        $.ajax({
+            url: '/cart/Delete',
+            type: 'POST',
+            data: { id: id},
+            success: function (rs) {
+                if (rs.Success) {
+                    $('#trow_' + id).remove();
+                    ShowCount();
+
+                }
+            }
+
+        })
+    });
 });
 
 function ShowCount() {

@@ -6,7 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Web_DrugStore.Models;
-
+using PagedList;
+using PagedList.Mvc;
 namespace Web_DrugStore.Controllers
 {
     public class ProductController : Controller
@@ -15,15 +16,16 @@ namespace Web_DrugStore.Controllers
         DS_DBContext db = new DS_DBContext();
        
         // Hiển thị danh sách tất cả sản phẩm
-        public ActionResult AllProducts()
+        public ActionResult AllProducts(int? page)
         {
-            
-           
+
+            int Size = 9;
+            int PageNumber = (page ?? 1);
             List<DanhMuc> danhmuc_left = db.DanhMucs.Where(d => d.DanhMucCha == null ).ToList();
             List<SanPham> sanphams = db.SanPhams.Where(prod => prod.HoatDong == true).ToList();
             ViewBag.ListDanhMuc = danhmuc_left;
-            
-            return View(sanphams);
+            var listProd = sanphams;
+            return View(listProd.ToPagedList(PageNumber, Size));
         }
 
         public ActionResult ProdDetail(int id)
@@ -50,7 +52,12 @@ namespace Web_DrugStore.Controllers
             ViewBag.ListDanhMuc = spLienQuan;
             return View(spLienQuan);
         }
-       
+       public ActionResult HighRatedProdInDetailRecom(int id)
+        {
+            List<SanPham> sanphams = db.SanPhams.Where(prod => prod.HoatDong == true && prod.SanPhamId != id).
+                OrderByDescending(prod => prod.Rated).Take(5).ToList();
+            return PartialView(sanphams);
+        }
 
 
     }

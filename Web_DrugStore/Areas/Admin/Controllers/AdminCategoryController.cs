@@ -9,6 +9,8 @@ using Web_DrugStore.Models;
 
 namespace Web_DrugStore.Areas.Admin.Controllers
 {
+    [AuthenticationFilter]
+    [AuthorizationFilter]
     public class AdminCategoryController : Controller
     {
         

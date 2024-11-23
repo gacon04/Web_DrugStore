@@ -39,18 +39,18 @@
                                     {
 
 
-
-                                        <tr>
-                                            <td class="cart-product-remove">x</td>
+                                       
+                                        <tr id="trow_@item.SanPhamId">
+                                            <td class="cart-product-remove"> <b><a href="#" data-id="@item.SanPhamId" class="btnDelete">X</a></b></td>
                                             <td class="cart-product-image">
                                                 <a href="@Url.Action("ProdDetail", "Product", new { id = item.sanpham.SanPhamId })"><img src="@item.sanpham.Thumbnail" alt="#"></a>
                                             </td>
                                             <td class="cart-product-info">
-                                                <h5>
+                                                <h5 >
                                                     <a href="@Url.Action("ProdDetail", "Product", new { id = item.sanpham.SanPhamId })">
                                                         @(item.sanpham.TenSanPham.Length > 25
-? item.sanpham.TenSanPham.Substring(0, 25) + "..."
-: item.sanpham.TenSanPham)
+                                                        ? item.sanpham.TenSanPham.Substring(0, 25) + "..."
+                                                        : item.sanpham.TenSanPham)
                                                     </a>
                                                 </h5>
                                             </td>
@@ -71,7 +71,7 @@
                                                 </div>
                                             </td>
                                             <td colspan="6">
-                                                <button type="submit" class="theme-btn-1 btn btn-effect-1">Tiếp tục mua sắm</button>
+                                                <a class="theme-btn-1 btn btn-effect-1" href="@Url.Action("AllProducts","Product")">Tiếp tục mua sắm</a>
                                             </td>
                                         </tr>
                                     </tbody>

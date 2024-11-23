@@ -54,8 +54,8 @@ namespace Web_DrugStore.Models
         public int LuotMua { get; set; } = 0;
 
         public bool Hot { get; set; } = false;
-        
 
+        public decimal Rated { get; set; } = 0;
         public DateTime NgayTao { get; set; } = DateTime.Now;
 
         public DateTime? NgayCapNhat { get; set; }

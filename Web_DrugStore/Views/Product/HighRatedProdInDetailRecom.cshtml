@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Web_DrugStore.Models.SanPham>
+<div class="widget ltn__top-rated-product-widget">
+    <h4 class="ltn__widget-title ltn__widget-title-border">Sản phẩm được đánh giá cao</h4>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                <div class="top-rated-product-item clearfix">
+                    <div class="top-rated-product-img">
+                        <a href="@Url.Action("ProdDetail","Product", new {id = item.SanPhamId})"><img src="@item.Thumbnail" alt="Hình ảnh sản phẩm"></a>
+                    </div>
+                    <div class="top-rated-product-info">
+                        <div class="product-ratting">
+                            <ul>
+                                <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                <li><a href="#"><i class="fas fa-star"></i></a></li>
+                            </ul>
+                        </div>
+                        <h6><a href="@Url.Action("ProdDetail","Product", new {id = item.SanPhamId})">@item.TenSanPham</a></h6>
+                        <div class="product-price">
+                            <span>@item.DonGia.ToString("#,0") ₫</span>
+                            @if (item.DonGiaGoc != 0.0m)
+                            {
+                                <del>@item.DonGiaGoc.ToString("#,0") ₫</del>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+
+    </ul>
+</div>

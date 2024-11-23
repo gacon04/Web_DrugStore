@@ -73,5 +73,21 @@ namespace Web_DrugStore.Controllers
             }
             return Json(code);
         }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var code = new { Success = false, msg = "", code = -1, Count = 0 };
+            ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            if (cart != null)
+            {
+                var getProd = cart.Items.FirstOrDefault(x => x.SanPhamId == id);
+                if (getProd != null)
+                {
+                    cart.Remove(id);
+                    code = new { Success = true, msg = "Xoá sản phẩm khỏi giỏ hàng thành công", code = 1, Count = cart.Items.Count };
+                }
+            }
+            return Json(code);
+        }
     }
 }
