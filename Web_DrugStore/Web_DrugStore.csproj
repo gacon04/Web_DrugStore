@@ -2513,6 +2513,7 @@
     <Content Include="Views\Cart\GioHangMenuPar.cshtml" />
     <Content Include="Views\Product\RelatedProd.cshtml" />
     <Content Include="Views\Product\HighRatedProdInDetailRecom.cshtml" />
+    <Content Include="Views\Home\NewestProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
