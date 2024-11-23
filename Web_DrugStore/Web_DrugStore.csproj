@@ -2514,6 +2514,8 @@
     <Content Include="Views\Product\RelatedProd.cshtml" />
     <Content Include="Views\Product\HighRatedProdInDetailRecom.cshtml" />
     <Content Include="Views\Home\NewestProduct.cshtml" />
+    <Content Include="Views\Home\BestSellingProduct.cshtml" />
+    <Content Include="Views\Home\OutStandingProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

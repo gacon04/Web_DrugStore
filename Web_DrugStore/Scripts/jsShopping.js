@@ -39,6 +39,23 @@
 
         })
     });
+    $('body').on('click', '.btnAddToCartMini', function (e) { // THÊM SẢN PHẨM BẰNG NÚT NHỎ
+        e.preventDefault();
+        var id = $(this).data('id');
+        var quantity = 1;
+        alert('Đã thêm sản phẩm vào giỏ hàng!')
+        $.ajax({
+            url: '/cart/addtocart',
+            type: 'POST',
+            data: { id: id, quantity: quantity },
+            success: function (rs) {
+                if (rs.Success) {
+                    ShowCount();
+                }
+            }
+
+        })
+    });
 });
 
 function ShowCount() {

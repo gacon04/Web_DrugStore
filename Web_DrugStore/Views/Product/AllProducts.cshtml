@@ -104,7 +104,7 @@
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="@Url.Action("ThemGioHang","Cart", new { id = item.SanPhamId, url= Request.Url.ToString()})" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
+                                                            <a class="btnAddToCartMini" data-id="@item.SanPhamId" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
                                                                 <i class="fas fa-shopping-cart"></i>
                                                             </a>
                                                         </li>
@@ -176,7 +176,7 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
+                                                        <a href="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal" >
                                                             <i class="fas fa-shopping-cart"></i>
                                                         </a>
                                                     </li>

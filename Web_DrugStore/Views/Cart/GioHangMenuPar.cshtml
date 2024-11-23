@@ -6,10 +6,12 @@
             <span class="ltn__utilize-menu-title">Giỏ hàng</span>
             <button class="ltn__utilize-close">×</button>
         </div>
-        <div class="mini-cart-product-area ltn__scrollbar">
-            @if (Model != null && Model.Any())
-            {
-                foreach (var item in Model)
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="mini-cart-product-area ltn__scrollbar">
+
+                @foreach (var item in Model)
                 {
                     <div class="mini-cart-item clearfix">
                         <div class="mini-cart-img">
@@ -18,26 +20,39 @@
                         </div>
                         <div class="mini-cart-info">
                             <h6><a href="#">@item.sanpham.TenSanPham</a></h6>
-                            <span class="mini-cart-quantity">@item.SoLuong x @item.sanpham.DonGia</span>
+                            <span class="mini-cart-quantity">@item.SoLuong x @item.sanpham.DonGia.ToString("#,0") đ</span>
                         </div>
                     </div>
                 }
-            }
-
-
-
-            
-        </div>
-        <div class="mini-cart-footer">
-            <div class="mini-cart-sub-total">
-                <h5>Tổng tiền: <span> VNĐ</span></h5>
             </div>
-            <div class="btn-wrapper">
-                <a href="@Url.Action("Index")" class="theme-btn-1 btn btn-effect-1">Xem giỏ hàng</a>
-                <a href="cart.html" class="theme-btn-2 btn btn-effect-2">Thanh toán</a>
+            <div class="mini-cart-footer">
+                <div class="mini-cart-sub-total">
+                    <h5>Tổng tiền: <span> VNĐ</span></h5>
+                </div>
+                <div class="btn-wrapper">
+                    <a href="@Url.Action("Index")" class="theme-btn-1 btn btn-effect-1">Xem giỏ hàng</a>
+                    <a href="cart.html" class="theme-btn-2 btn btn-effect-2">Thanh toán</a>
+                </div>
+                <p>Miễn phí giao hàng cho tất cả đơn hàng trên 300.000 đ!</p>
             </div>
-            <p>Miễn phí giao hàng cho tất cả đơn hàng trên 300.000 đ!</p>
-        </div>
+        }
+        else
+        {
+            <div class="empty-cart">
+                <div class="text-content">
+                    <h2>Giỏ hàng trống</h2>
+                    <p>Xem PharmaVillage, lựa hàng ngay đi !</p>
+                </div>
+                <img src="~/Content/img/EmptyCart.png" alt="Giỏ hàng trống" class="cart-image" />
+            </div>
+            <br />
+            <button onclick="window.location.href='@Url.Action("Index", "Home")';" style="background-color: rgb(50, 166, 233)" id="btnlmao" class="btn theme-btn-2">Mua sắm ngay !</button>
+        }
+
+
+
+
+
 
     </div>
 </div>

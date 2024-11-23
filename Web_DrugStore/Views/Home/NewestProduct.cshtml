@@ -68,7 +68,7 @@
                                     </div>
                                     <h2 class="product-title"><a href="@Url.Action("ProdDetail", "Product", new { id = item.SanPhamId })">@item.TenSanPham</a></h2>
                                     <div class="product-price">
-                                        <span>@item.DonGia.ToString("#,0") ₫</span>
+                                        <span style="color: #32a6e9">@item.DonGia.ToString("#,0") ₫</span>
                                         @if (item.DonGiaGoc != 0.0m)
                                         {
                                             <del>@item.DonGiaGoc.ToString("#,0") ₫</del>
@@ -117,7 +117,6 @@
         text-overflow: ellipsis;
         white-space: normal;
         font-size: 16px;
-        font-weight: bold;
         line-height: 1.2;
     }
 

@@ -22,10 +22,14 @@ namespace Web_DrugStore.Controllers
         }
         public ActionResult BestSellingProduct()
         {
+            List<SanPham> sanphams = db.SanPhams.Where(prod => prod.HoatDong == true ).OrderByDescending(prod => prod.LuotMua).Take(8).ToList();
+            return PartialView(sanphams);
+        }
+        public ActionResult OutStandingProduct()
+        {
             List<SanPham> sanphams = db.SanPhams.Where(prod => prod.HoatDong == true).OrderByDescending(prod => prod.LuotMua).Take(6).ToList();
             return PartialView(sanphams);
         }
-
          
 
     }
