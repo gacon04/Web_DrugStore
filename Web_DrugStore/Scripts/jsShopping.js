@@ -22,7 +22,7 @@
 
         })
     });
-    $('body').on('click', '.btnDelete', function (e) {
+    $('body').on('click', '.btnDelete', function (e) { // dành cho xoá sản phẩm bên Giỏ hàng chính
         e.preventDefault();
         var id = $(this).data('id');
         $.ajax({
@@ -34,6 +34,22 @@
                     $('#trow_' + id).remove();
                     ShowCount();
 
+                }
+            }
+
+        })
+    });
+    $('body').on('click', '.btnDeleteP', function (e) { // Xoá sản phẩm trong menu giỏ hàng, do setup cùng tên class bị đụng nên load ko đẹp
+        e.preventDefault();
+        var id = $(this).data('id');
+        $.ajax({
+            url: '/cart/Delete',
+            type: 'POST',
+            data: { id: id },
+            success: function (rs) {
+                if (rs.Success) {
+                    $('#div_' + id).remove();
+                    ShowCount();
                 }
             }
 

@@ -26,7 +26,7 @@ namespace Web_DrugStore.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult BlogCateAdd(DanhMucBlog model)
+        public ActionResult BlogCateAdd(DanhMucBlog model)                                                                              
         {
             if (ModelState.IsValid)
             {

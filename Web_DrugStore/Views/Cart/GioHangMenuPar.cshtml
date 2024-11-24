@@ -13,17 +13,18 @@
 
                 @foreach (var item in Model)
                 {
-                    <div class="mini-cart-item clearfix">
-                        <div class="mini-cart-img">
-                            <a href=""><img src="@item.sanpham.Thumbnail" alt="Hình ảnh"></a>
-                            <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
-                        </div>
-                        <div class="mini-cart-info">
-                            <h6><a href="#">@item.sanpham.TenSanPham</a></h6>
-                            <span class="mini-cart-quantity">@item.SoLuong x @item.sanpham.DonGia.ToString("#,0") đ</span>
-                        </div>
-                    </div>
-                }
+               
+            <div class="mini-cart-item clearfix" id="div_@item.SanPhamId">
+                <div class="mini-cart-img">
+                    <a href=""><img src="@item.sanpham.Thumbnail" alt="Hình ảnh"></a>
+                    <span class="mini-cart-item-delete btnDeleteP" data-id="@item.SanPhamId"><i class="icon-cancel"></i></span>
+                </div>
+                <div class="mini-cart-info">
+                    <h6><a href="#">@item.sanpham.TenSanPham</a></h6>
+                    <span class="mini-cart-quantity">@item.SoLuong x @item.sanpham.DonGia.ToString("#,0") đ</span>
+                </div>
+            </div>
+        }
             </div>
             <div class="mini-cart-footer">
                 <div class="mini-cart-sub-total">

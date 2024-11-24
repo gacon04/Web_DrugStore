@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "Giỏ hàng của tôi";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var tongtien = decimal.Zero;
+    var VAT = decimal.Zero;
+    var TongCong = decimal.Zero;
 }
 <div class="ltn__utilize-overlay"></div>
 
@@ -37,11 +40,9 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-
-
-                                       
+                                        tongtien += item.TongTien;
                                         <tr id="trow_@item.SanPhamId">
-                                            <td class="cart-product-remove"> <b><a href="#" data-id="@item.SanPhamId" class="btnDelete">X</a></b></td>
+                                            <td class="cart-product-remove"> <b><a href="#" data-id="@item.SanPhamId" class="btnDelete"> X </a></b></td>
                                             <td class="cart-product-image">
                                                 <a href="@Url.Action("ProdDetail", "Product", new { id = item.sanpham.SanPhamId })"><img src="@item.sanpham.Thumbnail" alt="#"></a>
                                             </td>
@@ -57,7 +58,7 @@
                                             <td class="cart-product-price">@item.sanpham.DonGia.ToString("#,0") ₫</td>
                                             <td class="cart-product-quantity">
                                                 <div class="cart-plus-minus">
-                                                    <input type="text" value="@item.SoLuong" name="qtybutton" class="cart-plus-minus-box">
+                                                    <input type="number" value="@item.SoLuong" name="qtybutton" class="cart-plus-minus-box" min="1">
                                                 </div>
                                             </td>
                                             <td class="cart-product-subtotal">@item.TongTien.ToString("#,0") ₫</td>
@@ -71,7 +72,7 @@
                                                 </div>
                                             </td>
                                             <td colspan="6">
-                                                <a class="theme-btn-1 btn btn-effect-1" href="@Url.Action("AllProducts","Product")">Tiếp tục mua sắm</a>
+                                                <a class="theme-btn-3 btn btn-effect-1" href="@Url.Action("AllProducts","Product")">Tiếp tục mua sắm</a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -83,23 +84,30 @@
                                 <tbody>
                                     <tr>
                                         <td>Tổng đơn giá</td>
-                                        <td></td>
+                                        <td>@tongtien.ToString("#,0") ₫</td>
                                     </tr>
                                     <tr>
                                         <td>Phí vận chuyển</td>
                                         <td>20.000 ₫</td>
                                     </tr>
                                     <tr>
+                                        @{ 
+                                            VAT = tongtien * 0.1m;
+                                        }
                                         <td>Phí VAT (10%) </td>
-                                        <td></td>
+                                        <td>@(VAT.ToString("#,0")) ₫</td>
                                     </tr>
                                     <tr>
+                                        @{ 
+                                            TongCong = tongtien + VAT + 20000m;
+                                        }
                                         <td><strong>Tổng cộng</strong></td>
-                                        <td><strong></strong></td>
+                                        <td><strong>@(TongCong.ToString("#,0")) ₫</strong></td>
                                     </tr>
 
                                 </tbody>
                             </table>
+                            <br />
                             <div class="btn-wrapper text-right">
                                 <a href="checkout.html" class="theme-btn-1 btn btn-effect-1">Thanh toán</a>
                             </div>
