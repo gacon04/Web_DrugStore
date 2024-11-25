@@ -2516,6 +2516,7 @@
     <Content Include="Views\Home\NewestProduct.cshtml" />
     <Content Include="Views\Home\BestSellingProduct.cshtml" />
     <Content Include="Views\Home\OutStandingProduct.cshtml" />
+    <Content Include="Views\Cart\Partial_Item_Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

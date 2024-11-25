@@ -21,11 +21,11 @@ namespace Web_DrugStore.Controllers
         public ActionResult GioHangMenuPar()
         {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            var tmp = cart;
             if (cart != null)
             {
-                return PartialView(cart.Items);
-            }    
-            var tmp = cart;
+                return PartialView(tmp.Items);
+            }   
             return PartialView(tmp);
         }
         public ActionResult Index()
@@ -37,6 +37,10 @@ namespace Web_DrugStore.Controllers
             }
             var tmp = cart;
             return View(tmp);
+        }
+        public ActionResult Partial_Item_Cart()
+        {
+            return PartialView();
         }
         public ActionResult ShowCount()
         {

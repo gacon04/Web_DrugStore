@@ -126,23 +126,7 @@
                                 <ul>
                                     <li class="d-none">
                                         <!-- ltn__currency-menu -->
-                                        <div class="ltn__drop-menu ltn__currency-menu">
-                                            <ul>
-                                                <li>
-                                                    <a href="#" class="dropdown-toggle"><span class="active-currency">USD</span></a>
-                                                    <ul>
-                                                        <li><a href="login.html">USD - US Dollar</a></li>
-                                                        <li><a href="wishlist.html">CAD - Canada Dollar</a></li>
-                                                        <li><a href="register.html">EUR - Euro</a></li>
-                                                        <li><a href="account.html">GBP - British Pound</a></li>
-                                                        <li><a href="wishlist.html">INR - Indian Rupee</a></li>
-                                                        <li><a href="wishlist.html">BDT - Bangladesh Taka</a></li>
-                                                        <li><a href="wishlist.html">JPY - Japan Yen</a></li>
-                                                        <li><a href="wishlist.html">AUD - Australian Dollar</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
+     
                                     </li>
                                     <li class="d-lg-none">
                                         <!-- header-search-1 -->
@@ -190,9 +174,9 @@
                                     <li>
                                         <!-- mini-cart 2 -->
                                         <div class="mini-cart-icon mini-cart-icon-2">
-                                            <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
+                                            <a href="/Cart/index" class="ltn__utilize-toggle">
                                                 <span class="mini-cart-icon">
-                                                    <i class="icon-shopping-cart"></i>
+                                                    <i class="icon-shopping-cart" id="cart-toggle"></i>
                                                     <sup id="checkout-items">0</sup>
                                                 </span>
                                                 @* <h6><span>Giỏ hàng</span> <span class="ltn__secondary-color">0 Đ</span></h6> *@
@@ -277,7 +261,7 @@
             </div>
         </div>
         <!-- MOBILE MENU END -->
-        @Html.Action("GioHangMenuPar", "Cart");
+
         <!-- Utilize Mobile Menu Start -->
         <div id="ltn__utilize-mobile-menu" class="ltn__utilize ltn__utilize-mobile-menu">
             <div class="ltn__utilize-menu-inner ltn__scrollbar">
