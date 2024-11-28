@@ -29,18 +29,18 @@ namespace Web_DrugStore.Controllers
             return PartialView(tmp);
         }
         public ActionResult Index()
+        {   
+            return View();
+        }
+        public ActionResult Partial_Item_Cart()
         {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
             if (cart != null)
             {
-                return View(cart.Items);
+                return PartialView(cart.Items);
             }
             var tmp = cart;
-            return View(tmp);
-        }
-        public ActionResult Partial_Item_Cart()
-        {
-            return PartialView();
+            return PartialView(tmp);
         }
         public ActionResult ShowCount()
         {
@@ -92,6 +92,18 @@ namespace Web_DrugStore.Controllers
                 }
             }
             return Json(code);
+        }
+
+        [HttpPost]
+        public ActionResult Update(int id, int quantity)
+        {
+            ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            if (cart != null)
+            {
+                cart.UpdateQuantity(id, quantity);
+                return Json(new { Success = true });
+            }
+            return Json( new { Success = false});
         }
     }
 }

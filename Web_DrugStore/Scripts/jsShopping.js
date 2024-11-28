@@ -25,21 +25,25 @@
     $('body').on('click', '.btnDelete', function (e) { // dành cho xoá sản phẩm bên Giỏ hàng chính
         e.preventDefault();
         var id = $(this).data('id');
-        $.ajax({
-            url: '/cart/Delete',
-            type: 'POST',
-            data: { id: id},
-            success: function (rs) {
-                if (rs.Success) {
-                    $('#trow_' + id).remove();
-                    ShowCount();
-
+        var conf = confirm('Bạn có chắc muốn xoá sản phẩm này khỏi giỏ hàng ?');
+        if (conf == true) {
+            $.ajax({
+                url: '/cart/Delete',
+                type: 'POST',
+                data: { id: id },
+                success: function (rs) {
+                    if (rs.Success) {
+                        $('#trow_' + id).remove();
+                        ShowCount();
+                        LoadCart();
+                    }
                 }
-            }
 
-        })
+            })
+        }
+
     });
-   
+
     $('body').on('click', '.btnAddToCartMini', function (e) { // THÊM SẢN PHẨM BẰNG NÚT NHỎ
         e.preventDefault();
         var id = $(this).data('id');
@@ -58,12 +62,12 @@
         })
     });
 
-    $('body').on('keydown', '.cart-plus-minus-box', function (event) {
+    $('body').on('keydown', '.cart-input-quantity', function (event) {  // ngăn phím backspace và delete xoá số lượng sản phẩm
         let key = event.which || event.keyCode;
         $(this).data('isDeleteKey', key === 8 || key === 46); // 8: Backspace, 46: Delete
     });
 
-    $('body').on('input', '.cart-plus-minus-box', function () {
+    $('body').on('input', '.cart-input-quantity', function () {
         let value = $(this).val().trim();
         let sanitizedValue = value.replace(/[^0-9]/g, '');
         let prevValue = $(this).data('prevValue') || '1';
@@ -77,6 +81,9 @@
         $(this).val(sanitizedValue);
         $(this).data('prevValue', sanitizedValue);
         $(this).data('isDeleteKey', false);
+        var id = $(this).data("id");
+        Update(id, sanitizedValue);
+
     });
 
 });
@@ -86,7 +93,30 @@ function ShowCount() {
         url: '/cart/ShowCount',
         type: 'GET',
         success: function (rs) {
-                $('#checkout-items').html(rs.Count); 
+            $('#checkout-items').html(rs.Count);
+        }
+
+    })
+}
+function Update(id, quantity) {
+    $.ajax({
+        url: '/cart/Update',
+        type: 'POST',
+        data: { id: id, quantity: quantity },
+        success: function (rs) {
+            if (rs.Success) {
+                LoadCart()
+            }
+        }
+
+    })
+}
+function LoadCart() {
+    $.ajax({
+        url: '/cart/Partial_Item_Cart',
+        type: 'GET',
+        success: function (rs) {
+            $('#load_data').html(rs);
         }
 
     })
