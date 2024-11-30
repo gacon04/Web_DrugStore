@@ -17,7 +17,7 @@ namespace Web_DrugStore.Models
 
         public DateTime? NgayGiao { get; set; }
 
-        public string CachThanhToan { get; set; } = null;
+        public string CachThanhToan { get; set; }
 
         public string CachVanChuyen { get; set; }
 
@@ -30,8 +30,11 @@ namespace Web_DrugStore.Models
         [StringLength(255)]
         public string DiaChi { get; set; } // Địa chỉ giao hàng
 
-       
+        [StringLength(255)]
+        public string DiaChiChoLam { get; set; }
 
+        [Required]
+        public string UserAspId { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -40,7 +43,20 @@ namespace Web_DrugStore.Models
         [StringLength(255)]
         public string Email { get; set; } // Email khách hàng
 
-        public double TongTien { get; set; } // Tổng tiền đơn hàng
+        public double TongTienHang{ get; set; } // Tổng tiền đơn hàng
+  
+        public double TongHoaDon { get; set; }
+        
+
+        public double VAT { get; set; }
+
+        public double GiamGia { get; set; } = 0;
+
+        public string CodeGiamGia { get; set; } = "";
+
+        public double PhiVanChuyen { get; set; } = 20000;
+
+        public string GhiChu { get; set; } = "";
 
         public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; } // Liên kết với bảng ChiTietDonHang
     }

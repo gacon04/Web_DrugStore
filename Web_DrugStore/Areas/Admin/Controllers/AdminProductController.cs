@@ -9,6 +9,8 @@ using System.Web;
 using System.Data.Entity;
 using System.IO;
 using Web_DrugStore.Filters;
+using PagedList;
+using System.Drawing;
 namespace Web_DrugStore.Areas.Admin.Controllers
 {
     [AuthenticationFilter]
@@ -16,11 +18,24 @@ namespace Web_DrugStore.Areas.Admin.Controllers
     public class AdminProductController : Controller
     {
         DS_DBContext db = new DS_DBContext();
-        public ActionResult Index()
+        public ActionResult Index(int? page, string searchText)
         {
+            int size = 9;
+            int pageNumber = (page ?? 1); 
 
-            List<SanPham> sanpham = db.SanPhams.ToList();
-            return View(sanpham);
+            var sanpham = db.SanPhams.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                sanpham = sanpham.Where(sp => sp.TenSanPham.Contains(searchText));
+            }
+            sanpham = sanpham.OrderBy(sp => sp.TenSanPham); 
+            var paginatedSanpham = sanpham.ToPagedList(pageNumber, size);
+
+            // Truyền `searchText` để giữ giá trị trong giao diện
+            ViewBag.SearchText = searchText;
+
+            return View(paginatedSanpham);
         }
         public ActionResult AddProd()
         {
@@ -40,6 +55,7 @@ namespace Web_DrugStore.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 DS_DBContext db = new DS_DBContext();
+                
                 model.LuotYeuThich = 0;
                 model.LuotMua = 0;
                 model.Hot = false;

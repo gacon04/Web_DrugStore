@@ -105,5 +105,24 @@ namespace Web_DrugStore.Controllers
             }
             return Json( new { Success = false});
         }
+
+        // Phần check out
+
+   
+        public ActionResult Checkout()
+        {
+
+            return View();
+        }
+        public ActionResult Partial_Item_Checkout()
+        {
+            ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            if (cart != null)
+            {
+                return PartialView(cart.Items);
+            }
+            var tmp = cart;
+            return PartialView(tmp);
+        }
     }
 }

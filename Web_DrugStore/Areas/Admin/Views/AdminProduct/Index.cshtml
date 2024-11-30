@@ -1,93 +1,207 @@
-﻿@model List<Web_DrugStore.Models.SanPham>
+﻿@using Web_DrugStore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SanPham>
 @{
     ViewBag.Title = "Quản lý bài viết - PharmaVillage";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var searchTextString = ViewBag.SearchText;
 }
 
 <h1 style="text-align:center">QUẢN LÝ SẢN PHẨM</h1>
-<div class="text-right mb-3">
-    <a href="@Url.Action("AddProd", "AdminProduct")" class="btn btn-primary m-r-5">
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <!-- Thanh tìm kiếm -->
+    <form action="@Url.Action("Index", "AdminProduct")" method="get" class="form-inline">
+        <div class="input-group" style="max-width: 400px;">
+            <input type="text" name="searchText" class="form-control" placeholder="Tìm kiếm sản phẩm theo tên..." value="@ViewBag.SearchText" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary">
+                    <i class="anticon anticon-search"></i> Tìm
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Nút thêm sản phẩm -->
+    <a href="@Url.Action("AddProd", "AdminProduct")" class="btn btn-primary">
         <i class="anticon anticon-plus"></i> Thêm sản phẩm mới
     </a>
 </div>
 
+
 <!-- Hiện thông báo khi xoá thành công nếu có sự thay đổi trong temp mess-->
 @Html.Partial("_DeleteNoti")
-
-<div class="table-responsive">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">Danh mục</th>
-                <th scope="col">Tên sản phẩm</th>
-                <th scope="col">Giá bán</th>
-                <th scope="col">Số lượng</th>
-                <th scope="col">Hình ảnh</th>
-                <th scope="col">Trạng thái</th>
-                <th scope="col">Thao tác</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+@if (Model != null && Model.Any())
+{
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                    <td>
-                        @item.DanhMuc.TenDanhMuc
-                    </td>
-                    <td style="max-width: 200px">
-                        @item.TenSanPham
-                    </td>
-
-                    <td>
-                        @item.DonGia.ToString("#,0.##").Replace(",", " ") đ
-                    </td>
-
-
-                    <td>
-                        @item.SoLuong
-                    </td>
-                    <td>
-                        <img src="@Url.Content(!string.IsNullOrEmpty(item.Thumbnail) ? item.Thumbnail : "abc")"
-                             alt="Chưa có thumbnail hợp lệ"
-                             style="max-width: 120px; max-height: 120px;">
-                    </td>
-                    
-                    @if (item.HoatDong == true)
-                    {
-                        <td><span class="badge badge-pill badge-success">Đang hiện</span></td>
-
-                    }
-                    else
-                    {
-
-                        <td><span class="badge badge-pill badge-default">Đang ẩn</span></td>
-
-                    }
-
-
-                    <td>
-                        <div class="button-container" style="display: flex; gap: 10px;">
-                            
-                            <a href="@Url.Action("EditProd", "AdminProduct", new { id = item.SanPhamId })" class="btn btn-info m-r-5">
-                                <i class="anticon anticon-edit"></i>
-                                <!--Nút chỉnh sửa-->
-                            </a>
-
-                            <!--click vào button sẽ bắt đầu gọi func trong partial view-->
-                            <button type="button" class="btn btn-danger m-r-5" onclick="showModal(@item.SanPhamId, '@Url.Action("DeleteProd", "AdminProduct")')">
-                                <i class="anticon anticon-delete"></i> <!--Nút xoá-->
-                            </button>
-                        </div>
-
-                    </td>
+                    <th scope="col">Danh mục</th>
+                    <th scope="col">Tên sản phẩm</th>
+                    <th scope="col">Giá bán</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Hình ảnh</th>
+                    <th scope="col">Trạng thái</th>
+                    <th scope="col">Thao tác</th>
                 </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.DanhMuc.TenDanhMuc
+                        </td>
+                        <td style="max-width: 200px">
+                            @item.TenSanPham
+                        </td>
+
+                        <td>
+                            @item.DonGia.ToString("#,0.##").Replace(",", " ") đ
+                        </td>
+
+
+                        <td>
+                            @item.SoLuong
+                        </td>
+                        <td>
+                            <img src="@Url.Content(!string.IsNullOrEmpty(item.Thumbnail) ? item.Thumbnail : "abc")"
+                                 alt="Chưa có thumbnail hợp lệ"
+                                 style="max-width: 120px; max-height: 120px;">
+                        </td>
+
+                        @if (item.HoatDong == true)
+                        {
+                            <td><span class="badge badge-pill badge-success">Đang hiện</span></td>
+
+                        }
+                        else
+                        {
+
+                            <td><span class="badge badge-pill badge-default">Đang ẩn</span></td>
+
+                        }
+
+
+                        <td>
+                            <div class="button-container" style="display: flex; gap: 10px;">
+
+                                <a href="@Url.Action("EditProd", "AdminProduct", new { id = item.SanPhamId })" class="btn btn-info m-r-5">
+                                    <i class="anticon anticon-edit"></i>
+                                    <!--Nút chỉnh sửa-->
+                                </a>
+
+                                <!--click vào button sẽ bắt đầu gọi func trong partial view-->
+                                <button type="button" class="btn btn-danger m-r-5" onclick="showModal(@item.SanPhamId, '@Url.Action("DeleteProd", "AdminProduct")')">
+                                    <i class="anticon anticon-delete"></i> <!--Nút xoá-->
+                                </button>
+                            </div>
+
+                        </td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center">
+        <span>Trang @(Model.PageNumber) / @Model.PageCount</span>
+        <div>
+            @Html.PagedListPager(Model, page =>
+                Url.Action("Index", "AdminProduct", new { page = page, searchText = ViewBag.SearchText }))
+        </div>
+    </div>
+
+
+
+    <!-- Xử lý khi bấm vào nút xoá -->
+    @Html.Partial("_DelConfirmModal")
+}
+else
+{
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 30vh; text-align: center;">
+    <h2 style="color: #dc3545; font-size: 18px; font-weight: bold; margin-bottom: 20px;">
+        Không tìm thấy sản phẩm phù hợp
+    </h2>
+
+    <!-- Nút Quay lại -->
+    <a href="@Url.Action("Index", "AdminProduct")" class="btn btn-primary" style="padding: 10px 20px; font-size: 16px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px;">
+        Quay lại
+    </a>
+</div>
+}
+
+<style>
+    /* Căn giữa các phần tử */
+    .text-center {
+        margin: 20px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        /* Hiển thị thông tin trang */
+        .text-center span {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* Style cho các nút phân trang */
+        .text-center .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            /* Các nút phân trang */
+            .text-center .pagination a {
+                padding: 8px 12px;
+                margin: 0 5px;
+                border: 2px solid #007bff;
+                border-radius: 4px;
+                color: #007bff;
+                font-size: 14px;
+                text-decoration: none;
+                transition: all 0.3s ease;
             }
 
+                /* Hiệu ứng hover cho các nút */
+                .text-center .pagination a:hover {
+                    background-color: #007bff;
+                    color: white;
+                }
 
-        </tbody>
-    </table>
-</div>
+            /* Nút phân trang đang được chọn (active) */
+            .text-center .pagination .active a {
+                background-color: #007bff;
+                color: white;
+                border-color: #007bff;
+                font-weight: bold;
+            }
 
-<!-- Xử lý khi bấm vào nút xoá -->
-@Html.Partial("_DelConfirmModal")
+            /* Nút phân trang không khả dụng (disabled) */
+            .text-center .pagination .disabled a {
+                color: #ccc;
+                border-color: #ddd;
+                pointer-events: none;
+            }
+
+            /* Đảm bảo spacing hợp lý */
+            .text-center .pagination a {
+                border-radius: 4px;
+                padding: 10px;
+                margin: 0 5px;
+            }
+
+            .text-center .pagination .disabled a {
+                cursor: not-allowed;
+            }
+</style>
+
 

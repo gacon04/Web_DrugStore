@@ -1,0 +1,72 @@
+﻿
+@model IEnumerable<Web_DrugStore.ViewModel.ShoppingCartItem>
+@{
+    ViewBag.Title = "Giỏ hàng của tôi";
+    var tongtien = decimal.Zero;
+    var VAT = decimal.Zero;
+    var vanchuyen = 20000m;
+    var TongCong = decimal.Zero;
+}
+@if (Model != null && Model.Any())
+{
+    <div class="col-lg-6">
+        <div class="shoping-cart-total mt-50">
+            <h4 class="title-2">Chi tiết đơn hàng</h4>
+            <table class="table">
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        tongtien += item.TongTien;
+
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("ProdDetail", "Product", new { id = item.sanpham.SanPhamId })">
+                                    @(item.sanpham.TenSanPham.Length > 30
+                                    ? item.sanpham.TenSanPham.Substring(0, 30) + "..."
+                                    : item.sanpham.TenSanPham)
+                                    <strong>× @item.SoLuong</strong>
+
+                                </a>
+                            </td>
+                           
+                            <td>@item.TongTien.ToString("#,0") ₫</td>
+                        </tr>
+                    }
+
+                    <tr>
+                        
+                        <td>Tổng tiền </td>
+                        <td><strong>@tongtien.ToString("#,0") ₫</strong></td>
+                    </tr>
+                    <tr>
+                        @{
+                            vanchuyen = tongtien >= 300000m ? 0m : 20000m;
+                        }
+                        <td>Vận chuyển và đóng gói</td>
+                        <td><strong>@vanchuyen.ToString("#,0") ₫</strong></td>
+                    </tr>
+                    <tr>
+                        @{
+                            VAT = tongtien * 0.1m;
+                        }
+                        <td>Thuế VAT (10%)</td>
+                        <td><strong>@(VAT.ToString("#,0")) ₫</strong> </td>
+                    </tr>
+                    <tr>
+                        @{
+                            TongCong = tongtien + VAT + vanchuyen;
+                        }
+                        <td><strong>Tổng cộng</strong></td>
+                        <td><strong>@(TongCong.ToString("#,0")) ₫</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+}
+
+else
+            {
+                <h3>Giỏ hàng đang rỗng, không thể thanh toán</h3>
+            }                                

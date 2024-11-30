@@ -16,13 +16,23 @@ namespace Web_DrugStore.Controllers
         DS_DBContext db = new DS_DBContext();
        
         // Hiển thị danh sách tất cả sản phẩm
-        public ActionResult AllProducts(int? page)
+        public ActionResult AllProducts(int? page,int? cateId)
         {
 
             int Size = 9;
             int PageNumber = (page ?? 1);
+            int MaDanhMuc = (cateId ?? 0);
+            List<SanPham> sanphams;
             List<DanhMuc> danhmuc_left = db.DanhMucs.Where(d => d.DanhMucCha == null ).ToList();
-            List<SanPham> sanphams = db.SanPhams.Where(prod => prod.HoatDong == true).ToList();
+            if (MaDanhMuc!=0)
+            {
+                sanphams = db.SanPhams.Where(prod => prod.HoatDong == true && prod.DanhMuc.ParentId == MaDanhMuc).ToList();
+            }    
+            else
+            {
+                sanphams = db.SanPhams.Where(prod => prod.HoatDong == true ).ToList();
+
+            }
             ViewBag.ListDanhMuc = danhmuc_left;
             var listProd = sanphams;
             return View(listProd.ToPagedList(PageNumber, Size));

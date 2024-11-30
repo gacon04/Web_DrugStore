@@ -16,6 +16,8 @@ namespace Web_DrugStore
             // Bật Attribute Routing
             routes.MapMvcAttributeRoutes();
 
+          
+
             // Route mặc định
             routes.MapRoute(
                 name: "Default",

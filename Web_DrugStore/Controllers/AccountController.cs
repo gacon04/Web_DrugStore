@@ -113,12 +113,7 @@ namespace Web_DrugStore.Controllers
             return View();
         }
 
-        [AuthenticationFilter]
-        public ActionResult Checkout()
-        {
-           
-            return View();
-        }
+        
         [AuthenticationFilter]
         public ActionResult Logout()
         {

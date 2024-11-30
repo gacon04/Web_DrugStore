@@ -285,6 +285,18 @@
     <Compile Include="Migrations\202411222126338_AddRatedToSanPham.Designer.cs">
       <DependentUpon>202411222126338_AddRatedToSanPham.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202411291549193_AddAspIdToDonHang.cs" />
+    <Compile Include="Migrations\202411291549193_AddAspIdToDonHang.Designer.cs">
+      <DependentUpon>202411291549193_AddAspIdToDonHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411291639388_AddMoreInfoToDonHang.cs" />
+    <Compile Include="Migrations\202411291639388_AddMoreInfoToDonHang.Designer.cs">
+      <DependentUpon>202411291639388_AddMoreInfoToDonHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411291707232_AddNoteToOrder.cs" />
+    <Compile Include="Migrations\202411291707232_AddNoteToOrder.Designer.cs">
+      <DependentUpon>202411291707232_AddNoteToOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ChiTietDonHang.cs" />
@@ -2501,7 +2513,7 @@
     <Content Include="Views\Product\ProdDetail.cshtml" />
     <Content Include="Views\Blog\Create.cshtml" />
     <Content Include="Views\Blog\BlogDetail.cshtml" />
-    <Content Include="Views\Account\Checkout.cshtml" />
+    <Content Include="Views\Cart\Checkout.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\About\OperatingRegulations.cshtml" />
     <Content Include="Views\About\ShippingPolicy.cshtml" />
@@ -2517,6 +2529,7 @@
     <Content Include="Views\Home\BestSellingProduct.cshtml" />
     <Content Include="Views\Home\OutStandingProduct.cshtml" />
     <Content Include="Views\Cart\Partial_Item_Cart.cshtml" />
+    <Content Include="Views\Cart\Partial_Item_Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
@@ -2615,6 +2628,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202411222126338_AddRatedToSanPham.resx">
       <DependentUpon>202411222126338_AddRatedToSanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411291549193_AddAspIdToDonHang.resx">
+      <DependentUpon>202411291549193_AddAspIdToDonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411291639388_AddMoreInfoToDonHang.resx">
+      <DependentUpon>202411291639388_AddMoreInfoToDonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411291707232_AddNoteToOrder.resx">
+      <DependentUpon>202411291707232_AddNoteToOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
