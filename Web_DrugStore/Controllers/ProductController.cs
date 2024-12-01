@@ -35,6 +35,7 @@ namespace Web_DrugStore.Controllers
             }
             ViewBag.ListDanhMuc = danhmuc_left;
             var listProd = sanphams;
+            ViewBag.SoLuongBanGhi = sanphams.Count();
             return View(listProd.ToPagedList(PageNumber, Size));
         }
 

@@ -16,5 +16,11 @@ namespace Web_DrugStore.Areas.Admin.Controllers
         {
             return View();
         }
+        public ActionResult Logout()
+        {
+            var authenManager = HttpContext.GetOwinContext().Authentication;
+            authenManager.SignOut();
+            return RedirectToAction("Index", "Home", new { area = "" });
+        }
     }
 }

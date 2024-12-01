@@ -5,6 +5,9 @@
     ViewBag.Title = "Tất cả sản phẩm - PharmaVillage";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var danhmucList = ViewBag.ListDanhMuc as List<Web_DrugStore.Models.DanhMuc>;
+    var soLuongBanGhi = ViewBag.SoLuongBanGhi;
+
+
 }
 <div class="ltn__utilize-overlay"></div>
 
@@ -55,8 +58,18 @@
                         </li>
                         <li>
                             <div class="showing-product-number text-right">
-                                <span>Hiển thị ... của 18 kết quả</span>
+                                @{
+                                    // Tính số sản phẩm hiển thị trên trang hiện tại
+                                    var demSanPhamBatDau = (Model.PageNumber - 1) * Model.PageSize + 1;
+                                    var demSanPhamKetThuc = demSanPhamBatDau + Model.Count - 1;
+                                    if (demSanPhamKetThuc > soLuongBanGhi) // Nếu số sản phẩm hiển thị vượt quá số lượng thực tế
+                                    {
+                                        demSanPhamKetThuc = soLuongBanGhi;
+                                    }
+                                }
+                                <span>Hiển thị @(demSanPhamBatDau) - @demSanPhamKetThuc của @soLuongBanGhi kết quả</span>
                             </div>
+
                         </li>
                         <li>
                             <div class="short-by text-center">

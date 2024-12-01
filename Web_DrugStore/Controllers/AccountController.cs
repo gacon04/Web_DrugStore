@@ -49,6 +49,7 @@ namespace Web_DrugStore.Controllers
                     userManager.AddToRole(user.Id, "Customer");
                     var authenManager = HttpContext.GetOwinContext().Authentication;
                     var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                 
                     authenManager.SignIn(new Microsoft.Owin.Security.AuthenticationProperties(), userIdentity); 
                 }
                 return RedirectToAction("Index", "Home");
@@ -77,36 +78,43 @@ namespace Web_DrugStore.Controllers
             {
                 ViewData["Err1"] = "Vui lòng nhập tài khoản Email có định dạng hợp lệ";
                 return View();
-            }
-            if (!Regex.IsMatch(mk, passwordPattern))
-            {
-                ViewData["Err2"] = "Nhập mật khẩu hợp lệ có ký tự hoa, thường, chữ số, đặc biệt";
-                return View();
-            }  
-            
+            }         
             var appDBContext = new AppDBContext();
             var userStore = new AppUserStore(appDBContext);
             var userManager = new AppUserManager(userStore);
             
             var user = userManager.FindByEmail(tk);
-            if (user != null && userManager.CheckPassword(user, mk))
+            if (user != null)
             {
-                var authenManager = HttpContext.GetOwinContext().Authentication;
-                var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                authenManager.SignIn(new Microsoft.Owin.Security.AuthenticationProperties(), userIdentity);
-                if (userManager.IsInRole(user.Id,"Admin"))
+                if (userManager.CheckPassword(user, mk))
                 {
-                    return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+                    var authenManager = HttpContext.GetOwinContext().Authentication;
+                    var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    authenManager.SignIn(new Microsoft.Owin.Security.AuthenticationProperties(), userIdentity);
+                    if (userManager.IsInRole(user.Id, "Admin"))
+                    {
+                       
+                        return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+                    }
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewData["Err2"] = "Tài khoản/Mật khẩu không hợp lệ. Vui lòng kiểm tra lại";
+                    return this.Login();
                 }    
-                return RedirectToAction("Index", "Home");
+
             }
+                
+            
             else
             {
-                ViewData["Err3"] = "Tài khoản/Mật khẩu không hợp lệ. Vui lòng kiểm tra lại";
+                ViewData["Err2"] = "Thông tin tài khoản không tồn tại trên hệ thống";
                 return this.Login();
             }
             return View();
         }
+
         [AuthenticationFilter]
         public ActionResult WishList()
         {

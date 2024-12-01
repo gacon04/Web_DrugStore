@@ -41,10 +41,12 @@
                         @Html.AntiForgeryToken()
                         <span class="error-message">@ViewData["Err1"]</span>
                         <input type="text" name="Email" placeholder="Nhập vào tài khoản*" required>
-                        <span class="error-message">@ViewData["Err2"]</span>
                         <input type="password" name="MatKhau" placeholder="Mật khẩu" required />
-                        <span class="error-message">@ViewData["Err3"]</span>
+
+                        <span class="error-message">@ViewData["Err2"]</span>
+                        <br />
                         <div class="btn-wrapper mt-0">
+
                             <button class="theme-btn-1 btn btn-block" style="text-align:center" type="submit">ĐĂNG NHẬP</button>
                         </div>
                         <div class="go-to-btn mt-20">

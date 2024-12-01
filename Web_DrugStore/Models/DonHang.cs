@@ -7,6 +7,24 @@ using System.Web;
 
 namespace Web_DrugStore.Models
 {
+    public enum TrangThaiDonHang
+    {
+        [Display(Name = "Đã hủy")]
+        DaHuy = 0, 
+        [Display(Name = "Chờ xác nhận")]
+        ChoXacNhan = 1,
+
+       [Display(Name = "Đang xử lý")]
+        DangXuLy = 2,
+
+        [Display(Name = "Đã giao")]
+        DaGiao = 3
+
+        
+
+       
+    }
+
     public class DonHang
     {
         [Key]
@@ -19,8 +37,8 @@ namespace Web_DrugStore.Models
 
         public string CachThanhToan { get; set; }
 
-        public string CachVanChuyen { get; set; }
-
+        [Required]
+        public TrangThaiDonHang TrangThai { get; set; } = 0;
 
         [Required]
         [StringLength(255)]
