@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Checkout";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -32,32 +31,32 @@
             <div class="col-lg-12">
                 <div class="ltn__checkout-inner">
                     <!--
-                                    <div class="ltn__checkout-single-content ltn__returning-customer-wrap">
-                <h5>Đã có tài khoản? <a class="ltn__secondary-color" href="#ltn__returning-customer-login" data-bs-toggle="collapse">Đăng nhập</a></h5>
-                <div id="ltn__returning-customer-login" class="collapse ltn__checkout-single-content-info">
-                    <div class="ltn_coupon-code-form ltn__form-box">
-                        <p>Vui lòng đăng nhập tài khoản của bạn</p>
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-item input-item-name ltn__custom-icon">
-                                        <input type="text" name="ltn__name" placeholder="Enter your name">
+                                            <div class="ltn__checkout-single-content ltn__returning-customer-wrap">
+                        <h5>Đã có tài khoản? <a class="ltn__secondary-color" href="#ltn__returning-customer-login" data-bs-toggle="collapse">Đăng nhập</a></h5>
+                        <div id="ltn__returning-customer-login" class="collapse ltn__checkout-single-content-info">
+                            <div class="ltn_coupon-code-form ltn__form-box">
+                                <p>Vui lòng đăng nhập tài khoản của bạn</p>
+                                <form action="#">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-item input-item-name ltn__custom-icon">
+                                                <input type="text" name="ltn__name" placeholder="Enter your name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-item input-item-email ltn__custom-icon">
+                                                <input type="email" name="ltn__email" placeholder="Enter email address">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="email" name="ltn__email" placeholder="Enter email address">
-                                    </div>
-                                </div>
+                                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase">Đăng nhập</button>
+                                    <label class="input-info-save mb-0"><input type="checkbox" name="agree"> Lưu tài khoản</label>
+                                    <p class="mt-30"><a href="register.html">Quên mật khẩu?</a></p>
+                                </form>
                             </div>
-                            <button class="btn theme-btn-1 btn-effect-1 text-uppercase">Đăng nhập</button>
-                            <label class="input-info-save mb-0"><input type="checkbox" name="agree"> Lưu tài khoản</label>
-                            <p class="mt-30"><a href="register.html">Quên mật khẩu?</a></p>
-                        </form>
+                        </div>
                     </div>
-                </div>
-            </div>
-                                -->
+                                        -->
 
                     <div class="ltn__checkout-single-content ltn__coupon-code-wrap">
                         <h5>Có mã giảm giá? <a class="ltn__secondary-color" href="#ltn__coupon-code" data-bs-toggle="collapse">Click để nhập mã giảm giá</a></h5>
@@ -72,65 +71,70 @@
                         </div>
                     </div>
                     <div class="ltn__checkout-single-content mt-50">
-                        <h4 class="title-2">Chi tiết hoá đơn</h4>
+                        <h2 class="title-2">CHI TIẾT HOÁ ĐƠN</h2>
                         <div class="ltn__checkout-single-content-info">
                             <form action="#">
-                                <h6>THÔNG TIN KHÁCH HÀNG</h6>
+                                <h4>XÁC NHẬN THÔNG TIN NHẬN HÀNG</h4>
                                 <div class="row">
                                     <!-- <div class="col-md-6">
-                                <div class="input-item input-item-name ltn__custom-icon">
-                                    <input type="text" name="ltn__name" placeholder="Họn">
-                                </div>
-                            </div> -->
+                                        <div class="input-item input-item-name ltn__custom-icon">
+                                            <input type="text" name="ltn__name" placeholder="Họn">
+                                        </div>
+                                    </div> -->
                                     <div class="col-md-6">
                                         <div class="input-item input-item-name ltn__custom-icon">
-                                            <input type="text" name="ltn__lastname" placeholder="Họ và tên">
+                                            <h6>Họ và tên *</h6>
+                                            <input type="text" name="HoTen" placeholder="Nhập vào họ và tên người nhận">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-item input-item-email ltn__custom-icon">
-                                            <input type="email" name="ltn__email" placeholder="Địa chỉ email">
+                                            <h6>Địa chỉ Email *</h6>
+                                            <input type="email" name="Email" placeholder="Nhập vào email nhận thông tin">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-item input-item-phone ltn__custom-icon">
-                                            <input type="text" name="ltn__phone" placeholder="Số điện thoại">
+                                            <h6>Số điện thoại liên hệ *</h6>
+                                            <input type="text" name="SDT" placeholder="Nhập vào số điện thoại người nhận">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="input-item input-item-website ltn__custom-icon">
-                                            <input type="text" name="ltn__phone" placeholder="Địa chỉ nơi làm việc (Tuỳ chọn)">
+                                            <h6>Nơi làm việc *</h6>
+                                            <input type="text" name="DiaChiChoLam" placeholder="Nhập vào địa chỉ nơi làm việc (Tuỳ chọn)">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <!-- <div class="col-lg-4 col-md-6">
-                                <h6>Country</h6>
-                                <div class="input-item">
-                                    <select class="nice-select">
-                                        <option>Select Country</option>
-                                        <option>Australia</option>
-                                        <option>Canada</option>
-                                        <option>China</option>
-                                        <option>Morocco</option>
-                                        <option>Saudi Arabia</option>
-                                        <option>United Kingdom (UK)</option>
-                                        <option>United States (US)</option>
-                                    </select>
-                                </div>
-                            </div> -->
+                                        <h6>Country</h6>
+                                        <div class="input-item">
+                                            <select class="nice-select">
+                                                <option>Select Country</option>
+                                                <option>Australia</option>
+                                                <option>Canada</option>
+                                                <option>China</option>
+                                                <option>Morocco</option>
+                                                <option>Saudi Arabia</option>
+                                                <option>United Kingdom (UK)</option>
+                                                <option>United States (US)</option>
+                                            </select>
+                                        </div>
+                                    </div> -->
                                     <div class="col-lg-12 col-md-12">
                                         <h6>Địa chỉ</h6>
                                         <div class="row">
+
                                             <div class="col-md-6">
                                                 <div class="input-item">
-                                                    <input type="text" placeholder="Số nhà, tên đường">
+                                                    <input type="text" placeholder="Số nhà (tuỳ chọn)" name="SoNha">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input-item">
-                                                    <input type="text" placeholder="Số căn hộ ... (tuỳ chọn)">
+                                                    <input type="text" placeholder="Tên đường (tuỳ chọn)" name="TenDuong">
                                                 </div>
                                             </div>
                                         </div>
@@ -138,26 +142,26 @@
                                     <div class="col-lg-4 col-md-6">
                                         <h6>Xã / Phường</h6>
                                         <div class="input-item">
-                                            <input type="text" placeholder="Tên xã / Tên phường">
+                                            <input type="text" placeholder="Tên xã / Tên phường" name="TenXa">
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-6">
                                         <h6>Quận / Huyện </h6>
                                         <div class="input-item">
-                                            <input type="text" placeholder="Tên quận / Tên huyện">
+                                            <input type="text" placeholder="Tên quận / Tên huyện" name="TenHuyen">
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-6">
                                         <h6>Tỉnh</h6>
                                         <div class="input-item">
-                                            <input type="text" placeholder="Tên Tỉnh">
+                                            <input type="text" placeholder="Tên Tỉnh" name="TenTinh">
                                         </div>
                                     </div>
                                 </div>
                                 <!-- <p><label class="input-info-save mb-0"><input type="checkbox" name="agree"> Create an account?</label></p> -->
-                                <h6>Ghi chú thêm (optional)</h6>
+                                <h6>Ghi chú thêm (Tuỳ chọn)</h6>
                                 <div class="input-item input-item-textarea ltn__custom-icon">
-                                    <textarea name="ltn__message" placeholder="Các yêu cầu đặc biệt về thời gian giao hàng, địa chỉ, vv..."></textarea>
+                                    <textarea name="GhiChu" placeholder="Các yêu cầu đặc biệt về thời gian giao hàng, địa chỉ, vv..."></textarea>
                                 </div>
 
                             </form>
@@ -171,15 +175,15 @@
                     <div id="checkout_accordion_1">
                         <!-- card -->
                         <!-- <div class="card">
-                    <h5 class="collapsed ltn__card-title" data-bs-toggle="collapse" data-bs-target="#faq-item-2-1" aria-expanded="false">
-                        Check payments
-                    </h5>
-                    <div id="faq-item-2-1" class="collapse" data-bs-parent="#checkout_accordion_1">
-                        <div class="card-body">
-                            <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                        </div>
-                    </div>
-                </div> -->
+                            <h5 class="collapsed ltn__card-title" data-bs-toggle="collapse" data-bs-target="#faq-item-2-1" aria-expanded="false">
+                                Check payments
+                            </h5>
+                            <div id="faq-item-2-1" class="collapse" data-bs-parent="#checkout_accordion_1">
+                                <div class="card-body">
+                                    <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+                                </div>
+                            </div>
+                        </div> -->
                         <!-- card -->
                         <div class="card">
                             <h5 class="ltn__card-title" data-bs-toggle="collapse" data-bs-target="#faq-item-2-2" aria-expanded="true">
@@ -212,16 +216,20 @@
                                 </div>
                             </div>
                         </div>
-                     </div>
+                    </div>
                     <div class="ltn__payment-note mt-30 mb-30">
                         <p>Dữ liệu cá nhân của bạn sẽ được sử dụng để xử lý đơn hàng, hỗ trợ trải nghiệm của bạn trên trang web này, và cho các mục đích khác được mô tả trong chính sách bảo mật của chúng tôi.</p>
                     </div>
-                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Hoàn tất đặt hàng</button>
                 </div>
             </div>
             @Html.Action("Partial_Item_Checkout")
         </div>
+        <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+            <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Hoàn tất đặt hàng</button>
+        </div>
+
+
     </div>
+
 </div>
 <!-- WISHLIST AREA START -->
-

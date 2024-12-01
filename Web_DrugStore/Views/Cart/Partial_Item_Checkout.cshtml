@@ -1,7 +1,5 @@
-﻿
-@model IEnumerable<Web_DrugStore.ViewModel.ShoppingCartItem>
+﻿@model IEnumerable<Web_DrugStore.ViewModel.ShoppingCartItem>
 @{
-    ViewBag.Title = "Giỏ hàng của tôi";
     var tongtien = decimal.Zero;
     var VAT = decimal.Zero;
     var vanchuyen = 20000m;
@@ -11,7 +9,7 @@
 {
     <div class="col-lg-6">
         <div class="shoping-cart-total mt-50">
-            <h4 class="title-2">Chi tiết đơn hàng</h4>
+            <h4 class="title-2">GIỎ HÀNG HIỆN TẠI</h4>
             <table class="table">
                 <tbody>
                     @foreach (var item in Model)
@@ -28,13 +26,13 @@
 
                                 </a>
                             </td>
-                           
+
                             <td>@item.TongTien.ToString("#,0") ₫</td>
                         </tr>
                     }
 
                     <tr>
-                        
+
                         <td>Tổng tiền </td>
                         <td><strong>@tongtien.ToString("#,0") ₫</strong></td>
                     </tr>
@@ -67,6 +65,8 @@
 }
 
 else
-            {
-                <h3>Giỏ hàng đang rỗng, không thể thanh toán</h3>
-            }                                
+{
+    <h3>Giỏ hàng đang rỗng, không thể thanh toán</h3>
+}
+
+

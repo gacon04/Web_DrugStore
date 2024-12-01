@@ -297,6 +297,10 @@
     <Compile Include="Migrations\202411291707232_AddNoteToOrder.Designer.cs">
       <DependentUpon>202411291707232_AddNoteToOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202412011626044_UpdateHinhThucThanhToan.cs" />
+    <Compile Include="Migrations\202412011626044_UpdateHinhThucThanhToan.Designer.cs">
+      <DependentUpon>202412011626044_UpdateHinhThucThanhToan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ChiTietDonHang.cs" />
@@ -317,10 +321,6 @@
     <Compile Include="ViewModel\RegisterVM.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Web_DrugStore.mdf" />
-    <Content Include="App_Data\Web_DrugStore_log.ldf">
-      <DependentUpon>Web_DrugStore.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\Admin_assets\css\app.min.css" />
     <Content Include="Content\Admin_assets\es6\app.js" />
     <Content Include="Content\Admin_assets\es6\constant\theme-constant.js" />
@@ -2532,6 +2532,7 @@
     <Content Include="Views\Cart\Partial_Item_Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\CKFinderPic\" />
     <Folder Include="Content\img\TinTuc\" />
@@ -2637,6 +2638,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202411291707232_AddNoteToOrder.resx">
       <DependentUpon>202411291707232_AddNoteToOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412011626044_UpdateHinhThucThanhToan.resx">
+      <DependentUpon>202412011626044_UpdateHinhThucThanhToan.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

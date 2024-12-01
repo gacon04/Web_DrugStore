@@ -11,7 +11,7 @@ using Web_DrugStore.ViewModel;
 
 namespace Web_DrugStore.Controllers
 {
-   
+
     public class CartController : Controller
     {
         // GET: Cart
@@ -25,11 +25,12 @@ namespace Web_DrugStore.Controllers
             if (cart != null)
             {
                 return PartialView(tmp.Items);
-            }   
+            }
             return PartialView(tmp);
         }
+        [Route("GioHang")]
         public ActionResult Index()
-        {   
+        {
             return View();
         }
         public ActionResult Partial_Item_Cart()
@@ -45,19 +46,19 @@ namespace Web_DrugStore.Controllers
         public ActionResult ShowCount()
         {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
-            if (cart!=null)
+            if (cart != null)
             {
                 return Json(new { Count = cart.GetTotalQuantity() }, JsonRequestBehavior.AllowGet);
-            }    
-            return Json(new {Count = 0});
+            }
+            return Json(new { Count = 0 });
 
         }
         [HttpPost]
         public ActionResult AddToCart(int id, int quantity)
         {
-            var code = new { Success = false, msg = "", code = -1 , Count=0};
+            var code = new { Success = false, msg = "", code = -1, Count = 0 };
             var getProd = db.SanPhams.FirstOrDefault(x => x.SanPhamId == id);
-            if (getProd!=null)
+            if (getProd != null)
             {
                 ShoppingCart cart = (ShoppingCart)Session["Cart"];
                 if (cart == null)
@@ -73,7 +74,7 @@ namespace Web_DrugStore.Controllers
                 };
                 cart.AddToCart(item, quantity);
                 Session["Cart"] = cart;
-                code = new { Success = true, msg = "Thêm sản phẩm vào giỏ hàng thành công", code = 1, Count=1};
+                code = new { Success = true, msg = "Thêm sản phẩm vào giỏ hàng thành công", code = 1, Count = 1 };
             }
             return Json(code);
         }
@@ -103,15 +104,26 @@ namespace Web_DrugStore.Controllers
                 cart.UpdateQuantity(id, quantity);
                 return Json(new { Success = true });
             }
-            return Json( new { Success = false});
+            return Json(new { Success = false });
         }
 
         // Phần check out
 
-   
+        [Route("DatHang")]
         public ActionResult Checkout()
         {
+            ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            if (cart == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Checkout(DonHang dh)
+        {
             return View();
         }
         public ActionResult Partial_Item_Checkout()
@@ -123,6 +135,11 @@ namespace Web_DrugStore.Controllers
             }
             var tmp = cart;
             return PartialView(tmp);
+        }
+
+        public ActionResult CheckOutSuccess()
+        {
+            return View();
         }
     }
 }
