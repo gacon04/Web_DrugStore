@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Web_DrugStore.Models.DonHang>
+@{
+    ViewBag.Title = "Quản lý đơn hàng - PharmaVillage";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 style="text-align:center">QUẢN LÝ ĐƠN HÀNG </h1>
+
+
+@if (Model != null && Model.Any())
+{
+    <div class="m-t-25">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã đơn</th>
+                        <th scope="col">Ngày tạo đơn</th>
+                        <th scope="col">Tên tài khoản</th>
+                        <th scope="col">Số điện thoại</th>
+                        <th scope="col">Trạng thái đơn</th>
+                        <th scope="col">Tổng đơn</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+
+                
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.DonHangId</th>
+                            <td>@item.NgayDat.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>@Html.Action("GetHoTenById", "AdminOrder", new { id = item.UserAspId })</td>
+                            <td>@item.SoDienThoai</td>
+                            @if (item.TrangThai == Web_DrugStore.Models.TrangThaiDonHang.ChoXacNhan)
+                            {
+                                <td>Chờ xác nhận</td>
+                            }
+                            else if (item.TrangThai == Web_DrugStore.Models.TrangThaiDonHang.DangXuLy)
+                            {
+                                <td>Đang xử lý</td>
+                            }
+                            else if (item.TrangThai == Web_DrugStore.Models.TrangThaiDonHang.DaGiao)
+                            {
+                                <td>Đã giao</td>
+                            }
+                            else if (item.TrangThai == Web_DrugStore.Models.TrangThaiDonHang.DaHuy)
+                            {
+                                <td>Đã huỷ</td>
+                            }
+                            <td>@item.TongHoaDon.ToString("#,0") ₫</td>
+                              <td><a href="#"> Chi tiết</a></td>
+                        </tr>
+                    }
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+}
+
+
+else
+{
+
+}

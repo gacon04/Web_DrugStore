@@ -181,21 +181,18 @@ namespace Web_DrugStore.Controllers
             return View(item);
         }
 
-        public ActionResult Partial_CheckOut() // xử lý thông tin về nhập thông tin đặt hàng
-        {
-            return PartialView();
-        }
+       
 
         // hiển thị ra list sản phẩm đang trong giỏ hàng lên phần thanh toán
         public ActionResult Partial_Item_Checkout()
         {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
-            if (cart != null)
+            if (cart != null && cart.Items.Any())
             {
                 return PartialView(cart.Items);
             }
             var tmp = cart;
-            return PartialView(tmp);
+            return RedirectToAction("Index");
         }
 
         public ActionResult CheckOutSuccess()

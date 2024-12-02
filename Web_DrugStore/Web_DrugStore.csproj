@@ -2470,6 +2470,7 @@
     <Content Include="Areas\Admin\Views\AdminProduct\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AdminProduct\UploadPhoto.cshtml" />
     <Content Include="Areas\Admin\Views\AdminProduct\EditProd.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminOrder\Index.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
@@ -2531,7 +2532,6 @@
     <Content Include="Views\Home\OutStandingProduct.cshtml" />
     <Content Include="Views\Cart\Partial_Item_Cart.cshtml" />
     <Content Include="Views\Cart\Partial_Item_Checkout.cshtml" />
-    <Content Include="Views\Cart\Partial_CheckOut.cshtml" />
     <Content Include="Views\Cart\CheckOutSuccess.cshtml" />
     <Content Include="Views\Cart\CheckOutFail.cshtml" />
   </ItemGroup>
