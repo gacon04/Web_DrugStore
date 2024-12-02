@@ -107,10 +107,7 @@ namespace Web_DrugStore.Controllers
             }
             return Json(new { Success = false });
         }
-
-        // Phần check out
-
-        [Route("DatHang")]
+        [AuthorizationFilter]
         public ActionResult Checkout()
         {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
@@ -123,6 +120,7 @@ namespace Web_DrugStore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+       
         public ActionResult Checkout(CheckOutItemVM item)
         {
             if (ModelState.IsValid)
@@ -154,6 +152,7 @@ namespace Web_DrugStore.Controllers
                     {
                         dh.CachThanhToan = HinhThucThanhToan.COD;
                     }
+                    dh.ChiTietDonHangs = new List<ChiTietDonHang>();
                     cart.Items.ForEach(x => dh.ChiTietDonHangs.Add(new ChiTietDonHang
                     {
                         SanPhamId = x.SanPhamId,
@@ -176,6 +175,7 @@ namespace Web_DrugStore.Controllers
                     db.SaveChanges();
                     
                 }
+                cart.ClearCart();
                 return RedirectToAction("CheckOutSuccess");
             }
             return View(item);
@@ -199,6 +199,11 @@ namespace Web_DrugStore.Controllers
         }
 
         public ActionResult CheckOutSuccess()
+        {
+
+            return View();
+        }
+        public ActionResult CheckOutFail()
         {
             return View();
         }

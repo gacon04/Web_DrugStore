@@ -18,6 +18,7 @@ namespace Web_DrugStore.Controllers
         [AuthenticationFilter]
         public ActionResult MyAccount()
         {
+    
             return View();
         }
         public ActionResult Register()

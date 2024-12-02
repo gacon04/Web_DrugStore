@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Mua hàng thất bại";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="alert text-center p-5" role="alert">
+        <h1 class="display-5 fw-bold text-danger mb-3">Có lỗi xảy ra!</h1>
+        <p class="lead mb-4">Rất tiếc, việc đặt hàng của bạn không thành công.</p>
+        <p class="text-muted">Xin vui lòng thử lại sau hoặc liên hệ HOTLINE: 1800 6821 hoặc cskh@pharmavillage.com để được hỗ trợ.</p>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-danger px-4 py-2 rounded-pill mt-3">
+            <i class="bi bi-house-door-fill"></i> Quay về trang chủ
+        </a>
+    </div>
+</div>

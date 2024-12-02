@@ -2532,6 +2532,8 @@
     <Content Include="Views\Cart\Partial_Item_Cart.cshtml" />
     <Content Include="Views\Cart\Partial_Item_Checkout.cshtml" />
     <Content Include="Views\Cart\Partial_CheckOut.cshtml" />
+    <Content Include="Views\Cart\CheckOutSuccess.cshtml" />
+    <Content Include="Views\Cart\CheckOutFail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

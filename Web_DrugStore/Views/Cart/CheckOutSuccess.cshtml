@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Mua hàng thành công";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="alert text-center p-5 rounded" role="alert">
+        <h1 class="display-5 fw-bold text-primary mb-3">Ghi nhận đặt hàng thành công!</h1>
+        <p class="lead mb-4">Cảm ơn bạn đã mua sắm tại <span class="fw-bold text-success">PharmaVillage</span>.</p>
+        <p class="text-muted">Chúng tôi sẽ liên hệ với bạn sớm nhất để xác nhận đơn hàng.</p>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-primary px-4 py-2 rounded-pill mt-3">
+            <i class="bi bi-house-door-fill"></i> Quay về trang chủ
+        </a>
+    </div>
+</div>
