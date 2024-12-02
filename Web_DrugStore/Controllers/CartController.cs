@@ -125,7 +125,6 @@ namespace Web_DrugStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Checkout(CheckOutItemVM item)
         {
-            var code = new { Success = false, Code = -1 };
             if (ModelState.IsValid)
             {
                 ShoppingCart cart = (ShoppingCart)Session["Cart"];
@@ -175,11 +174,11 @@ namespace Web_DrugStore.Controllers
                     dh.TrangThai = TrangThaiDonHang.ChoXacNhan;
                     db.DonHangs.Add(dh);
                     db.SaveChanges();
-                    code = new { Success = true, Code = 1 };
+                    
                 }
+                return RedirectToAction("CheckOutSuccess");
             }
-                  
-            return Json(code);
+            return View(item);
         }
 
         public ActionResult Partial_CheckOut() // xử lý thông tin về nhập thông tin đặt hàng
