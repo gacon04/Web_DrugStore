@@ -8,6 +8,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery.unobtrusive-ajax")
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,7 +26,7 @@
     <link rel="stylesheet" href="~/Content/css/style.css">
     <!-- Responsive css -->
     <link rel="stylesheet" href="~/Content/css/responsive.css">
-    
+
 </head>
 <body>
     <!--[if lte IE 9]>
@@ -57,15 +61,15 @@
                                             <div class="ltn__drop-menu ltn__currency-menu ltn__language-menu">
                                                 <ul>
                                                     <!-- <li><a href="#" class="dropdown-toggle"><span class="active-currency">English</span></a>
-                                                <ul>
-                                                    <li><a href="#">Arabic</a></li>
-                                                    <li><a href="#">Bengali</a></li>
-                                                    <li><a href="#">Chinese</a></li>
-                                                    <li><a href="#">English</a></li>
-                                                    <li><a href="#">French</a></li>
-                                                    <li><a href="#">Hindi</a></li>
-                                                </ul>
-                                            </li> -->
+                                                        <ul>
+                                                            <li><a href="#">Arabic</a></li>
+                                                            <li><a href="#">Bengali</a></li>
+                                                            <li><a href="#">Chinese</a></li>
+                                                            <li><a href="#">English</a></li>
+                                                            <li><a href="#">French</a></li>
+                                                            <li><a href="#">Hindi</a></li>
+                                                        </ul>
+                                                    </li> -->
                                                 </ul>
                                             </div>
                                         </li>
@@ -126,7 +130,7 @@
                                 <ul>
                                     <li class="d-none">
                                         <!-- ltn__currency-menu -->
-     
+
                                     </li>
                                     <li class="d-lg-none">
                                         <!-- header-search-1 -->
@@ -174,7 +178,7 @@
                                     <li>
                                         <!-- mini-cart 2 -->
                                         <div class="mini-cart-icon mini-cart-icon-2">
-                                            <a href="/Cart/index" class="ltn__utilize-toggle">
+                                            <a href="@Url.Action("Index","Cart")" class="ltn__utilize-toggle">
                                                 <span class="mini-cart-icon">
                                                     <i class="icon-shopping-cart" id="cart-toggle"></i>
                                                     <sup id="checkout-items">0</sup>
@@ -261,7 +265,6 @@
             </div>
         </div>
         <!-- MOBILE MENU END -->
-
         <!-- Utilize Mobile Menu Start -->
         <div id="ltn__utilize-mobile-menu" class="ltn__utilize ltn__utilize-mobile-menu">
             <div class="ltn__utilize-menu-inner ltn__scrollbar">
@@ -406,12 +409,14 @@
     </div>
     <!-- Body main wrapper end -->
     <!-- All JS Plugins -->
+
     <script src="~/Content/js/plugins.js"></script>
     <!-- Contact Form -->
     <script src="~/Content/js/contact.js"></script>
     <!-- Main JS -->
     <script src="~/Content/js/main.js"></script>
-
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script src="~/Scripts/jsShopping.js"></script> @*cấu hình cho việc thêm sản phẩm vào giỏ hàng*@
 </body>
 </html>
