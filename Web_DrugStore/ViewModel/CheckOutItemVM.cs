@@ -7,10 +7,19 @@ namespace Web_DrugStore.ViewModel
 {
     public class CheckOutItemVM
     {
-        [Required(ErrorMessage = "Vui lòng nhập họ và tên.")]
-        [StringLength(255, MinimumLength = 2, ErrorMessage = "Vui lòng nhập tên hợp lệ")]
-        [RegularExpression(@"^[a-zA-ZÀ-ỹ\s]+$", ErrorMessage = "Tên khách hàng chỉ được chứa các ký tự chữ cái.")]
-        public string TenKhachHang { get; set; } // Tên khách hàng
+        private string _hoTen;
+
+        [Required(ErrorMessage = "Vui lòng không để trống họ tên")]
+        [RegularExpression(@"^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơẠ-ỹ]{2,}\s+[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơẠ-ỹ]+$",
+    ErrorMessage = "Vui lòng nhập họ tên hợp lệ.")]
+        [StringLength(50, ErrorMessage = "Họ tên không được vượt quá 50 ký tự.")]
+        public string TenKhachHang
+        {
+            get => _hoTen;
+            set => _hoTen = string.IsNullOrWhiteSpace(value)
+                ? null
+                : Regex.Replace(value.Trim(), @"\s+", " "); // Loại bỏ khoảng trắng thừa
+        }
 
         [StringLength(255)]
         [Required(ErrorMessage = "Vui lòng nhập địa chỉ email.")]

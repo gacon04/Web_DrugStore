@@ -12,8 +12,8 @@ namespace Web_DrugStore.ViewModel
         private string _hoTen;
 
         [Required(ErrorMessage = "Vui lòng không để trống họ tên")]
-        [RegularExpression(@"^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơẠ-ỹ]{2,})(?:\s+[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơẠ-ỹ]*)*$",
-            ErrorMessage = "Họ tên phải chứa ít nhất 2 chữ cái cho từ đầu tiên và có thể có thêm các từ khác.")]
+        [RegularExpression(@"^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơẠ-ỹ]{2,}\s+[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơẠ-ỹ]+$",
+    ErrorMessage = "Vui lòng nhập họ tên hợp lệ.")]
         [StringLength(50, ErrorMessage = "Họ tên không được vượt quá 50 ký tự.")]
         public string HoTen
         {

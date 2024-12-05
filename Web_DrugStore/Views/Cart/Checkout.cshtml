@@ -153,6 +153,8 @@
                                     <label class="form-check-label" for="VNPAY">Ví điện tử VNPAY</label>
                                 </div>
                             </div>
+                            @Html.ValidationMessageFor(m => m.PhuongThucThanhToan, null, new { @class = "text-danger" })
+
                             <div class="ltn__payment-note mt-30 mb-30">
                                 <p>Dữ liệu cá nhân của bạn sẽ được sử dụng để xử lý đơn hàng, hỗ trợ trải nghiệm của bạn trên trang web này, và cho các mục đích khác được mô tả trong chính sách bảo mật của chúng tôi.</p>
                             </div>

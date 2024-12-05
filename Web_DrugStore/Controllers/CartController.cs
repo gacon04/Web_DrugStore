@@ -237,6 +237,7 @@ namespace Web_DrugStore.Controllers
                         <p>Chào {dh.TenKhachHang},</p>
                         <p>Đơn hàng của bạn đã được đặt thành công tại PharmaVillage!</p>
                         {orderDetails}
+                        <p>Giá trị đơn: {dh.TongTienHang.ToString("N0")} VND</p>
                         <p>VAT: {dh.VAT.ToString("N0")} VND</p>
                         <p>Phí vận chuyển: {dh.PhiVanChuyen.ToString("N0")} VND</p>
                         <p style='font-weight: bold;'>Tổng tiền: {dh.TongHoaDon.ToString("N0")} VND</p>
