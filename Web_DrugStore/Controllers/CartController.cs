@@ -149,7 +149,7 @@ namespace Web_DrugStore.Controllers
                     if (pttt.Equals("VNPAY"))
                     {
                         dh.CachThanhToan = HinhThucThanhToan.VNPAY;
-                    }    
+                    }
                     else if (pttt.Equals("MOMO"))
                     {
                         dh.CachThanhToan = HinhThucThanhToan.MOMO;
@@ -170,7 +170,7 @@ namespace Web_DrugStore.Controllers
                     dh.PhiVanChuyen = 20000;
                     dh.NgayDat = DateTime.Now;
                     dh.UserAspId = User.Identity.GetUserId();
-                    if (tongtienhang>=300000)
+                    if (tongtienhang >= 300000)
                     {
                         dh.PhiVanChuyen = 0;
                     }
@@ -179,7 +179,7 @@ namespace Web_DrugStore.Controllers
                     dh.TrangThai = TrangThaiDonHang.ChoXacNhan;
                     db.DonHangs.Add(dh);
                     db.SaveChanges();
-                    SendConfirmOrderEmail(dh);
+                    SendConfirmOrderEmail(dh.DonHangId);
                     cart.ClearCart();
                     return RedirectToAction("CheckOutSuccess");
                 }
@@ -188,13 +188,15 @@ namespace Web_DrugStore.Controllers
             }
             return View(item);
         }
-        public ActionResult SendConfirmOrderEmail(DonHang dh)
+        public ActionResult SendConfirmOrderEmail(int donHangId)
         {
-            var userManager = HttpContext.GetOwinContext().GetUserManager<UserManager<AppUser>>();
             var userId = User.Identity.GetUserId();
-            var user = userManager.FindById(userId);
+            // Truy xuất DonHang với ChiTietDonHangs và SanPham
+            var dh = db.DonHangs
+                       .Include("ChiTietDonHangs.SanPham")
+                       .FirstOrDefault(x => x.DonHangId == donHangId);
 
-            if (user != null)
+            if (userId != null)
             {
 
                 var mail = new SmtpClient("smtp.gmail.com", 587)
@@ -204,43 +206,44 @@ namespace Web_DrugStore.Controllers
                 };
 
                 string orderDetails = @"
-            <h3>Chi tiết đơn hàng:</h3>
-            <table style='width: 100%; border-collapse: collapse;'>
-                <thead>
-                    <tr style='background-color: #f2f2f2; text-align: left;'>
-                        <th style='padding: 8px; border: 1px solid #ddd;'>Sản phẩm</th>
-                        <th style='padding: 8px; border: 1px solid #ddd;'>Số lượng</th>
-                        <th style='padding: 8px; border: 1px solid #ddd;'>Đơn giá</th>
-                    </tr>
-                </thead>
-                <tbody>";
-                foreach (var item in dh.ChiTietDonHangs)
-                {
-                    orderDetails += $@"
-                <tr>
-                    <td style='padding: 8px; border: 1px solid #ddd;'>{item.SanPham.TenSanPham}</td>
-                    <td style='padding: 8px; border: 1px solid #ddd; text-align: center;'>{item.SoLuong}</td>
-                    <td style='padding: 8px; border: 1px solid #ddd; text-align: right;'>{item.DonGia.ToString("N0")} VND</td>
-                </tr>";
-                }
+                    <h3>Chi tiết đơn hàng:</h3>
+                    <table style='width: 100%; border-collapse: collapse;'>
+                        <thead>
+                            <tr style='background-color: #f2f2f2; text-align: left;'>
+                                <th style='padding: 8px; border: 1px solid #ddd;'>Sản phẩm</th>
+                                <th style='padding: 8px; border: 1px solid #ddd;'>Số lượng</th>
+                                <th style='padding: 8px; border: 1px solid #ddd;'>Đơn giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
 
-                orderDetails += @"
-                </tbody>
-            </table>";
+                                foreach (var item in dh.ChiTietDonHangs)
+                                {
+                                    orderDetails += $@"
+                        <tr>
+                            <td style='padding: 8px; border: 1px solid #ddd;'>{item.SanPham.TenSanPham}</td>
+                            <td style='padding: 8px; border: 1px solid #ddd; text-align: center;'>{item.SoLuong}</td>
+                            <td style='padding: 8px; border: 1px solid #ddd; text-align: right;'>{item.DonGia.ToString("N0")} VND</td>
+                        </tr>";
+                                }
 
-                string emailBody = $@"
-            <div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333;'>
-                <h2 style='color: #4CAF50;'>Xác nhận đơn hàng</h2>
-                <p>Chào {user.HoTen},</p>
-                <p>Đơn hàng của bạn đã được đặt thành công tại PharmaVillage !</p>
-                {orderDetails}
-                <p>VAT: {dh.VAT.ToString("N0")} VND</p>
-                <p>Phí vận chuyển: {dh.PhiVanChuyen.ToString("N0")} VND</p>
-                <p style='font-weight: bold;'>Tổng tiền: {dh.TongHoaDon.ToString("N0")} VND</p>
-                <p>Cảm ơn bạn đã mua sắm tại cửa hàng của chúng tôi.</p>
-                <p>Trân trọng,</p>
-                <p><b>Đội ngũ hỗ trợ PharmaVillage</b></p>
-            </div>";
+                                orderDetails += @"
+                        </tbody>
+                    </table>";
+
+                                string emailBody = $@"
+                    <div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333;'>
+                        <h2 style='color: #4CAF50;'>Xác nhận đơn hàng</h2>
+                        <p>Chào {dh.TenKhachHang},</p>
+                        <p>Đơn hàng của bạn đã được đặt thành công tại PharmaVillage!</p>
+                        {orderDetails}
+                        <p>VAT: {dh.VAT.ToString("N0")} VND</p>
+                        <p>Phí vận chuyển: {dh.PhiVanChuyen.ToString("N0")} VND</p>
+                        <p style='font-weight: bold;'>Tổng tiền: {dh.TongHoaDon.ToString("N0")} VND</p>
+                        <p>Cảm ơn bạn đã mua sắm tại cửa hàng của chúng tôi.</p>
+                        <p>Trân trọng,</p>
+                        <p><b>Đội ngũ hỗ trợ PharmaVillage</b></p>
+                    </div>";
 
                 // Tạo đối tượng MailMessage
                 var message = new MailMessage

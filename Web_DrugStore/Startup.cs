@@ -12,19 +12,16 @@ namespace Web_DrugStore
 {
     public class Startup
     {
-        public void Configuration(IAppBuilder app)  // Khi app được khởi tạo thì config cấu hình dc chạy
+        public void Configuration(IAppBuilder app)
         {
-            app.UseCookieAuthentication(new CookieAuthenticationOptions()
+            app.CreatePerOwinContext(AppDBContext.Create);
+            app.CreatePerOwinContext<AppUserManager>(AppUserManager.Create);
+
+            app.UseCookieAuthentication(new Microsoft.Owin.Security.Cookies.CookieAuthenticationOptions
             {
-                
-                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                // cấu hình đường dẫn trang được điều hướng tới khi sử dụng các chức năng cần authen
-                LoginPath = new PathString("/Account/Login"),
-                 
-
+                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+                LoginPath = new PathString("/Account/Login")
             });
-
-            this.CreateRolesAndUsers();
         }
         // cấu hình role trong đây
         public void CreateRolesAndUsers()
