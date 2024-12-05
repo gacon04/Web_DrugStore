@@ -45,10 +45,12 @@
                         </div>
                     }
 
-                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "ltn__form-box contact-form-box" }))
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "ltn__form-box contact-form-box", id = "registerForm" }))
                     {
                         @Html.AntiForgeryToken()
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <!-- Các trường nhập liệu khác -->
 
                         @Html.ValidationMessageFor(m => m.HoTen, "", new { @class = "text-danger" })
                         @Html.TextBoxFor(m => m.HoTen, new { placeholder = "Họ tên", @class = "form-control" })
@@ -67,24 +69,18 @@
 
                         @Html.TextBoxFor(m => m.DiaChi, new { placeholder = "Địa chỉ (tùy chọn)", @class = "form-control" })
 
-                <label class="checkbox-inline">
-                    <input type="checkbox" required /> Tôi đồng ý để PharmaVillage xử lý dữ liệu cá nhân của mình nhằm gửi các tài liệu tiếp thị cá nhân hóa, theo đúng nội dung mẫu đơn đồng ý và chính sách bảo mật.
-                </label>
+                        <div class="checkbox-inline">
+                            <input type="checkbox" id="agreeCheckbox" />
+                            <label for="agreeCheckbox"> Tôi đồng ý để PharmaVillage xử lý dữ liệu cá nhân của mình nhằm gửi các tài liệu tiếp thị cá nhân hóa, theo đúng nội dung mẫu đơn đồng ý và chính sách bảo mật.</label>
+                        </div>
 
-                        
+                        <!-- Vị trí hiển thị thông báo lỗi -->
+                        <span id="agreeCheckboxError" class="text-danger" style="display:none;">Bạn phải đồng ý với điều khoản để tiếp tục.</span>
 
                         <div class="btn-wrapper">
                             <button class="theme-btn-1 btn reverse-color btn-block" type="submit">TẠO TÀI KHOẢN</button>
                         </div>
                     }
-
-                    <div class="by-agree text-center">
-                        <p>Bằng việc tạo tài khoản, bạn đồng ý với các nội dung sau của chúng tôi:</p>
-                        <p><a href="@Url.Action("ConfidentialityPolicy", "About")">CÁC ĐIỀU KHOẢN &nbsp; &nbsp; | &nbsp; &nbsp;  CHÍNH SÁCH BẢO MẬT</a></p>
-                        <div class="go-to-btn mt-50">
-                            <a href="@Url.Action("Login","Account")">ĐÃ CÓ TÀI KHOẢN ?</a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -118,6 +114,7 @@
             height: 18px;
             cursor: pointer; /* Hiển thị con trỏ tay khi di chuột vào checkbox */
         }
+
     .btn-wrapper {
         display: flex; /* Sử dụng flexbox */
         justify-content: center; /* Căn giữa nội dung theo chiều ngang */
@@ -125,5 +122,19 @@
         width: 100%; /* Đảm bảo width của thẻ div chiếm toàn bộ chiều rộng */
         margin-top: 20px; /* Tạo khoảng cách phía trên */
     }
-
 </style>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>$(document).ready(function() {
+            // Xử lý sự kiện submit của form
+            $('#registerForm').submit(function(e) {
+                // Kiểm tra xem checkbox có được tích hay không
+                if (!$('#agreeCheckbox').is(':checked')) {
+                    e.preventDefault(); // Ngăn không cho form submit
+                    $('#agreeCheckboxError').show(); // Hiển thị thông báo lỗi
+                } else {
+                    $('#agreeCheckboxError').hide(); // Ẩn thông báo lỗi nếu đã tích
+                }
+            });
+        });</script>
+}

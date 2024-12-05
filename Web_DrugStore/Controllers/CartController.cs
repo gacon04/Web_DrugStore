@@ -113,7 +113,7 @@ namespace Web_DrugStore.Controllers
             }
             return Json(new { Success = false });
         }
-        
+        [AuthenticationFilter]
         public ActionResult Checkout()
         {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
