@@ -60,21 +60,45 @@
                             <div class="col-lg-4">
                                 <div class="ltn__tab-menu-list mb-50">
                                     <div class="nav">
-                                        <a class="active show" data-bs-toggle="tab" href="#liton_tab_1_1">Dashboard <i class="fas fa-home"></i></a>
+                                        <a class="active show" data-bs-toggle="tab" href="#liton_tab_1_1">Thông tin tài khoản <i class="fas fa-user"></i></a>
                                         <a data-bs-toggle="tab" href="#liton_tab_1_2">Các đơn đặt <i class="fas fa-file-alt"></i></a>
-
                                         <a data-bs-toggle="tab" href="#liton_tab_1_4">Địa chỉ <i class="fas fa-map-marker-alt"></i></a>
-                                        <a data-bs-toggle="tab" href="#liton_tab_1_5">Chi tiết tài khoản <i class="fas fa-user"></i></a>
+                                        <a data-bs-toggle="tab" href="#liton_tab_1_5">Đổi mật khẩu <i class="fas fa-passport"></i></a>
                                         <a href="@Url.Action("Logout","Account")">Đăng xuất <i class="fas fa-sign-out-alt"></i></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-8">
                                 <div class="tab-content">
-                                    <div class="tab-pane fade active show" id="liton_tab_1_1">
+                                    <div class="tab-pane fade" id="liton_tab_1_1">
                                         <div class="ltn__myaccount-tab-content-inner">
-                                            <p>Xin chào <strong>    </strong> (không phải <strong>@tennguoidung</strong>? <small><a href="@Url.Action("Logout","Account")">Đăng xuất</a></small> )</p>
-                                            <p>Từ bảng điều khiển tài khoản của bạn, bạn có thể xem <span>các đơn hàng gần đây</span>, quản lý <span>địa chỉ giao hàng và thanh toán</span>, và <span>chỉnh sửa mật khẩu và chi tiết tài khoản</span>.</p>
+                                            <p>Các thông tin sau sẽ được đặt là mặc định khi thanh toán.</p>
+                                            <div class="ltn__form-box">
+                                                <form action="#">
+                                                    <div class="row mb-50">
+                                                        <div class="col-md-6">
+                                                            <label>Họ:</label>
+                                                            <input type="text" name="ltn__name">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label>Tên:</label>
+                                                            <input type="text" name="ltn__lastname">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label>Tên hiển thị:</label>
+                                                            <input type="text" name="ltn__lastname" placeholder="Ethan">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label>Email hiển thị:</label>
+                                                            <input type="email" name="ltn__lastname" placeholder="example@example.com">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="btn-wrapper">
+                                                        <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Lưu thay đổi</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="liton_tab_1_2">
@@ -98,7 +122,7 @@
                                                             <td>3.000 USD</td>
                                                             <td><a href="cart.html">Chi tiết</a></td>
                                                         </tr>
-                                                    
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -170,29 +194,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="tab-pane fade" id="liton_tab_1_5">
                                         <div class="ltn__myaccount-tab-content-inner">
-                                            <p>Các thông tin sau sẽ được đặt là mặc định khi thanh toán.</p>
+                                            <p>Đổi mật khẩu hiện tại của tài khoản.</p>
                                             <div class="ltn__form-box">
                                                 <form action="#">
-                                                    <div class="row mb-50">
-                                                        <div class="col-md-6">
-                                                            <label>Họ:</label>
-                                                            <input type="text" name="ltn__name">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label>Tên:</label>
-                                                            <input type="text" name="ltn__lastname">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label>Tên hiển thị:</label>
-                                                            <input type="text" name="ltn__lastname" placeholder="Ethan">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label>Email hiển thị:</label>
-                                                            <input type="email" name="ltn__lastname" placeholder="example@example.com">
-                                                        </div>
-                                                    </div>
                                                     <fieldset>
                                                         <legend>THAY ĐỔI MẬT KHẨU</legend>
                                                         <div class="row">
@@ -207,6 +214,7 @@
                                                             </div>
                                                         </div>
                                                     </fieldset>
+
                                                     <div class="btn-wrapper">
                                                         <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Lưu thay đổi</button>
                                                     </div>
@@ -214,6 +222,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                             </div>
                         </div>

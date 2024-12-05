@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.Mvc;
@@ -9,6 +11,10 @@ using System.Web.Script.Serialization;
 using Web_DrugStore.Filters;
 using Web_DrugStore.Models;
 using Web_DrugStore.ViewModel;
+using Microsoft.AspNet.Identity.Owin;
+using Web_DrugStore.Identity;
+using System.Net.Http;
+using System.Web.UI.WebControls;
 
 namespace Web_DrugStore.Controllers
 {
@@ -107,7 +113,7 @@ namespace Web_DrugStore.Controllers
             }
             return Json(new { Success = false });
         }
-        [AuthorizationFilter]
+        
         public ActionResult Checkout()
         {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
@@ -173,15 +179,94 @@ namespace Web_DrugStore.Controllers
                     dh.TrangThai = TrangThaiDonHang.ChoXacNhan;
                     db.DonHangs.Add(dh);
                     db.SaveChanges();
-                    
+                    SendConfirmOrderEmail(dh);
+                    cart.ClearCart();
+                    return RedirectToAction("CheckOutSuccess");
                 }
-                cart.ClearCart();
-                return RedirectToAction("CheckOutSuccess");
+                
+               
             }
             return View(item);
         }
+        public ActionResult SendConfirmOrderEmail(DonHang dh)
+        {
+            var userManager = HttpContext.GetOwinContext().GetUserManager<UserManager<AppUser>>();
+            var userId = User.Identity.GetUserId();
+            var user = userManager.FindById(userId);
 
-       
+            if (user != null)
+            {
+
+                var mail = new SmtpClient("smtp.gmail.com", 587)
+                {
+                    Credentials = new NetworkCredential("nhokljlom99@gmail.com", "hldi aidq yqjy uusr"),
+                    EnableSsl = true
+                };
+
+                string orderDetails = @"
+            <h3>Chi tiết đơn hàng:</h3>
+            <table style='width: 100%; border-collapse: collapse;'>
+                <thead>
+                    <tr style='background-color: #f2f2f2; text-align: left;'>
+                        <th style='padding: 8px; border: 1px solid #ddd;'>Sản phẩm</th>
+                        <th style='padding: 8px; border: 1px solid #ddd;'>Số lượng</th>
+                        <th style='padding: 8px; border: 1px solid #ddd;'>Đơn giá</th>
+                    </tr>
+                </thead>
+                <tbody>";
+                foreach (var item in dh.ChiTietDonHangs)
+                {
+                    orderDetails += $@"
+                <tr>
+                    <td style='padding: 8px; border: 1px solid #ddd;'>{item.SanPham.TenSanPham}</td>
+                    <td style='padding: 8px; border: 1px solid #ddd; text-align: center;'>{item.SoLuong}</td>
+                    <td style='padding: 8px; border: 1px solid #ddd; text-align: right;'>{item.DonGia.ToString("N0")} VND</td>
+                </tr>";
+                }
+
+                orderDetails += @"
+                </tbody>
+            </table>";
+
+                string emailBody = $@"
+            <div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333;'>
+                <h2 style='color: #4CAF50;'>Xác nhận đơn hàng</h2>
+                <p>Chào {user.HoTen},</p>
+                <p>Đơn hàng của bạn đã được đặt thành công tại PharmaVillage !</p>
+                {orderDetails}
+                <p>VAT: {dh.VAT.ToString("N0")} VND</p>
+                <p>Phí vận chuyển: {dh.PhiVanChuyen.ToString("N0")} VND</p>
+                <p style='font-weight: bold;'>Tổng tiền: {dh.TongHoaDon.ToString("N0")} VND</p>
+                <p>Cảm ơn bạn đã mua sắm tại cửa hàng của chúng tôi.</p>
+                <p>Trân trọng,</p>
+                <p><b>Đội ngũ hỗ trợ PharmaVillage</b></p>
+            </div>";
+
+                // Tạo đối tượng MailMessage
+                var message = new MailMessage
+                {
+                    From = new MailAddress("nhokljlom99@gmail.com"),
+                    Subject = "XÁC NHẬN ĐƠN HÀNG",
+                    Body = emailBody,
+                    IsBodyHtml = true
+                };
+
+                // Gửi đến email người dùng
+                message.To.Add(new MailAddress(dh.Email));
+
+                // Gửi email
+                mail.Send(message);
+
+                // Chuyển hướng đến trang thành công
+                return RedirectToAction("CheckOutSuccess");
+            }
+            else
+            {
+                return RedirectToAction("CheckOutFail");
+            }
+        }
+
+
 
         // hiển thị ra list sản phẩm đang trong giỏ hàng lên phần thanh toán
         public ActionResult Partial_Item_Checkout()
@@ -194,12 +279,13 @@ namespace Web_DrugStore.Controllers
             var tmp = cart;
             return RedirectToAction("Index");
         }
-
+        [AuthenticationFilter]
         public ActionResult CheckOutSuccess()
         {
 
             return View();
         }
+        [AuthenticationFilter]
         public ActionResult CheckOutFail()
         {
             return View();

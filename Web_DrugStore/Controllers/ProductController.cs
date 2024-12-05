@@ -55,13 +55,13 @@ namespace Web_DrugStore.Controllers
 
         public ActionResult RelatedProd(int cateId, int id)
         {
-            var spHienTai = db.SanPhams.FirstOrDefault(sp => sp.SanPhamId == cateId);
+            
             var spLienQuan = db.SanPhams
          .Where(sp => sp.DanhMucId == cateId && sp.SanPhamId != id)
          .ToList();
 
             ViewBag.ListDanhMuc = spLienQuan;
-            return View(spLienQuan);
+            return PartialView(spLienQuan);
         }
        public ActionResult HighRatedProdInDetailRecom(int id)
         {

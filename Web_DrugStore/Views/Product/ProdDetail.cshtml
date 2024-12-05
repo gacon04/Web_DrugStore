@@ -160,16 +160,7 @@
                                         </ul>
                                     </div>
                                     <hr>
-                                    <div class="ltn__social-media">
-                                        <ul>
-                                            <li>Share:</li>
-                                            <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
-                                            <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
-
-                                        </ul>
-                                    </div>
+                                    
                                     <hr>
                                     <div class="ltn__safe-checkout">
                                         <h5>Các phương thức thanh toán tiện lợi</h5>
@@ -314,6 +305,7 @@
     </div>
     <!-- SHOP DETAILS AREA END -->
     <!-- PRODUCT SLIDER AREA START
+        @Html.Action("RelatedProd","Product", new { cateId = Model.DanhMucId, id= Model.SanPhamId})
     <!-- PRODUCT SLIDER AREA END -->
 </div>
 <script>
