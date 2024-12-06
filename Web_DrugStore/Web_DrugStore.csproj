@@ -328,7 +328,9 @@
     <Compile Include="Models\TinNhanLienHe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\ChangePasswordVM.cs" />
     <Compile Include="ViewModel\CheckOutItemVM.cs" />
+    <Compile Include="ViewModel\DonHangDetailsViewModel.cs" />
     <Compile Include="ViewModel\Mail.cs" />
     <Compile Include="ViewModel\ShoppingCart.cs" />
     <Compile Include="ViewModel\RegisterVM.cs" />
@@ -2549,6 +2551,10 @@
     <Content Include="Views\Cart\CheckOutSuccess.cshtml" />
     <Content Include="Views\Cart\CheckOutFail.cshtml" />
     <Content Include="Views\Account\GetListProd.cshtml" />
+    <Content Include="Views\Account\_OrderDetails.cshtml" />
+    <Content Include="Views\Account\_OrderList.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Shared\NavBarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,148 @@
+﻿@model Web_DrugStore.ViewModels.DonHangDetailsViewModel
+<!-- Thông tin chi tiết đơn hàng -->
+<h4>Chi tiết đơn hàng: @Model.MaDonHang</h4>
+<p><strong>Ngày đặt:</strong> @Model.NgayDat.ToString("dd/MM/yyyy HH:mm")</p>
+
+<p><strong>Tên người nhận:</strong> @Model.TenKhachHang</p>
+<p><strong>Địa chỉ giao hàng:</strong> @Model.DiaChiGiaoHang</p>
+<p><strong>Số điện thoại:</strong> @Model.SoDienThoai</p>
+
+@{
+    var res = "";
+    if (Model.TrangThai == Web_DrugStore.Models.TrangThaiDonHang.ChoXacNhan)
+    {
+        res = "Chờ xác nhận";
+    }
+    else if (Model.TrangThai == Web_DrugStore.Models.TrangThaiDonHang.DangXuLy)
+    {
+        res = "Đang xử lý";
+    }
+    else if (Model.TrangThai == Web_DrugStore.Models.TrangThaiDonHang.DangGiao)
+    {
+        res = "Đang giao";
+    }
+    else if (Model.TrangThai == Web_DrugStore.Models.TrangThaiDonHang.DaGiao)
+    {
+        res = "Đã giao";
+    }
+    else if (Model.TrangThai == Web_DrugStore.Models.TrangThaiDonHang.DaHuy)
+    {
+        res = "Đã huỷ";
+    }
+
+}
+<p><strong>Trạng thái:</strong> @res</p>
+<p><strong>Tổng tiền hàng:</strong> @Model.TongTienHang.ToString("#,0") ₫</p>
+<p><strong>VAT:</strong> @Model.VAT.ToString("#,0") ₫</p>
+<p><strong>Phí vận chuyển:</strong> @Model.PhiVanChuyen.ToString("#,0") ₫</p>
+<p><strong>Tổng hóa đơn:</strong> @Model.TongHoaDon.ToString("#,0") ₫</p>
+
+<!-- Danh sách sản phẩm -->
+<h5>Sản phẩm trong đơn hàng:</h5>
+<div class="table-container">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.DonHangChiTiet)
+            {
+                <tr>
+
+                    <td>@item.TenSanPham</td>
+                    <td>@item.SoLuong</td>
+                    <td>@item.DonGia.ToString("#,0") ₫</td>
+                    @{
+                        var tongtienhang = item.SoLuong * item.DonGia;
+                    }
+                    <td>@tongtienhang.ToString("#,0") ₫</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="d-flex justify-content-end mb-3">
+    <button id="back-to-list" class="btn btn-secondary">Quay lại</button>
+</div>
+
+<!-- Script cho nút Quay lại -->
+<script>
+    $(document).ready(function () {
+        $('#back-to-list').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: '@Url.Action("GetListProd", "Account")',
+                type: 'GET',
+                success: function (data) {
+                    $('#order-content').html(data);
+                },
+                error: function () {
+                    alert('Đã xảy ra lỗi khi tải danh sách đơn hàng.');
+                }
+            });
+        });
+    });
+</script>
+<style>
+    /* Tùy chỉnh bảng */
+    table.table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+
+        table.table th, table.table td {
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #dee2e6; /* Thêm đường viền */
+        }
+
+        table.table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+
+        table.table tr:nth-child(even) {
+            background-color: #f9f9f9; /* Màu nền xen kẽ */
+        }
+
+        table.table tr:hover {
+            background-color: #f1f1f1; /* Hiệu ứng hover */
+        }
+
+        /* Cột Tên sản phẩm hẹp lại và cho phép xuống dòng */
+        table.table td:first-child {
+            width: 50%; /* Điều chỉnh độ rộng cho cột Tên sản phẩm */
+            word-wrap: break-word; /* Bật xuống dòng nếu vượt quá chiều rộng */
+            white-space: normal; /* Cho phép xuống dòng */
+        }
+
+        /* Cột Số lượng rộng ra một chút */
+        table.table td:nth-child(2) {
+            width: 15%; /* Độ rộng cho cột Số lượng */
+           /* Canh giữa số lượng */
+        }
+
+        /* Cột Đơn giá và Thành tiền rộng hơn */
+        table.table td:nth-child(3),
+        table.table td:nth-child(4) {
+            width: 20%; /* Điều chỉnh độ rộng */
+             /* Canh phải cho giá trị tiền tệ */
+        }
+
+    /* Cho phép cuộn ngang nếu bảng quá rộng */
+    .table-container {
+        overflow-x: auto;
+    }
+
+    /* Nút quay lại */
+    #back-to-list {
+        margin-top: 20px;
+    }
+</style>
+

@@ -30,7 +30,10 @@ namespace Web_DrugStore.Controllers
             List<SanPham> sanphams = db.SanPhams.Where(prod => prod.HoatDong == true).OrderByDescending(prod => prod.LuotMua).Take(6).ToList();
             return PartialView(sanphams);
         }
-         
+        public ActionResult NavBarPartial()
+        {
+            return PartialView();
+        }
 
     }
 }

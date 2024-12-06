@@ -15,6 +15,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
     <!-- Place favicon.png in the root directory -->
     <link rel="shortcut icon" href="~/Content/img/favicon.png" type="image/x-icon" />
     <!-- Font Icons css -->
@@ -25,7 +26,7 @@
     <link rel="stylesheet" href="~/Content/css/style.css">
     <!-- Responsive css -->
     <link rel="stylesheet" href="~/Content/css/responsive.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <!--[if lte IE 9]>
@@ -162,7 +163,7 @@
                                                         {
                                                             <li><a href="@Url.Action("MyAccount","Account")">Tài khoản của tôi</a></li>
                                                             <li><a href="@Url.Action("WishList","Account")">Danh sách yêu thích</a></li>
-                                                            <li><a href="@Url.Action("Logout","Account")">Đăng xuất</a></li>
+                                                            <li><a href="#" id="logoutLink">Đăng xuất</a></li>
                                                         }
                                                         else
                                                         {
@@ -226,10 +227,7 @@
                                                 <a href="#">Giới thiệu</a>
                                                 <ul>
                                                     <li><a href="@Url.Action("AboutUs","About")">Về chúng tôi</a></li>
-                                                    <li><a href="@Url.Action("Service","About")">Dịch vụ</a></li>
                                                     <li><a href="@Url.Action("FAQ","About")">Câu hỏi thường gặp</a></li>
-                                                    <li><a href="locations.html">Vị trí trên Google Map</a></li>
-
                                                 </ul>
                                             </li>
                                         </ul>
@@ -324,14 +322,7 @@
                                 <li><a href="portfolio-2.html">Thành tựu - 02</a></li>
                                 <li><a href="portfolio-details.html">Thành tựu Details</a></li>
                                 <li><a href="team.html">Team</a></li>
-                                <li><a href="team-details.html">Team Details</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="history.html">History</a></li>
-                                <li><a href="add-listing.html">Add Listing</a></li>
-                                <li><a href="locations.html">Google Map Locations</a></li>
-                                <li><a href="404.html">404</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li><a href="coming-soon.html">Coming Soon</a></li>
+
                             </ul>
                         </li>
                         <li><a href="contact.html">Liên hệ</a></li>
@@ -406,6 +397,29 @@
 
         @Html.Partial("_Footer")
     </div>
+
+    <!-- Modaln đăng xuất -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="logoutModalLabel">Xác nhận đăng xuất</h4>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn đăng xuất?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="confirmLogout">Đăng xuất</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
     <!-- Body main wrapper end -->
     <!-- All JS Plugins -->
 
@@ -413,9 +427,30 @@
     <!-- Contact Form -->
     <script src="~/Content/js/contact.js"></script>
     <!-- Main JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script src="~/Content/js/main.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script src="~/Scripts/jsShopping.js"></script> @*cấu hình cho việc thêm sản phẩm vào giỏ hàng*@
+    <script>
+    $(document).ready(function(){
+        // Khi người dùng nhấn vào liên kết Đăng xuất
+        $('#logoutLink').click(function(e){
+            e.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+            $('#logoutModal').modal('show'); // Hiển thị modal
+        });
+
+        // Khi người dùng nhấn vào nút Đăng xuất trong modal
+        $('#confirmLogout').click(function(){
+            window.location.href = '@Url.Action("Logout", "Account")'; // Chuyển hướng đến action Logout
+        });
+
+        $('.btn[data-dismiss="modal"]').click(function () {
+            $('#logoutModal').modal('hide'); // Ẩn modal
+        });
+    });
+    </script>
 </body>
 </html>

@@ -64,7 +64,7 @@
                                         <a data-bs-toggle="tab" href="#liton_tab_1_2">Các đơn đặt <i class="fas fa-file-alt"></i></a>
                                         <a data-bs-toggle="tab" href="#liton_tab_1_3">Địa chỉ <i class="fas fa-map-marker-alt"></i></a>
                                         <a data-bs-toggle="tab" href="#liton_tab_1_4">Đổi mật khẩu <i class="fas fa-passport"></i></a>
-                                        <a href="@Url.Action("Logout","Account")">Đăng xuất <i class="fas fa-sign-out-alt"></i></a>
+                                        <a href="@Url.Action("Logout","Account")" id="logoutLink">Đăng xuất <i class="fas fa-sign-out-alt"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -140,30 +140,8 @@
                                     </div>
                                     
                                     <div class="tab-pane fade" id="liton_tab_1_4">
-                                        <div class="ltn__myaccount-tab-content-inner">
-                                            <p>Đổi mật khẩu hiện tại của tài khoản.</p>
-                                            <div class="ltn__form-box">
-                                                <form action="#">
-                                                    <fieldset>
-                                                        <legend>THAY ĐỔI MẬT KHẨU</legend>
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <label>Mật khẩu hiện tại (để trống nếu không thay đổi):</label>
-                                                                <input type="password" name="ltn__name">
-                                                                <label>Mật khẩu mới (để trống nếu không thay đổi):</label>
-                                                                <input type="password" name="ltn__lastname">
-                                                                <label>Xác nhận mật khẩu mới:</label>
-                                                                <input type="password" name="ltn__lastname">
-
-                                                            </div>
-                                                        </div>
-                                                    </fieldset>
-
-                                                    <div class="btn-wrapper">
-                                                        <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Lưu thay đổi</button>
-                                                    </div>
-                                                </form>
-                                            </div>
+                                        <div id="changePasswordSection">
+                                            @Html.Partial("ChangePassword")
                                         </div>
                                     </div>
                                 </div>
@@ -178,3 +156,18 @@
     </div>
 </div>
 <!-- WISHLIST AREA START -->
+<script>
+    $(document).ready(function(){
+    $('#changePasswordForm').submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ChangePassword", "Account")',
+            data: $(this).serialize(),
+            success: function(response){
+                $('#partialViewContainer').html(response);
+            }
+        });
+    });
+});
+</script>

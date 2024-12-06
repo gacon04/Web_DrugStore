@@ -12,16 +12,30 @@ namespace Web_DrugStore.ViewModel
         private string _hoTen;
 
         [Required(ErrorMessage = "Vui lòng không để trống họ tên")]
-        [RegularExpression(@"^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơẠ-ỹ]{2,}\s+[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơẠ-ỹ]+$",
-    ErrorMessage = "Vui lòng nhập họ tên hợp lệ.")]
+        [RegularExpression(@"^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơẠ-ỹ]{2,}(\s+[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơẠ-ỹ]+)+$",
+        ErrorMessage = "Vui lòng nhập họ tên hợp lệ và chú ý khoảng trắng.")]
         [StringLength(50, ErrorMessage = "Họ tên không được vượt quá 50 ký tự.")]
         public string HoTen
         {
             get => _hoTen;
-            set => _hoTen = string.IsNullOrWhiteSpace(value)
-                ? null
-                : Regex.Replace(value.Trim(), @"\s+", " "); // Loại bỏ khoảng trắng thừa
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    // Chuẩn hóa chuỗi: Loại bỏ khoảng trắng thừa
+                    var trimmedValue = Regex.Replace(value.Trim(), @"\s{2,}", " ");
+                    _hoTen = trimmedValue.Length > 50
+                        ? trimmedValue.Substring(0, 50) // Đảm bảo không vượt quá 50 ký tự
+                        : trimmedValue;
+                }
+                else
+                {
+                    _hoTen = null; // Nếu chuỗi rỗng hoặc chỉ chứa khoảng trắng
+                }
+            }
         }
+
+
 
 
         [Required(ErrorMessage = "Vui lòng không để trống số điện thoại")]

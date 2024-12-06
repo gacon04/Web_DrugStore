@@ -6,56 +6,85 @@
 }
 else
 {
-    <div class="table-responsive">
-        <table class="table table-striped table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Mã đơn hàng</th>
-                    <th>Thời gian đặt</th>
-                    <th>Trạng thái</th>
-                    <th>Tổng cộng</th>
-                    <th>Hành động</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+    <div id="order-content">
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
                     <tr>
-                        <td>@item.MaDonHang</td>
-                        <td>@item.NgayDat.ToString("dd/MM/yyyy HH:mm")</td>
-                        <td>
-                            @{
-                                var res="";
-                                var TrangThaiDon = item.TrangThai;
-                                if (TrangThaiDon == Web_DrugStore.Models.TrangThaiDonHang.ChoXacNhan)
-                                {
-                                    res = "Chờ xác nhận";
-                                }
-                                else if (TrangThaiDon == Web_DrugStore.Models.TrangThaiDonHang.DaGiao)
-                                {
-                                    res = "Đã giao";
-                                }
-                                else if (TrangThaiDon == Web_DrugStore.Models.TrangThaiDonHang.DangXuLy)
-                                {
-                                    res = "Đang xử lý";
-                                }
-                                else if (TrangThaiDon == Web_DrugStore.Models.TrangThaiDonHang.DaHuy)
-                                {
-                                    res = "Đã huỷ";
-                                }
-                                else if (TrangThaiDon == Web_DrugStore.Models.TrangThaiDonHang.DangGiao)
-                                {
-                                    res = "Đang giao ...";
-                                }
-                            }
-                            @res
-                            
-                        </td>
-                        <td>@item.TongHoaDon.ToString("#,0") ₫</td>
-                        <td><a href="@Url.Action("Details", "Cart", new { id = item.MaDonHang })">Chi tiết</a></td>
+                        <th>Mã đơn hàng</th>
+                        <th>Thời gian đặt</th>
+                        <th>Trạng thái</th>
+                        <th>Tổng cộng</th>
+                        <th>Hành động</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaDonHang</td>
+                            <td>@item.NgayDat.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>
+                                @{
+                                    var res = "";
+                                    var TrangThaiDon = item.TrangThai;
+                                    if (TrangThaiDon == Web_DrugStore.Models.TrangThaiDonHang.ChoXacNhan)
+                                    {
+                                        res = "Chờ xác nhận";
+                                    }
+                                    else if (TrangThaiDon == Web_DrugStore.Models.TrangThaiDonHang.DaGiao)
+                                    {
+                                        res = "Đã giao";
+                                    }
+                                    else if (TrangThaiDon == Web_DrugStore.Models.TrangThaiDonHang.DangXuLy)
+                                    {
+                                        res = "Đang xử lý";
+                                    }
+                                    else if (TrangThaiDon == Web_DrugStore.Models.TrangThaiDonHang.DaHuy)
+                                    {
+                                        res = "Đã huỷ";
+                                    }
+                                    else if (TrangThaiDon == Web_DrugStore.Models.TrangThaiDonHang.DangGiao)
+                                    {
+                                        res = "Đang giao ...";
+                                    }
+                                }
+                                @res
+                            </td>
+                            <td>@item.TongHoaDon.ToString("#,0") ₫</td>
+                            <td>
+                                <button class="upload-btn view-details" data-id="@item.MaDonHang">Xem chi tiết</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
     </div>
+
 }
+
+
+    <script>
+    $(document).ready(function () {
+        $('.view-details').click(function (e) {
+            e.preventDefault();
+            var orderId = $(this).data('id');
+            console.log('Order ID:', orderId); // Debugging
+            $.ajax({
+                url: '@Url.Action("OrderDetails", "Account")',
+                type: 'GET',
+                data: { id: orderId },
+                success: function (data) {
+                    $('#order-content').html(data);
+                },
+                error: function () {
+                    alert('Đã xảy ra lỗi khi tải chi tiết đơn hàng.');
+                }
+            });
+        });
+    });
+    </script>
