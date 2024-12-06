@@ -60,10 +60,10 @@
                             <div class="col-lg-4">
                                 <div class="ltn__tab-menu-list mb-50">
                                     <div class="nav">
-                                        <a class="active show" data-bs-toggle="tab" href="#liton_tab_1_1">Thông tin tài khoản <i class="fas fa-user"></i></a>
+                                        <a data-bs-toggle="tab" href="#liton_tab_1_1" class="active show" >Thông tin tài khoản <i class="fas fa-user"></i></a>
                                         <a data-bs-toggle="tab" href="#liton_tab_1_2">Các đơn đặt <i class="fas fa-file-alt"></i></a>
-                                        <a data-bs-toggle="tab" href="#liton_tab_1_4">Địa chỉ <i class="fas fa-map-marker-alt"></i></a>
-                                        <a data-bs-toggle="tab" href="#liton_tab_1_5">Đổi mật khẩu <i class="fas fa-passport"></i></a>
+                                        <a data-bs-toggle="tab" href="#liton_tab_1_3">Địa chỉ <i class="fas fa-map-marker-alt"></i></a>
+                                        <a data-bs-toggle="tab" href="#liton_tab_1_4">Đổi mật khẩu <i class="fas fa-passport"></i></a>
                                         <a href="@Url.Action("Logout","Account")">Đăng xuất <i class="fas fa-sign-out-alt"></i></a>
                                     </div>
                                 </div>
@@ -103,68 +103,12 @@
                                     </div>
                                     <div class="tab-pane fade" id="liton_tab_1_2">
                                         <div class="ltn__myaccount-tab-content-inner">
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Đơn hàng</th>
-                                                            <th>Ngày</th>
-                                                            <th>Trạng thái</th>
-                                                            <th>Tổng cộng</th>
-                                                            <th>Hành động</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>22 tháng 6, 2019</td>
-                                                            <td>Đang chờ xử lý</td>
-                                                            <td>3.000 USD</td>
-                                                            <td><a href="cart.html">Chi tiết</a></td>
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                            @Html.Action("GetListProd","Account")
                                         </div>
                                     </div>
+                                   
+                                   
                                     <div class="tab-pane fade" id="liton_tab_1_3">
-                                        <div class="ltn__myaccount-tab-content-inner">
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Sản phẩm</th>
-                                                            <th>Ngày</th>
-                                                            <th>Hết hạn</th>
-                                                            <th>Tải xuống</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Carsafe - Mẫu PSD Dịch vụ Ô tô</td>
-                                                            <td>22 tháng 11, 2020</td>
-                                                            <td>Có</td>
-                                                            <td><a href="#"><i class="far fa-arrow-to-bottom mr-1"></i> Tải xuống tệp</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Carsafe - Mẫu HTML Dịch vụ Ô tô</td>
-                                                            <td>10 tháng 11, 2020</td>
-                                                            <td>Có</td>
-                                                            <td><a href="#"><i class="far fa-arrow-to-bottom mr-1"></i> Tải xuống tệp</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Carsafe - Giao diện WordPress Dịch vụ Ô tô</td>
-                                                            <td>12 tháng 11, 2020</td>
-                                                            <td>Có</td>
-                                                            <td><a href="#"><i class="far fa-arrow-to-bottom mr-1"></i> Tải xuống tệp</a></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="liton_tab_1_4">
                                         <div class="ltn__myaccount-tab-content-inner">
                                             <p>Các địa chỉ sau sẽ được sử dụng mặc định trên trang thanh toán.</p>
                                             <div class="row">
@@ -195,7 +139,7 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="tab-pane fade" id="liton_tab_1_5">
+                                    <div class="tab-pane fade" id="liton_tab_1_4">
                                         <div class="ltn__myaccount-tab-content-inner">
                                             <p>Đổi mật khẩu hiện tại của tài khoản.</p>
                                             <div class="ltn__form-box">

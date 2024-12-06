@@ -1,10 +1,12 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using Web_DrugStore.Filters;
 using Web_DrugStore.Models;
 
@@ -96,11 +98,23 @@ namespace Web_DrugStore.Areas.Admin.Controllers
 
 
         // PHẦN QUẢN LÝ BÀI VIẾT
-        public ActionResult BlogIndex()  // trang chính xem danh sách bài viết
+        public ActionResult BlogIndex(int? page, string searchText)  // trang chính xem danh sách bài viết
         {
             DS_DBContext db = new DS_DBContext();
-            List<Blog> blogs = db.Blogs.ToList();
-            return View(blogs);
+            var blogList = db.Blogs.AsQueryable();
+            int size = 10;
+            int pageNumber = (page ?? 1);
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                blogList = blogList.Where(sp => sp.TieuDe.Contains(searchText));
+            }
+            blogList = blogList.OrderBy(sp => sp.CreatedAt);
+            var paginatedDH = blogList.ToPagedList(pageNumber, size);
+
+            // Truyền `searchText` để giữ giá trị trong giao diện
+            ViewBag.SearchText = searchText;
+
+            return View(paginatedDH);
         }
         public ActionResult BlogAdd()
         {

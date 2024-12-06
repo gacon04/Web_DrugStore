@@ -20,7 +20,7 @@ namespace Web_DrugStore.Areas.Admin.Controllers
         DS_DBContext db = new DS_DBContext();
         public ActionResult Index(int? page, string searchText)
         {
-            int size = 9;
+            int size = 10;
             int pageNumber = (page ?? 1); 
 
             var sanpham = db.SanPhams.AsQueryable();

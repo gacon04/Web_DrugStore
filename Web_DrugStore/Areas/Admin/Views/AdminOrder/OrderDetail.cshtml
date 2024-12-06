@@ -1,0 +1,228 @@
+﻿@model Web_DrugStore.Models.DonHang
+
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container order-details">
+    <h2 class="text-center mt-4">Chi tiết đơn hàng - <span class="order-code">@Model.MaDonHang</span></h2>
+
+    <!-- Bắt đầu khối card duy nhất -->
+    <div class="card p-4 mt-4">
+        <!-- Thông tin khách hàng -->
+        <h3 class="section-title">Thông tin khách hàng</h3>
+        <dl class="row">
+            <dt class="col-sm-3">Tên khách hàng:</dt>
+            <dd class="col-sm-9">@Model.TenKhachHang</dd>
+
+            <dt class="col-sm-3">Số điện thoại:</dt>
+            <dd class="col-sm-9">@Model.SoDienThoai</dd>
+
+            <dt class="col-sm-3">Email:</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+
+            @if (!string.IsNullOrEmpty(Model.DiaChiChoLam))
+            {
+                <dt class="col-sm-3">Địa chỉ chỗ làm:</dt>
+                <dd class="col-sm-9">
+                    @Model.DiaChiChoLam
+                </dd>
+             }
+
+                <dt class="col-sm-3">Địa chỉ nhận hàng:</dt>
+                <dd class="col-sm-9">
+
+                    @($"{Model.SoNha}, {Model.TenDuong}, {Model.TenXa}, {Model.TenHuyen}, {Model.TenTinh}")
+                </dd>
+                
+                
+                <dt class="col-sm-3">Ghi chú:</dt>
+                <dd class="col-sm-9">@Model.GhiChu</dd>
+            </dl>
+
+        <!-- Thông tin đơn hàng -->
+        <h3 class="section-title mt-5">Thông tin đơn hàng</h3>
+        <dl class="row">
+            <dt class="col-sm-3">Mã đơn hàng:</dt>
+            <dd class="col-sm-9">@Model.MaDonHang</dd>
+
+            <dt class="col-sm-3">Ngày đặt:</dt>
+            <dd class="col-sm-9">@Model.NgayDat.ToString("dd/MM/yyyy HH:mm")</dd>
+
+            <dt class="col-sm-3">Trạng thái:</dt>
+            <dd class="col-sm-9">
+                @switch (Model.TrangThai)
+                {
+                    case Web_DrugStore.Models.TrangThaiDonHang.ChoXacNhan:
+                        @Html.Raw("<span class='badge badge-warning'>Chờ xác nhận</span>")
+                        break;
+                    case Web_DrugStore.Models.TrangThaiDonHang.DangGiao:
+                        @Html.Raw("<span class='badge badge-warning'>Đang giao hàng</span>")
+                        break;
+                    case Web_DrugStore.Models.TrangThaiDonHang.DangXuLy:
+                        @Html.Raw("<span class='badge badge-info'>Đang xử lý</span>")
+                        break;
+                    case Web_DrugStore.Models.TrangThaiDonHang.DaGiao:
+                        @Html.Raw("<span class='badge badge-success'>Đã giao</span>")
+                        break;
+                    case Web_DrugStore.Models.TrangThaiDonHang.DaHuy:
+                        @Html.Raw("<span class='badge badge-danger'>Đã hủy</span>")
+                        break;
+                    default:
+                        @Html.Raw("<span class='badge badge-secondary'>Không xác định</span>")
+                        break;
+                }
+            </dd>
+
+            <dt class="col-sm-3">Phương thức thanh toán:</dt>
+            <dd class="col-sm-9">
+                @switch (Model.CachThanhToan)
+                {
+                    case Web_DrugStore.Models.HinhThucThanhToan.COD:
+                        @Html.Raw("Thanh toán khi nhận hàng (COD)")
+                        break;
+                    case Web_DrugStore.Models.HinhThucThanhToan.VNPAY:
+                        @Html.Raw("Thanh toán qua VNPAY")
+                        break;
+                    case Web_DrugStore.Models.HinhThucThanhToan.MOMO:
+                        @Html.Raw("Thanh toán qua MOMO")
+                        break;
+                    default:
+                        @Html.Raw("Không xác định")
+                        break;
+                }
+            </dd>
+        </dl>
+
+        <!-- Chi tiết sản phẩm -->
+        <h3 class="section-title mt-5">Chi tiết sản phẩm</h3>
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChiTietDonHangs)
+                {
+                    <tr>
+                        <td>@item.SanPham.TenSanPham</td>
+                        <td>@item.SoLuong</td>
+                        <td>@item.DonGia.ToString("#,0") ₫</td>
+                        @{ 
+                            var tiensp = item.SoLuong * item.DonGia;
+                        }
+                        <td>@tiensp.ToString("#,0") ₫</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!-- Tổng cộng -->
+        <h3 class="section-title mt-5">Tổng cộng</h3>
+        <dl class="row">
+            <dt class="col-sm-4">Tổng tiền hàng:</dt>
+            <dd class="col-sm-8">@Model.TongTienHang.ToString("#,0") ₫</dd>
+
+            <dt class="col-sm-4">VAT:</dt>
+            <dd class="col-sm-8">@Model.VAT.ToString("#,0") ₫</dd>
+
+            <dt class="col-sm-4">Phí vận chuyển:</dt>
+            <dd class="col-sm-8">@Model.PhiVanChuyen.ToString("#,0") ₫</dd>
+
+            <dt class="col-sm-4"><strong>Tổng hóa đơn:</strong></dt>
+            <dd class="col-sm-8"><strong>@Model.TongHoaDon.ToString("#,0") ₫</strong></dd>
+        </dl>
+    </div>
+    <!-- Kết thúc khối card duy nhất -->
+
+    <div class="form-group text-center mt-4">
+        <a href="@Url.Action("Index", "AdminOrder")" class="btn btn-link">Quay lại danh sách đơn hàng</a>
+    </div>
+</div>
+
+<style>
+    /* Đặt nền cho toàn trang */
+    body {
+        background-color: #f8f9fa;
+    }
+
+    /* Tiêu đề chính */
+    .order-details h2 {
+        font-weight: bold;
+        color: #007bff;
+        margin-bottom: 30px;
+    }
+
+    /* Tiêu đề các phần */
+    .section-title {
+        font-size: 24px;
+        color: #28a745;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #28a745;
+        padding-bottom: 10px;
+    }
+
+        .section-title.mt-5 {
+            margin-top: 40px;
+        }
+
+    /* Thẻ định nghĩa dữ liệu */
+    dl.row dt {
+        text-align: right;
+        font-weight: bold;
+        color: #343a40;
+    }
+
+    dl.row dd {
+        color: #495057;
+    }
+
+    /* Bảng sản phẩm */
+    .table-hover tbody tr:hover {
+        background-color: #f1f3f5;
+    }
+
+    .table thead {
+        background-color: #e9ecef;
+    }
+
+        .table thead th {
+            color: #495057;
+            font-weight: bold;
+        }
+
+    /* Thẻ badge cho trạng thái */
+    .badge {
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+
+    /* Nút trở về */
+    .form-group .btn-link {
+        padding: 10px 30px;
+        font-size: 16px;
+    }
+
+    /* Card */
+    .card {
+        background-color: #ffffff;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        /* Khoảng cách giữa các phần trong card */
+        .card .section-title {
+            margin-top: 40px;
+        }
+
+            /* Căn chỉnh khoảng cách trên cùng cho phần đầu tiên */
+            .card .section-title:first-of-type {
+                margin-top: 0;
+            }
+</style>

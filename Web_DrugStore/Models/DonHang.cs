@@ -5,22 +5,28 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using static System.Net.Mime.MediaTypeNames;
-
+using IdGen;
+using Web_DrugStore.FuncService;
 namespace Web_DrugStore.Models
 {
     public enum TrangThaiDonHang
     {
-        [Display(Name = "Đã hủy")]
-        DaHuy = 0,
         [Display(Name = "Chờ xác nhận")]
-        ChoXacNhan = 1,
+        ChoXacNhan = 0,
 
         [Display(Name = "Đang xử lý")]
-        DangXuLy = 2,
+        DangXuLy = 1,
+
+        [Display(Name = "Đang giao hàng")]
+        DangGiao = 2,
 
         [Display(Name = "Đã giao")]
-        DaGiao = 3
+        DaGiao = 3,
 
+        [Display(Name = "Đã hủy")]
+        DaHuy = 4,   
+
+   
     }
     public enum HinhThucThanhToan
     {
@@ -41,7 +47,13 @@ namespace Web_DrugStore.Models
         [Required]
         public string UserAspId { get; set; }
 
-
+        public string MaDonHang { get; set; }
+        public void GenerateMaDonHang()
+        {
+            // Sử dụng IdGeneratorService để sinh mã đơn hàng
+            long id = IdGeneratorService.GenerateId();
+            MaDonHang = $"DH{id}"; // Gán định dạng
+        }
         [Required]
         [StringLength(255)]
         public string TenKhachHang { get; set; } // Tên khách hàng

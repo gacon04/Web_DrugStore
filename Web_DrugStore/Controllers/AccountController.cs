@@ -15,6 +15,7 @@ namespace Web_DrugStore.Controllers
     
     public class AccountController : Controller
     {
+        DS_DBContext db = new DS_DBContext();
         [AuthenticationFilter]
         public ActionResult MyAccount()
         {
@@ -60,7 +61,6 @@ namespace Web_DrugStore.Controllers
                 ModelState.AddModelError("Lỗi", "Dữ liệu nhập vào không hợp lệ");
                 return View();
             }
-            return View();
         }
 
         public ActionResult Login()
@@ -74,7 +74,6 @@ namespace Web_DrugStore.Controllers
             string tk = f["Email"];
             string mk = f["MatKhau"];
             string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-            string passwordPattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]{6,}$";
             if (!Regex.IsMatch(tk, emailPattern))
             {
                 ViewData["Err1"] = "Vui lòng nhập tài khoản Email có định dạng hợp lệ";
@@ -92,11 +91,7 @@ namespace Web_DrugStore.Controllers
                     var authenManager = HttpContext.GetOwinContext().Authentication;
                     var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                     authenManager.SignIn(new Microsoft.Owin.Security.AuthenticationProperties(), userIdentity);
-                    if (userManager.IsInRole(user.Id, "Admin"))
-                    {
-                       
-                        return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
-                    }
+                    
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -129,6 +124,13 @@ namespace Web_DrugStore.Controllers
             var authenManager = HttpContext.GetOwinContext().Authentication;
             authenManager.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+        [AuthenticationFilter]
+        public ActionResult GetListProd()
+        {
+            var userID = User.Identity.GetUserId();
+            var listdh = db.DonHangs.Where(dh => dh.UserAspId == userID).OrderByDescending(dh => dh.MaDonHang);
+            return PartialView(listdh);
         }
     }
 }

@@ -60,8 +60,14 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FuzzySharp, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FuzzySharp.2.0.2\lib\net461\FuzzySharp.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.11.67.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.11.67\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="IdGen, Version=3.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IdGen.3.0.7\lib\netstandard2.0\IdGen.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.4\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -193,6 +199,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Filters\AuthenticationFilter.cs" />
     <Compile Include="Filters\AuthorizationFilter.cs" />
+    <Compile Include="FuncService\IdGeneratorService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -300,6 +307,10 @@
     <Compile Include="Migrations\202412011626044_UpdateHinhThucThanhToan.cs" />
     <Compile Include="Migrations\202412011626044_UpdateHinhThucThanhToan.Designer.cs">
       <DependentUpon>202412011626044_UpdateHinhThucThanhToan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202412052345021_AddIdGenMaDonHang.cs" />
+    <Compile Include="Migrations\202412052345021_AddIdGenMaDonHang.Designer.cs">
+      <DependentUpon>202412052345021_AddIdGenMaDonHang.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
@@ -2472,6 +2483,8 @@
     <Content Include="Areas\Admin\Views\AdminProduct\UploadPhoto.cshtml" />
     <Content Include="Areas\Admin\Views\AdminProduct\EditProd.cshtml" />
     <Content Include="Areas\Admin\Views\AdminOrder\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAccount\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminOrder\OrderDetail.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
@@ -2535,6 +2548,7 @@
     <Content Include="Views\Cart\Partial_Item_Checkout.cshtml" />
     <Content Include="Views\Cart\CheckOutSuccess.cshtml" />
     <Content Include="Views\Cart\CheckOutFail.cshtml" />
+    <Content Include="Views\Account\GetListProd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2646,6 +2660,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202412011626044_UpdateHinhThucThanhToan.resx">
       <DependentUpon>202412011626044_UpdateHinhThucThanhToan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412052345021_AddIdGenMaDonHang.resx">
+      <DependentUpon>202412052345021_AddIdGenMaDonHang.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

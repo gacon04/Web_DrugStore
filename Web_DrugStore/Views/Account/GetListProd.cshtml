@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Web_DrugStore.Models.DonHang>
+
+@if (!Model.Any())
+{
+    <h5>Hiện tại không có đơn hàng nào</h5>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Mã đơn hàng</th>
+                    <th>Thời gian đặt</th>
+                    <th>Trạng thái</th>
+                    <th>Tổng cộng</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.MaDonHang</td>
+                        <td>@item.NgayDat.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>
+                            @{
+                                var res="";
+                                var TrangThaiDon = item.TrangThai;
+                                if (TrangThaiDon == Web_DrugStore.Models.TrangThaiDonHang.ChoXacNhan)
+                                {
+                                    res = "Chờ xác nhận";
+                                }
+                                else if (TrangThaiDon == Web_DrugStore.Models.TrangThaiDonHang.DaGiao)
+                                {
+                                    res = "Đã giao";
+                                }
+                                else if (TrangThaiDon == Web_DrugStore.Models.TrangThaiDonHang.DangXuLy)
+                                {
+                                    res = "Đang xử lý";
+                                }
+                                else if (TrangThaiDon == Web_DrugStore.Models.TrangThaiDonHang.DaHuy)
+                                {
+                                    res = "Đã huỷ";
+                                }
+                                else if (TrangThaiDon == Web_DrugStore.Models.TrangThaiDonHang.DangGiao)
+                                {
+                                    res = "Đang giao ...";
+                                }
+                            }
+                            @res
+                            
+                        </td>
+                        <td>@item.TongHoaDon.ToString("#,0") ₫</td>
+                        <td><a href="@Url.Action("Details", "Cart", new { id = item.MaDonHang })">Chi tiết</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

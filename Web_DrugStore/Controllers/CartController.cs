@@ -126,7 +126,7 @@ namespace Web_DrugStore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-       
+        [AuthenticationFilter]
         public ActionResult Checkout(CheckOutItemVM item)
         {
             if (ModelState.IsValid)
@@ -177,6 +177,7 @@ namespace Web_DrugStore.Controllers
                     dh.VAT = tongtienhang * 0.1;
                     dh.TongHoaDon = dh.TongTienHang + dh.PhiVanChuyen + dh.VAT;
                     dh.TrangThai = TrangThaiDonHang.ChoXacNhan;
+                    dh.GenerateMaDonHang();
                     db.DonHangs.Add(dh);
                     db.SaveChanges();
                     SendConfirmOrderEmail(dh.DonHangId);
@@ -230,12 +231,15 @@ namespace Web_DrugStore.Controllers
                                 orderDetails += @"
                         </tbody>
                     </table>";
+                string diaChi = $"{dh.SoNha}, {dh.TenDuong}, {dh.TenXa}, {dh.TenHuyen}, {dh.TenTinh}";
 
-                                string emailBody = $@"
+                string emailBody = $@"
                     <div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333;'>
                         <h2 style='color: #4CAF50;'>Xác nhận đơn hàng</h2>
                         <p>Chào {dh.TenKhachHang},</p>
                         <p>Đơn hàng của bạn đã được đặt thành công tại PharmaVillage!</p>
+                <p><strong>Số điện thoại đặt hàng:</strong> {dh.SoDienThoai}</p>
+                <p><strong>Địa chỉ giao hàng:</strong> {diaChi}</p>
                         {orderDetails}
                         <p>Giá trị đơn: {dh.TongTienHang.ToString("N0")} VND</p>
                         <p>VAT: {dh.VAT.ToString("N0")} VND</p>
@@ -250,7 +254,7 @@ namespace Web_DrugStore.Controllers
                 var message = new MailMessage
                 {
                     From = new MailAddress("nhokljlom99@gmail.com"),
-                    Subject = "XÁC NHẬN ĐƠN HÀNG",
+                    Subject = "XÁC NHẬN ĐẶT HÀNG THÀNH CÔNG ĐƠN HÀNG " + dh.MaDonHang,
                     Body = emailBody,
                     IsBodyHtml = true
                 };

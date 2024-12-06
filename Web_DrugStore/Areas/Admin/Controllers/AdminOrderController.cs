@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,25 @@ namespace Web_DrugStore.Areas.Admin.Controllers
     {
         // GET: Admin/Order
         DS_DBContext db = new DS_DBContext();
-        public ActionResult Index()
+        public ActionResult Index(int? page, string searchText)
         {
-            
-            List<DonHang> listdh = db.DonHangs.OrderByDescending(tmp => tmp.NgayDat).ToList();
-            return View(listdh);
+
+            var dhList = db.DonHangs.AsQueryable();
+            int size = 9;
+            int pageNumber = (page ?? 1);
+
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                dhList = dhList.Where(sp => sp.MaDonHang.Contains(searchText));
+            }
+            dhList = dhList.OrderBy(sp => sp.NgayDat);
+            var paginatedDH= dhList.ToPagedList(pageNumber, size);
+
+            // Truyền `searchText` để giữ giá trị trong giao diện
+            ViewBag.SearchText = searchText;
+
+            return View(paginatedDH);
         }
 
 
@@ -43,6 +58,25 @@ namespace Web_DrugStore.Areas.Admin.Controllers
 
             return Content("Người dùng không tồn tại");
         }
-       
+       public ActionResult OrderDetail(int id)
+        {
+
+            var donHang = db.DonHangs
+                    .Include("ChiTietDonHangs.SanPham")
+                    .FirstOrDefault(d => d.DonHangId == id);
+
+            if (donHang == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(donHang);
+        }
+
+        public ActionResult GetListProdInOrder(int id)
+        {
+            var listCTDH = db.ChiTietDonHangs.Where(ctdh => ctdh.DonHangId == id);
+            return PartialView();
+        }
     }
 }
