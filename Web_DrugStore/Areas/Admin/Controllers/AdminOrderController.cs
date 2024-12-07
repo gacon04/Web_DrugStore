@@ -3,6 +3,7 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Web_DrugStore.Filters;
@@ -30,7 +31,7 @@ namespace Web_DrugStore.Areas.Admin.Controllers
                 dhList = dhList.Where(sp => sp.MaDonHang.Contains(searchText));
             }
             dhList = dhList.OrderBy(sp => sp.NgayDat);
-            var paginatedDH= dhList.ToPagedList(pageNumber, size);
+            var paginatedDH = dhList.ToPagedList(pageNumber, size);
 
             // Truyền `searchText` để giữ giá trị trong giao diện
             ViewBag.SearchText = searchText;
@@ -58,7 +59,7 @@ namespace Web_DrugStore.Areas.Admin.Controllers
 
             return Content("Người dùng không tồn tại");
         }
-       public ActionResult OrderDetail(int id)
+        public ActionResult OrderDetail(int id)
         {
 
             var donHang = db.DonHangs
@@ -71,6 +72,36 @@ namespace Web_DrugStore.Areas.Admin.Controllers
             }
 
             return View(donHang);
+        }
+        [HttpGet]
+        [AuthorizationFilter]
+        public ActionResult ChangeOrderStatus(int id, int newStatus)
+        {
+            
+
+            var donHang = db.DonHangs.FirstOrDefault(dh => dh.DonHangId == id);
+            if (donHang == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Kiểm tra trạng thái mới có hợp lệ không
+            if (!Enum.IsDefined(typeof(TrangThaiDonHang), newStatus))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Trạng thái đơn hàng không hợp lệ.");
+            }
+
+            var trangThaiCu = donHang.TrangThai;
+            var trangThaiMoi = (TrangThaiDonHang)newStatus;
+
+            // Cập nhật trạng thái đơn hàng
+            donHang.TrangThai = trangThaiMoi;
+            db.SaveChanges();
+
+            // Thêm thông báo thành công
+            TempData["Message"] = $"Cập nhật trạng thái đơn hàng từ \"{trangThaiCu}\" sang \"{trangThaiMoi}\" thành công.";
+
+            return RedirectToAction("OrderDetail", new { id = id });
         }
 
         public ActionResult GetListProdInOrder(int id)

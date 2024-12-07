@@ -75,7 +75,7 @@ else
             var orderId = $(this).data('id');
             console.log('Order ID:', orderId); // Debugging
             $.ajax({
-                url: '@Url.Action("OrderDetails", "Account")',
+                url: '@Url.Action("OrderDetails", "ActionAccount")',
                 type: 'GET',
                 data: { id: orderId },
                 success: function (data) {

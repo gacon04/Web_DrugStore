@@ -76,7 +76,7 @@ namespace Web_DrugStore.Models
         public string TenHuyen { get; set; }
         public string TenTinh { get; set; }
 
-
+        public string LyDo { get; set; } = "";
         [Required]
         public DateTime NgayDat { get; set; } = DateTime.Now; // Ngày đặt hàng
 

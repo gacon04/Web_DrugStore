@@ -17,10 +17,10 @@
                 <div class="col-lg-12">
                     <div class="ltn__product-item ltn__product-item-3 text-center">
                         <div class="product-img">
-                            <a href="product-details.html"><img src="@item.Thumbnail" alt="#"></a>
+                            <a href="@Url.Action("ProdDetail","Product", new {id = item.SanPhamId})"><img src="@item.Thumbnail" alt="#"></a>
                             <div class="product-badge">
                                 <ul>
-                                    <li class="sale-badge">New</li>
+                                    <li class="sale-badge">GOOD</li>
                                 </ul>
                             </div>
                             <div class="product-hover-action">
@@ -55,12 +55,12 @@
                             </div>
                             <h2 class="product-title"><a href="@Url.Action("ProdDetail","Product", new {id = item.SanPhamId})">@item.TenSanPham</a></h2>
                             <div class="product-price">
-                                <span>@item.DonGia</span>
-                               @if (item.DonGiaGoc!=null)
+                                <span>@item.DonGia.ToString("#,0") ₫</span>
+                                @if (item.DonGiaGoc>0)
                                 {
-                                        <del>@item.DonGiaGoc</del>
+                                    <del>@item.DonGiaGoc.ToString("#,0") ₫</del>
                                 }
-                                
+
                             </div>
                         </div>
                     </div>
@@ -73,3 +73,96 @@
         </div>
     </div>
 </div>
+
+<style>
+    /* Đảm bảo chiều cao khối sản phẩm đồng nhất */
+    .ltn__product-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 500px; /* Tùy chỉnh chiều cao phù hợp */
+        border: 1px solid #e0e0e0;
+        padding: 15px;
+        box-sizing: border-box;
+        background-color: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .ltn__product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Đảm bảo hình ảnh có kích thước đồng nhất */
+        .ltn__product-item .product-img a img {
+            width: 100%;
+            height: 300px; /* Tùy chỉnh chiều cao hình ảnh */
+            object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+            border-radius: 5px;
+        }
+
+        /* Định dạng phần thông tin sản phẩm */
+        .ltn__product-item .product-info {
+            flex-grow: 1;
+            margin-top: 10px;
+        }
+
+        /* Giới hạn chiều cao tên sản phẩm và hiển thị tối đa 2 dòng */
+        .ltn__product-item .product-title a {
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Hiển thị tối đa 2 dòng */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+            .ltn__product-item .product-title a:hover {
+                color: #007bff;
+            }
+
+        /* Căn chỉnh giá sản phẩm */
+        .ltn__product-item .product-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-top: 10px;
+        }
+
+            .ltn__product-item .product-price del {
+                font-size: 14px;
+                color: #888;
+                margin-left: 5px;
+            }
+
+        /* Ratting icons */
+        .ltn__product-item .product-ratting ul {
+            padding: 0;
+            margin: 0 0 5px;
+            list-style: none;
+            display: flex;
+        }
+
+            .ltn__product-item .product-ratting ul li {
+                margin-right: 3px;
+            }
+
+                .ltn__product-item .product-ratting ul li a i {
+                    color: #ffc107; /* Màu vàng sao */
+                    font-size: 14px;
+                }
+
+    /* Đảm bảo lưới sản phẩm hiển thị đồng đều */
+    .ltn__related-product-slider-one-active .col-lg-12 {
+        width: 25%; /* Hiển thị 4 sản phẩm mỗi hàng, có thể điều chỉnh */
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+</style>

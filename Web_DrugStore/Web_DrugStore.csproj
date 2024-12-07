@@ -191,6 +191,7 @@
     <Compile Include="Areas\Admin\Controllers\UserAccountController.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActionAccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Filters\AuthenticationFilter.cs" />
     <Compile Include="Filters\AuthorizationFilter.cs" />
+    <Compile Include="FuncService\EmailService.cs" />
     <Compile Include="FuncService\IdGeneratorService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -312,6 +314,10 @@
     <Compile Include="Migrations\202412052345021_AddIdGenMaDonHang.Designer.cs">
       <DependentUpon>202412052345021_AddIdGenMaDonHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202412070112097_AddLyDoToDonHang.cs" />
+    <Compile Include="Migrations\202412070112097_AddLyDoToDonHang.Designer.cs">
+      <DependentUpon>202412070112097_AddLyDoToDonHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ChiTietDonHang.cs" />
@@ -330,7 +336,9 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ChangePasswordVM.cs" />
     <Compile Include="ViewModel\CheckOutItemVM.cs" />
+    <Compile Include="ViewModel\ResetPasswordVM.cs" />
     <Compile Include="ViewModel\DonHangDetailsViewModel.cs" />
+    <Compile Include="ViewModel\ForgotPassMailVM.cs" />
     <Compile Include="ViewModel\Mail.cs" />
     <Compile Include="ViewModel\ShoppingCart.cs" />
     <Compile Include="ViewModel\RegisterVM.cs" />
@@ -2550,11 +2558,14 @@
     <Content Include="Views\Cart\Partial_Item_Checkout.cshtml" />
     <Content Include="Views\Cart\CheckOutSuccess.cshtml" />
     <Content Include="Views\Cart\CheckOutFail.cshtml" />
-    <Content Include="Views\Account\GetListProd.cshtml" />
-    <Content Include="Views\Account\_OrderDetails.cshtml" />
-    <Content Include="Views\Account\_OrderList.cshtml" />
-    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\ActionAccount\GetListProd.cshtml" />
+    <Content Include="Views\ActionAccount\_OrderDetails.cshtml" />
+    <Content Include="Views\ActionAccount\ChangePassword.cshtml" />
     <Content Include="Views\Shared\NavBarPartial.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2669,6 +2680,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202412052345021_AddIdGenMaDonHang.resx">
       <DependentUpon>202412052345021_AddIdGenMaDonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412070112097_AddLyDoToDonHang.resx">
+      <DependentUpon>202412070112097_AddLyDoToDonHang.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

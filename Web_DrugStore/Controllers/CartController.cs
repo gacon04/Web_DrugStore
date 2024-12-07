@@ -15,7 +15,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Web_DrugStore.Identity;
 using System.Net.Http;
 using System.Web.UI.WebControls;
-
+using Web_DrugStore.FuncService;
 namespace Web_DrugStore.Controllers
 {
 
@@ -189,6 +189,7 @@ namespace Web_DrugStore.Controllers
             }
             return View(item);
         }
+        [AuthenticationFilter]
         public ActionResult SendConfirmOrderEmail(int donHangId)
         {
             var userId = User.Identity.GetUserId();
@@ -200,11 +201,7 @@ namespace Web_DrugStore.Controllers
             if (userId != null)
             {
 
-                var mail = new SmtpClient("smtp.gmail.com", 587)
-                {
-                    Credentials = new NetworkCredential("nhokljlom99@gmail.com", "hldi aidq yqjy uusr"),
-                    EnableSsl = true
-                };
+                
 
                 string orderDetails = @"
                     <h3>Chi tiết đơn hàng:</h3>
@@ -250,20 +247,10 @@ namespace Web_DrugStore.Controllers
                         <p><b>Đội ngũ hỗ trợ PharmaVillage</b></p>
                     </div>";
 
-                // Tạo đối tượng MailMessage
-                var message = new MailMessage
-                {
-                    From = new MailAddress("nhokljlom99@gmail.com"),
-                    Subject = "XÁC NHẬN ĐẶT HÀNG THÀNH CÔNG ĐƠN HÀNG " + dh.MaDonHang,
-                    Body = emailBody,
-                    IsBodyHtml = true
-                };
+                var Subject = "XÁC NHẬN ĐẶT HÀNG THÀNH CÔNG ĐƠN HÀNG " + dh.MaDonHang;
 
-                // Gửi đến email người dùng
-                message.To.Add(new MailAddress(dh.Email));
-
-                // Gửi email
-                mail.Send(message);
+                EmailService.SendMail(dh.Email, Subject, emailBody);
+                
 
                 // Chuyển hướng đến trang thành công
                 return RedirectToAction("CheckOutSuccess");
@@ -275,7 +262,7 @@ namespace Web_DrugStore.Controllers
         }
 
 
-
+        [AuthenticationFilter]
         // hiển thị ra list sản phẩm đang trong giỏ hàng lên phần thanh toán
         public ActionResult Partial_Item_Checkout()
         {

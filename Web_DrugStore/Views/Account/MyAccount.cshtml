@@ -60,12 +60,10 @@
                             <div class="col-lg-4">
                                 <div class="ltn__tab-menu-list mb-50">
                                     <div class="nav">
-                                        <a data-bs-toggle="tab" href="#liton_tab_1_1" class="active show" >Thông tin tài khoản <i class="fas fa-user"></i></a>
+                                        <a data-bs-toggle="tab" href="#liton_tab_1_1" class="active show">Thông tin tài khoản <i class="fas fa-user"></i></a>
                                         <a data-bs-toggle="tab" href="#liton_tab_1_2">Các đơn đặt <i class="fas fa-file-alt"></i></a>
-                                        <a data-bs-toggle="tab" href="#liton_tab_1_3">Địa chỉ <i class="fas fa-map-marker-alt"></i></a>
-                                        <a data-bs-toggle="tab" href="#liton_tab_1_4">Đổi mật khẩu <i class="fas fa-passport"></i></a>
-                                        <a href="@Url.Action("Logout","Account")" id="logoutLink">Đăng xuất <i class="fas fa-sign-out-alt"></i></a>
-                                    </div>
+                                        <a data-bs-toggle="tab" href="#liton_tab_1_3">Đổi mật khẩu <i class="fas fa-passport"></i></a>
+                                        <a href="@Url.Action("Logout","Account")" id="logoutLink">Đăng xuất <i class="fas fa-sign-out-alt"></i></a>                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-8">
@@ -76,20 +74,17 @@
                                             <div class="ltn__form-box">
                                                 <form action="#">
                                                     <div class="row mb-50">
-                                                        <div class="col-md-6">
-                                                            <label>Họ:</label>
+                                                        <div class="col-md-12">
+                                                            <label>Họ tên:</label>
                                                             <input type="text" name="ltn__name">
                                                         </div>
+                                                        
                                                         <div class="col-md-6">
-                                                            <label>Tên:</label>
-                                                            <input type="text" name="ltn__lastname">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label>Tên hiển thị:</label>
+                                                            <label>Số điện thoại:</label>
                                                             <input type="text" name="ltn__lastname" placeholder="Ethan">
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <label>Email hiển thị:</label>
+                                                            <label>Email: </label>
                                                             <input type="email" name="ltn__lastname" placeholder="example@example.com">
                                                         </div>
                                                     </div>
@@ -103,54 +98,39 @@
                                     </div>
                                     <div class="tab-pane fade" id="liton_tab_1_2">
                                         <div class="ltn__myaccount-tab-content-inner">
-                                            @Html.Action("GetListProd","Account")
+                                            @Html.Action("GetListProd", "ActionAccount")
                                         </div>
                                     </div>
-                                   
                                    
                                     <div class="tab-pane fade" id="liton_tab_1_3">
-                                        <div class="ltn__myaccount-tab-content-inner">
-                                            <p>Các địa chỉ sau sẽ được sử dụng mặc định trên trang thanh toán.</p>
-                                            <div class="row">
-                                                <div class="col-md-6 col-12 learts-mb-30">
-                                                    <h4>Địa chỉ thanh toán <small><a href="#">Chỉnh Sửa</a></small></h4>
-                                                    <address>
-                                                        <p><strong>Alex Tuntuni</strong></p>
-                                                        <p>
-                                                            1355 Market St, Suite 900 <br>
-                                                            San Francisco, CA 94103
-                                                        </p>
-                                                        <p>Di động: (123) 456-7890</p>
-                                                    </address>
-                                                </div>
-                                                <div class="col-md-6 col-12 learts-mb-30">
-                                                    <h4>Địa chỉ giao hàng <small><a href="#">chỉnh sửa</a></small></h4>
-                                                    <address>
-                                                        <p><strong>Alex Tuntuni</strong></p>
-                                                        <p>
-                                                            1355 Market St, Suite 900 <br>
-                                                            San Francisco, CA 94103
-                                                        </p>
-                                                        <p>Di động: (123) 456-7890</p>
-
-                                                    </address>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="tab-pane fade" id="liton_tab_1_4">
                                         <div id="changePasswordSection">
-                                            @Html.Partial("ChangePassword")
+                                            @Html.Action("ChangePassword","ActionAccount")
                                         </div>
                                     </div>
-                                </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- PRODUCT TAB AREA END -->
+            </div>
+            <!-- PRODUCT TAB AREA END -->
+        </div>
+    </div>
+</div>
+<!-- Modaln đăng xuất -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="logoutModalLabel">Xác nhận đăng xuất</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn đăng xuất?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" id="confirmLogout">Đăng xuất</button>
             </div>
         </div>
     </div>
@@ -158,16 +138,28 @@
 <!-- WISHLIST AREA START -->
 <script>
     $(document).ready(function(){
+    // Xử lý sự kiện submit form đổi mật khẩu (nếu có)
     $('#changePasswordForm').submit(function(e){
         e.preventDefault();
         $.ajax({
             type: 'POST',
-            url: '@Url.Action("ChangePassword", "Account")',
+            url: '@Url.Action("ChangePassword", "ActionAccount")',
             data: $(this).serialize(),
             success: function(response){
                 $('#partialViewContainer').html(response);
             }
         });
     });
+
+     $('#logoutLink').click(function(e){
+         e.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+         var logoutModal = new bootstrap.Modal(document.getElementById('logoutModal'));
+         logoutModal.show(); // Hiển thị modal
+     });
+
+ // Khi người dùng nhấn vào nút Đăng xuất trong modal
+     $('#confirmLogout').click(function(){
+         window.location.href = '@Url.Action("Logout", "Account")'; // Chuyển hướng đến action Logout
+     });
 });
 </script>

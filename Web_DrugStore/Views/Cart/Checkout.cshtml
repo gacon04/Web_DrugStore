@@ -181,6 +181,45 @@
                     border: 1px solid #ddd; /* Tùy chọn: viền để nhìn rõ */
                     padding: 20px; /* Tùy chọn: khoảng cách bên trong */
                 }
+
+                .input-item.ltn__custom-icon {
+                    position: relative; /* Tạo vùng chứa để căn chỉnh icon */
+                }
+
+                    .input-item.ltn__custom-icon input,
+                    .input-item.ltn__custom-icon textarea {
+                        padding-left: 40px; /* Tạo khoảng trống bên trái để icon không đè lên text */
+                    }
+
+                    .input-item.ltn__custom-icon::before {
+                        content: ''; /* Thay bằng mã icon hoặc để rỗng */
+                        position: absolute;
+                        left: 10px; /* Khoảng cách từ viền trái */
+                        top: 50%; /* Căn giữa icon theo chiều dọc */
+                        transform: translateY(-50%);
+                        font-family: 'Font Awesome 5 Free'; /* Thay bằng bộ font icon của bạn (nếu dùng) */
+                        font-weight: 900; /* Đảm bảo icon hiện đúng */
+                        font-size: 18px; /* Điều chỉnh kích thước icon */
+                        color: #ccc; /* Màu sắc của icon */
+                    }
+
+                /* Cấu hình icon riêng cho từng loại input */
+                .input-item-name::before {
+                    content: '\f007'; /* Icon người dùng (FontAwesome mã Unicode) */
+                }
+
+                .input-item-email::before {
+                    content: '\f0e0'; /* Icon email */
+                }
+
+                .input-item-phone::before {
+                    content: '\f095'; /* Icon điện thoại */
+                }
+
+                .input-item-website::before {
+                    content: '\f0ac'; /* Icon globe (địa chỉ nơi làm việc) */
+                }
+
             </style>
 
 

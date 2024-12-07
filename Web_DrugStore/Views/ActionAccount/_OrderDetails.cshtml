@@ -1,6 +1,12 @@
 ﻿@model Web_DrugStore.ViewModels.DonHangDetailsViewModel
 <!-- Thông tin chi tiết đơn hàng -->
 <h4>Chi tiết đơn hàng: @Model.MaDonHang</h4>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
 <p><strong>Ngày đặt:</strong> @Model.NgayDat.ToString("dd/MM/yyyy HH:mm")</p>
 
 <p><strong>Tên người nhận:</strong> @Model.TenKhachHang</p>
@@ -66,9 +72,29 @@
         </tbody>
     </table>
 </div>
-<div class="d-flex justify-content-end mb-3">
-    <button id="back-to-list" class="btn btn-secondary">Quay lại</button>
+<div class="form-group text-center mt-4">
+    @if (Model.TrangThai == Web_DrugStore.Models.TrangThaiDonHang.DangGiao)
+    {
+        <button class="btn btn-success mx-2 change-order-status"
+                data-id="@Model.MaDonHang"
+                data-status="3">
+            Xác nhận đã giao
+        </button>
+    }
+
+    @if (Model.TrangThai != Web_DrugStore.Models.TrangThaiDonHang.DangGiao && Model.TrangThai != Web_DrugStore.Models.TrangThaiDonHang.DaGiao && Model.TrangThai != Web_DrugStore.Models.TrangThaiDonHang.DaHuy)
+    {
+        <button class="btn btn-danger mx-2 change-order-status"
+                data-id="@Model.MaDonHang"
+                data-status="4">
+            Hủy đơn hàng
+        </button>
+    }
+
+    <button id="back-to-list" class="btn btn-outline-primary">Quay lại</button>
+    
 </div>
+
 
 <!-- Script cho nút Quay lại -->
 <script>
@@ -76,7 +102,7 @@
         $('#back-to-list').click(function (e) {
             e.preventDefault();
             $.ajax({
-                url: '@Url.Action("GetListProd", "Account")',
+                url: '@Url.Action("GetListProd", "ActionAccount")',
                 type: 'GET',
                 success: function (data) {
                     $('#order-content').html(data);
@@ -87,6 +113,46 @@
             });
         });
     });
+        $(document).ready(function () {
+    $('.change-order-status').click(function (e) {
+        e.preventDefault();
+
+        var orderId = $(this).data('id');
+        var newStatus = $(this).data('status');
+
+        if (!confirm('Bạn có chắc chắn muốn thực hiện hành động này?')) {
+            return;
+        }
+
+        $.ajax({
+            url: '@Url.Action("ChangeOrderStatus", "ActionAccount")',
+            type: 'POST',
+            data: { id: orderId, newStatus: newStatus },
+            success: function (response) {
+                if (response.success) {
+                    alert(response.message);
+
+                    // Reload lại phần chi tiết đơn hàng (hoặc toàn bộ giao diện nếu cần)
+                    $.ajax({
+                        url: '@Url.Action("OrderDetails", "ActionAccount", new { id = Model.MaDonHang })',
+                        type: 'GET',
+                        success: function (data) {
+                            $('#order-content').html(data); // Đặt lại nội dung cho vùng cần cập nhật
+                        },
+                        error: function () {
+                            alert('Đã xảy ra lỗi khi tải lại chi tiết đơn hàng.');
+                        }
+                    });
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function () {
+                alert('Đã xảy ra lỗi khi thay đổi trạng thái đơn hàng.');
+            }
+        });
+    });
+});
 </script>
 <style>
     /* Tùy chỉnh bảng */
@@ -125,14 +191,14 @@
         /* Cột Số lượng rộng ra một chút */
         table.table td:nth-child(2) {
             width: 15%; /* Độ rộng cho cột Số lượng */
-           /* Canh giữa số lượng */
+            /* Canh giữa số lượng */
         }
 
         /* Cột Đơn giá và Thành tiền rộng hơn */
         table.table td:nth-child(3),
         table.table td:nth-child(4) {
             width: 20%; /* Điều chỉnh độ rộng */
-             /* Canh phải cho giá trị tiền tệ */
+            /* Canh phải cho giá trị tiền tệ */
         }
 
     /* Cho phép cuộn ngang nếu bảng quá rộng */
@@ -140,9 +206,6 @@
         overflow-x: auto;
     }
 
-    /* Nút quay lại */
-    #back-to-list {
-        margin-top: 20px;
-    }
-</style>
+   
 
+</style>

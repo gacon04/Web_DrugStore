@@ -57,28 +57,28 @@ namespace Web_DrugStore.Controllers
 
             return View();
         }
-        // quy chế hđ
+        [Route("QuyCheHoatDong")]
         public ActionResult OperatingRegulations()
         {
             return View();
         }
-        // chính sách giao hàng
+        [Route("ChinhSachGiaoHang")]
         public ActionResult ShippingPolicy()
         {
             return View();
         }
-        // chính sách đổi trả
+        [Route("ChinhSachDoiTra")]
         public ActionResult ReturnPolicy()
         {
             return View();
         }
-        
-        // chính sách thanh toán
+
+        [Route("ChinhSachThanhToan")]
         public ActionResult PaymentPolicy()
         {
             return View();
         }
-        // chính sách quyền riêng tư
+        [Route("ChinhSachQuyenRiengTu")]
         public ActionResult ConfidentialityPolicy()
         {
             return View();
