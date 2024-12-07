@@ -1,4 +1,4 @@
-﻿<header class="ltn__header-area ltn__header-3">
+﻿
     <!-- ltn__header-top-area start -->
     <div class="ltn__header-top-area border-bottom">
         <div class="container">
@@ -74,13 +74,14 @@
                         </div>
                         <!-- header-search-2 -->
                         <div class="header-search-2">
-                            <form id="#123" method="get" action="#">
-                                <input type="text" name="search" value="" placeholder="Tên thuốc, vitamin, thực phẩm chức năng ..." />
+                            <form id="searchForm" method="get" action="@Url.Action("AllProducts", "Product")">
+                                <input type="text" name="searchText" id="searchInput" value="" placeholder="Tên thuốc, vitamin, thực phẩm chức năng ..." />
                                 <button type="submit">
                                     <span><i class="icon-search"></i></span>
                                 </button>
                             </form>
                         </div>
+
                     </div>
                 </div>
                 <div class="col">
@@ -100,9 +101,9 @@
                                             <i class="icon-cancel  for-search-close"></i>
                                         </div>
                                     </div>
-                                    <div class="header-search-1-form">
-                                        <form id="#" method="get" action="#">
-                                            <input type="text" name="search" value="" placeholder="Search here..." />
+                                    <div class="header-search-2">
+                                        <form id="searchForm" method="get" action="/ControllerName/AllProducts">
+                                            <input type="text" name="searchText" id="searchInput" value="" placeholder="Tên thuốc, vitamin, thực phẩm chức năng ..." />
                                             <button type="submit">
                                                 <span><i class="icon-search"></i></span>
                                             </button>
@@ -155,47 +156,14 @@
     </div>
     <!-- ltn__header-middle-area end -->
     <!-- header-bottom-area start -->
-    <div class="header-bottom-area ltn__border-top ltn__header-sticky  ltn__sticky-bg-white--- ltn__sticky-bg-secondary ltn__secondary-bg section-bg-1 menu-color-white d-none d-lg-block">
-        <div class="container">
-            <div class="row">
-                <div class="col header-menu-column justify-content-center">
-                    <div class="sticky-logo">
-                        <div class="site-logo">
-                            <a href="@Url.Action("Index","Home")"><img src="~/Content/img/logo-3.png" alt="Logo"></a>
-                        </div>
-                    </div>
-                    <div class="header-menu header-menu-2">
-                        <nav>
-                            <div class="ltn__main-menu">
-                                <ul>
-                                    <li>
-                                        <a href="@Url.Action("Index", "Home")">Trang chủ</a>
+    
+<script>
+    document.getElementById("searchForm").addEventListener("submit", function (event) {
+        var searchInput = document.getElementById("searchInput").value.trim();
+        if (!searchInput) {
+            alert("Vui lòng nhập thông tin để tìm kiếm.");
+            event.preventDefault(); // Ngăn việc gửi form nếu không có giá trị tìm kiếm
+        }
+    });
 
-                                    </li>
-                                    <li>
-                                        <a href="@Url.Action("AllProducts","Product")">Kho sản phẩm</a>
-
-                                    </li>
-                                    <li>
-                                        <a href="@Url.Action("Index","Blog")">Góc sức khoẻ</a>
-
-                                    </li>
-
-                                    <li><a href="@Url.Action("Contact", "About")">Liên hệ</a></li>
-                                    <li class="menu-icon">
-                                        <a href="#">Giới thiệu</a>
-                                        <ul>
-                                            <li><a href="@Url.Action("AboutUs","About")">Về chúng tôi</a></li>
-                                            <li><a href="@Url.Action("FAQ","About")">Câu hỏi thường gặp</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- header-bottom-area end -->
-</header>
+</script>

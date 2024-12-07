@@ -8,36 +8,52 @@ using System.Web.Mvc;
 using Web_DrugStore.Models;
 using PagedList;
 using PagedList.Mvc;
+using Microsoft.Ajax.Utilities;
 namespace Web_DrugStore.Controllers
 {
     public class ProductController : Controller
     {
         // Khởi tạo DbContext
         DS_DBContext db = new DS_DBContext();
-       
-        // Hiển thị danh sách tất cả sản phẩm
-        public ActionResult AllProducts(int? page,int? cateId)
-        {
 
+        // Hiển thị danh sách tất cả sản phẩm
+        public ActionResult AllProducts(int? page, int? cateId, string searchText)
+        {
             int Size = 9;
             int PageNumber = (page ?? 1);
             int MaDanhMuc = (cateId ?? 0);
             List<SanPham> sanphams;
-            List<DanhMuc> danhmuc_left = db.DanhMucs.Where(d => d.DanhMucCha == null ).ToList();
-            if (MaDanhMuc!=0)
+            List<DanhMuc> danhmuc_left = db.DanhMucs.Where(d => d.DanhMucCha == null).ToList();
+
+            if (MaDanhMuc != 0)
             {
-                sanphams = db.SanPhams.Where(prod => prod.HoatDong == true && prod.DanhMuc.ParentId == MaDanhMuc).ToList();
-            }    
+                sanphams = db.SanPhams
+                             .Where(prod => prod.HoatDong == true && prod.DanhMuc.ParentId == MaDanhMuc)
+                             .ToList();
+            }
             else
             {
-                sanphams = db.SanPhams.Where(prod => prod.HoatDong == true ).ToList();
-
+                sanphams = db.SanPhams
+                             .Where(prod => prod.HoatDong == true)
+                             .ToList();
             }
+
+            // Xử lý tìm kiếm
+            if (!string.IsNullOrWhiteSpace(searchText))
+            {
+                string lowerSearchText = searchText.ToLower();
+                sanphams = sanphams
+                             .Where(prod => prod.TenSanPham.ToLower().Contains(lowerSearchText))
+                             .ToList();
+            }
+
+
             ViewBag.ListDanhMuc = danhmuc_left;
-            var listProd = sanphams;
             ViewBag.SoLuongBanGhi = sanphams.Count();
+            var listProd = sanphams;
             return View(listProd.ToPagedList(PageNumber, Size));
         }
+
 
         public ActionResult ProdDetail(int id)
         {
