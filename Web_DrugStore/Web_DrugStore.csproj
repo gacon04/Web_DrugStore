@@ -182,7 +182,8 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminBlogController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminCategoryController.cs" />
-    <Compile Include="Areas\Admin\Controllers\CustomerAccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageAdminAccController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageCusAccController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminOrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminProductController.cs" />
@@ -2495,6 +2496,7 @@
     <Content Include="Areas\Admin\Views\AdminOrder\Index.cshtml" />
     <Content Include="Areas\Admin\Views\UserAccount\Login.cshtml" />
     <Content Include="Areas\Admin\Views\AdminOrder\OrderDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerAccount\Index.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
@@ -2570,6 +2572,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\ManageAdminAc\" />
     <Folder Include="Content\CKFinderPic\" />
     <Folder Include="Content\img\TinTuc\" />
     <Folder Include="Content\media\" />

@@ -9,15 +9,16 @@ using Web_DrugStore.Models;
 using PagedList;
 using PagedList.Mvc;
 using Microsoft.Ajax.Utilities;
+using System.Collections;
 namespace Web_DrugStore.Controllers
 {
     public class ProductController : Controller
     {
         // Khởi tạo DbContext
         DS_DBContext db = new DS_DBContext();
-
+        [Route("TatCaSanPham")]
         // Hiển thị danh sách tất cả sản phẩm
-        public ActionResult AllProducts(int? page, int? cateId, string searchText)
+        public ActionResult AllProducts(int? page, int? cateId, string searchText, decimal? minPrice, decimal? maxPrice)
         {
             int Size = 9;
             int PageNumber = (page ?? 1);
@@ -47,14 +48,22 @@ namespace Web_DrugStore.Controllers
                              .ToList();
             }
 
-
+            if (minPrice.HasValue)
+            {
+                sanphams = sanphams.Where(prod => prod.DonGia >= minPrice.Value).ToList();
+            }
+            if (maxPrice.HasValue)
+            {
+                sanphams = sanphams
+                             .Where(prod => prod.DonGia <= maxPrice.Value).ToList();
+            }
             ViewBag.ListDanhMuc = danhmuc_left;
             ViewBag.SoLuongBanGhi = sanphams.Count();
             var listProd = sanphams;
             return View(listProd.ToPagedList(PageNumber, Size));
         }
 
-
+        [Route("ChiTietSanPham{id}")]
         public ActionResult ProdDetail(int id)
         {
 

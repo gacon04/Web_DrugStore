@@ -20,6 +20,7 @@ namespace Web_DrugStore.Controllers
     public class AccountController : Controller
     {
         DS_DBContext db = new DS_DBContext();
+        [Route("TaiKhoanCuaToi")]
         [AuthenticationFilter]
         public ActionResult MyAccount()
         {
@@ -148,10 +149,8 @@ namespace Web_DrugStore.Controllers
 
 
 
-
-                    EmailService.SendMail(model.Email, subject, body);
-                    // Gửi email chứa liên kết (cần triển khai chức năng gửi email)
-                    
+                    // gửi mail link quên mật khẩu one-time use cho người dùng
+                    EmailService.SendMail(model.Email, subject, body);            
 
                     return View("ForgotPasswordConfirmation");
                 }
@@ -267,12 +266,10 @@ namespace Web_DrugStore.Controllers
             }
             return View(tmp);
         }
-        [Route("DangNhap")]
         public ActionResult Login()
         {
             return View();
         }
-        [Route("DangNhap")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(FormCollection f)
@@ -297,8 +294,17 @@ namespace Web_DrugStore.Controllers
                     var authenManager = HttpContext.GetOwinContext().Authentication;
                     var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                     authenManager.SignIn(new Microsoft.Owin.Security.AuthenticationProperties(), userIdentity);
-                    
-                    return RedirectToAction("Index", "Home");
+                    if (userManager.IsInRole(user.Id, "Customer"))
+                    {
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ViewData["Err2"] = "Tài khoản/Mật khẩu không hợp lệ";
+                        return this.Login();
+                    }
+                   
                 }
                 else
                 {

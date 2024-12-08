@@ -60,7 +60,7 @@ namespace Web_DrugStore.Areas.Admin.Controllers
             }
             else
             {
-                ViewData["Err2"] = "Thông tin tài khoản không tồn tại trên hệ thống";
+                ViewData["Err2"] = "Thông tin đăng nhập không phù hợp";
                 return this.Login();
             }
             return View();

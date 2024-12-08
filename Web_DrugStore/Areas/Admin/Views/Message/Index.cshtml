@@ -41,7 +41,7 @@
                             <button class="btn btn-info m-r-5"><i class="anticon anticon-mail"></i> Trả lời (Mail) </button>
                             <button class="btn btn-secondary m-r-5"><i class="anticon anticon-phone"></i> Trả lời (SDT) </button>
                             <!--click vào button sẽ bắt đầu gọi func trong partial view-->
-                            <button type="button" class="btn btn-danger m-r-5" onclick="showModal(@item.Id, '@Url.Action("BlogCateDelete", "AdminBlog")')">
+                            <button type="button" class="btn btn-danger m-r-5" onclick="showModal(@item.Id, '@Url.Action("Delete", "Message")')">
                                 <i class="anticon anticon-delete"></i> Xoá
                             </button>
                         </div>

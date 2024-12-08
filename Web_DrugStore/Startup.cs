@@ -20,7 +20,7 @@ namespace Web_DrugStore
             app.UseCookieAuthentication(new Microsoft.Owin.Security.Cookies.CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Account/Login")
+                LoginPath = new PathString("/Dangnhap")
             });
         }
         // cấu hình role trong đây

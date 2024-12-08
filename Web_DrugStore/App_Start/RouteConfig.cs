@@ -16,10 +16,14 @@ namespace Web_DrugStore
             // Bật Attribute Routing
             routes.MapMvcAttributeRoutes();
 
-          
-
-            // Route mặc định
             routes.MapRoute(
+                  name: "Login",
+                  url: "dangnhap",
+                  defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional },
+                  namespaces: new string[] { "Web_DrugStore.Controllers" });
+  
+            // Route mặc định
+              routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },

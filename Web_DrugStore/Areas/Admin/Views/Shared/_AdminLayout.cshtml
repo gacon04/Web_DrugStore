@@ -204,12 +204,24 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
                                 <span class="icon-holder">
-                                    <i class="anticon anticon-user"></i>
+                                    <i class="anticon anticon-book"></i>
                                 </span>
-                                <span class="title">Khách hàng</span>
+                                <span class="title">Quản trị tài khoản</span>
+                                <span class="arrow">
+                                    <i class="arrow-icon"></i>
+                                </span>
                             </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="@Url.Action("BlogCateIndex","AdminBlog")">Tài khoản khách hàng</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("BlogIndex","AdminBlog")">Tài khoản quản trị</a>
+                                </li>
+
+                            </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a href="@Url.Action("Index","Message")">
@@ -219,14 +231,7 @@
                                 <span class="title">Tin nhắn - liên hệ</span>
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a href="">
-                                <span class="icon-holder">
-                                    <i class="anticon anticon-appstore"></i>
-                                </span>
-                                <span class="title">Tài khoản khách hàng</span>
-                            </a>
-                        </li>
+                        
                         <li class="nav-item dropdown">
                             <a href="">
                                 <span class="icon-holder">
@@ -235,14 +240,7 @@
                                 <span class="title">Hình ảnh trang chủ</span>
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a href="">
-                                <span class="icon-holder">
-                                    <i class="anticon anticon-appstore"></i>
-                                </span>
-                                <span class="title">Tài khoản quản trị</span>
-                            </a>
-                        </li>
+                        
                         <!-- <li class="nav-item dropdown">
         <a class="dropdown-toggle" href="javascript:void(0);">
             <span class="icon-holder">

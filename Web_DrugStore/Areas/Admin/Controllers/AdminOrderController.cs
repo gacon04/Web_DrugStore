@@ -30,7 +30,7 @@ namespace Web_DrugStore.Areas.Admin.Controllers
             {
                 dhList = dhList.Where(sp => sp.MaDonHang.Contains(searchText));
             }
-            dhList = dhList.OrderBy(sp => sp.NgayDat);
+            dhList = dhList.OrderByDescending(sp => sp.NgayDat);
             var paginatedDH = dhList.ToPagedList(pageNumber, size);
 
             // Truyền `searchText` để giữ giá trị trong giao diện
