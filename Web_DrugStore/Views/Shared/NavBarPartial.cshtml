@@ -75,7 +75,7 @@
                         <!-- header-search-2 -->
                         <div class="header-search-2">
                             <form id="searchForm" method="get" action="@Url.Action("AllProducts", "Product")">
-                                <input type="text" name="searchText" id="searchInput" value="" placeholder="Tên thuốc, vitamin, thực phẩm chức năng ..." />
+                                <input type="text" name="searchText" id="searchInput" value="" placeholder="Tìm kiếm mọi thông tin về sản phẩm ..." />
                                 <button type="submit">
                                     <span><i class="icon-search"></i></span>
                                 </button>
@@ -122,7 +122,7 @@
                                                 @if (User.Identity.IsAuthenticated)
                                                 {
                                                     <li><a href="@Url.Action("MyAccount","Account")">Tài khoản của tôi</a></li>
-                                                    <li><a href="@Url.Action("WishList","Account")">Danh sách yêu thích</a></li>
+                                                    <li><a  href="@Url.Action("Index","Wishlist")">Danh sách yêu thích</a></li>
                                                     <li><a href="@Url.Action("Logout","Account")" id="logoutLink">Đăng xuất</a></li>
                                                 }
                                                 else

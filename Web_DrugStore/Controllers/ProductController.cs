@@ -44,7 +44,13 @@ namespace Web_DrugStore.Controllers
             {
                 string lowerSearchText = searchText.ToLower();
                 sanphams = sanphams
-                             .Where(prod => prod.TenSanPham.ToLower().Contains(lowerSearchText))
+                             .Where(prod => prod.TenSanPham.ToLower().Contains(lowerSearchText)
+                                  || prod.DanhMuc.TenDanhMuc.ToLower().Contains(lowerSearchText)
+                                  || prod.MoTa.ToLower().Contains(lowerSearchText)
+                                  || prod.LuuY.ToLower().Contains(lowerSearchText)
+                                  || prod.NhaSanXuat.ToLower().Contains(lowerSearchText)
+                                  || prod.PhanLoai.ToLower().Contains(lowerSearchText)
+                             )
                              .ToList();
             }
 
@@ -59,6 +65,8 @@ namespace Web_DrugStore.Controllers
             }
             ViewBag.ListDanhMuc = danhmuc_left;
             ViewBag.SoLuongBanGhi = sanphams.Count();
+
+            ViewBag.SearchText = searchText;
             var listProd = sanphams;
             return View(listProd.ToPagedList(PageNumber, Size));
         }

@@ -321,15 +321,7 @@ namespace Web_DrugStore.Controllers
                 return this.Login();
             }
             return View();
-        }
-
-        [AuthenticationFilter]
-        public ActionResult WishList()
-        {
-            return View();
-        }
-       
-       
+        }       
 
         [AuthenticationFilter]
         public ActionResult Logout()

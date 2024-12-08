@@ -24,6 +24,21 @@ namespace Web_DrugStore.Models
         public DbSet<DanhMucBlog> DanhMucBlogs { get; set; }
         public DbSet<HinhAnhSanPham> HinhAnhSanPhams { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<DanhSachYeuThich>()
+                .HasMany(w => w.DanhSachSanPham)
+                .WithMany(p => p.DanhSachYeuThichs)
+                .Map(m =>
+                {
+                    m.ToTable("WishlistSanPham");
+                    m.MapLeftKey("WishlistId");
+                    m.MapRightKey("SanPhamId");
+                });
+        }
+
 
 
     }

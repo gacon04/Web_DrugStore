@@ -18,9 +18,7 @@ namespace Web_DrugStore.Models
         [Required(ErrorMessage = "Nội dung không được để trống")]
         [Column(TypeName = "nvarchar(MAX)")]
         public string NoiDung { get; set; }
-
-        [ForeignKey("TacGia")]
-        public int IdTacGia { get; set; }
+        public string IdTacGia { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public bool HienThi { get; set; }
@@ -36,7 +34,5 @@ namespace Web_DrugStore.Models
 
         public virtual DanhMucBlog DanhMucBlog { get; set; } // Điều hướng quan hệ
 
-        // Điều hướng quan hệ tới tác giả
-        public virtual TaiKhoan TacGia { get; set; }
     }
 }

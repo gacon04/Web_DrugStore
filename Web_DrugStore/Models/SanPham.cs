@@ -60,5 +60,12 @@ namespace Web_DrugStore.Models
 
         public DateTime? NgayCapNhat { get; set; }
 
+        public virtual ICollection<DanhSachYeuThich> DanhSachYeuThichs { get; set; }
+
+        public SanPham()
+        {
+            DanhSachYeuThichs = new List<DanhSachYeuThich>();
+        }
+
     }
 }

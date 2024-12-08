@@ -39,7 +39,6 @@
                     <th scope="col">Tiêu đề</th>
                     <th scope="col">Thumbnail</th>
                     <th scope="col">Trạng thái</th>
-                    <th scope="col">Tác giả</th>
                     <th scope="col">Thời gian viết</th>
                     <th scope="col">Thao tác</th>
                 </tr>
@@ -72,9 +71,7 @@
 
                         }
 
-                        <td>
-                            @item.TacGia.HoTen
-                        </td>
+                       
                         @if (item.CreatedAt != item.UpdatedAt)
                         {
                             <td>

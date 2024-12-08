@@ -27,7 +27,15 @@ namespace Web_DrugStore.Areas.Admin.Controllers
 
             if (!string.IsNullOrEmpty(searchText))
             {
-                sanpham = sanpham.Where(sp => sp.TenSanPham.Contains(searchText));
+                sanpham = sanpham.Where(sp => sp.TenSanPham.Contains(searchText)
+                                    || sp.TenSanPham.Contains(searchText)
+                                    || sp.DanhMuc.TenDanhMuc.Contains(searchText)
+                                    || sp.MoTa.Contains(searchText)
+                                    || sp.CongDung.Contains(searchText)
+                                    || sp.QuyCach.Contains(searchText)
+                                    || sp.MoTa.Contains(searchText)
+                                    || sp.DonGia.ToString().Contains(searchText)
+                );
             }
             sanpham = sanpham.OrderBy(sp => sp.TenSanPham); 
             var paginatedSanpham = sanpham.ToPagedList(pageNumber, size);

@@ -1,4 +1,5 @@
-﻿using PagedList;
+﻿using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -106,7 +107,13 @@ namespace Web_DrugStore.Areas.Admin.Controllers
             int pageNumber = (page ?? 1);
             if (!string.IsNullOrEmpty(searchText))
             {
-                blogList = blogList.Where(sp => sp.TieuDe.Contains(searchText));
+                
+                    blogList = blogList.Where(u => u.DanhMucBlog.TenDanhMuc.Contains(searchText)
+                                          || u.TieuDe.Contains(searchText)
+                                          || u.NoiDung.Contains(searchText)
+                                          );
+                
+
             }
             blogList = blogList.OrderBy(sp => sp.CreatedAt);
             var paginatedDH = blogList.ToPagedList(pageNumber, size);
@@ -133,7 +140,7 @@ namespace Web_DrugStore.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 DS_DBContext db = new DS_DBContext();
-                model.IdTacGia = 1;
+                model.IdTacGia = User.Identity.GetUserId();
                 model.CreatedAt = DateTime.Now;
                 db.Blogs.Add(model);
                 db.SaveChanges();

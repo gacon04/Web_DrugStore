@@ -7,12 +7,15 @@ using Web_DrugStore.Models;
 using HtmlAgilityPack;
 using PagedList;
 using PagedList.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 namespace Web_DrugStore.Controllers
 {
     public class BlogController : Controller
     {
-        DS_DBContext db = new DS_DBContext();
-        // GET: Blog
+        private DS_DBContext db = new DS_DBContext();
+
+        
 
         [Route("GocSucKhoe")]
         public ActionResult Index(int? page)

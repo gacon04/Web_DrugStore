@@ -1,0 +1,167 @@
+﻿@model Web_DrugStore.ViewModel.ManageCusAccVM
+@{
+    ViewBag.Title = "Quản lí tài khoản khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 style="text-align:center">QUẢN LÝ TÀI KHOẢN KHÁCH HÀNG</h2>
+
+<form method="get" action="@Url.Action("Index", "ManageCusAcc")" class="form-inline">
+    <div class="input-group" style="max-width: 400px;">
+        <input type="text" name="searchText" class="form-control" placeholder="Tìm kiếm..." value="@Model.SearchText" />
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-secondary">
+                <i class="anticon anticon-search"></i> Tìm
+            </button>
+        </div>
+    </div>
+</form>
+
+
+
+@if (Model != null && Model.Users.Any())
+{
+    <div class="m-t-25">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+
+                        <th scope="col">#</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Họ tên</th>
+                        <th scope="col">Số điện thoại</th>
+                        <th scope="col">Địa chỉ</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+
+
+
+                <tbody>
+                    @{ 
+                        var j = 1;
+                    }
+                    @foreach (var user in Model.Users)
+                    {
+                        
+                        <tr>
+                            <td>@j</td>
+                            <th scope="row">@user.Email</th>
+                            <td>@user.HoTen</td>
+                            <td>@user.SDT</td>
+                            <td>@user.DiaChi</td>
+                            <td>Danh sách đơn</td>
+                        </tr>
+                        j++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    if (Model.TotalPages > 1)
+    {
+        <div class="pagination">
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    <span>@i</span>
+                }
+                else
+                {
+                    <a href="@Url.Action("Index", "ManageCusAcc", new { page = i, searchText = Model.SearchText })">@i</a>
+                }
+            }
+        </div>
+    }
+
+
+}
+
+
+else
+{
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 30vh; text-align: center;">
+        <h2 style="color: #dc3545; font-size: 18px; font-weight: bold; margin-bottom: 20px;">
+            Không tìm thấy tài khoản có thông tin phù hợp
+        </h2>
+
+        <!-- Nút Quay lại -->
+        <a href="@Url.Action("Index", "ManageCusAcc")" class="btn btn-primary" style="padding: 10px 20px; font-size: 16px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px;">
+            Quay lại
+        </a>
+    </div>
+}
+<style>
+    /* Căn giữa các phần tử */
+    .text-center {
+        margin: 20px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        /* Hiển thị thông tin trang */
+        .text-center span {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* Style cho các nút phân trang */
+        .text-center .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            /* Các nút phân trang */
+            .text-center .pagination a {
+                padding: 8px 12px;
+                margin: 0 5px;
+                border: 2px solid #007bff;
+                border-radius: 4px;
+                color: #007bff;
+                font-size: 14px;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+                /* Hiệu ứng hover cho các nút */
+                .text-center .pagination a:hover {
+                    background-color: #007bff;
+                    color: white;
+                }
+
+            /* Nút phân trang đang được chọn (active) */
+            .text-center .pagination .active a {
+                background-color: #007bff;
+                color: white;
+                border-color: #007bff;
+                font-weight: bold;
+            }
+
+            /* Nút phân trang không khả dụng (disabled) */
+            .text-center .pagination .disabled a {
+                color: #ccc;
+                border-color: #ddd;
+                pointer-events: none;
+            }
+
+            /* Đảm bảo spacing hợp lý */
+            .text-center .pagination a {
+                border-radius: 4px;
+                padding: 10px;
+                margin: 0 5px;
+            }
+
+            .text-center .pagination .disabled a {
+                cursor: not-allowed;
+            }
+</style>

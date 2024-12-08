@@ -199,6 +199,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\WishListController.cs" />
     <Compile Include="Filters\AuthenticationFilter.cs" />
     <Compile Include="Filters\AuthorizationFilter.cs" />
     <Compile Include="FuncService\EmailService.cs" />
@@ -319,6 +320,14 @@
     <Compile Include="Migrations\202412070112097_AddLyDoToDonHang.Designer.cs">
       <DependentUpon>202412070112097_AddLyDoToDonHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202412080320158_ChangeTacGiaBlogId.cs" />
+    <Compile Include="Migrations\202412080320158_ChangeTacGiaBlogId.Designer.cs">
+      <DependentUpon>202412080320158_ChangeTacGiaBlogId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202412081559553_UpdateWishList.cs" />
+    <Compile Include="Migrations\202412081559553_UpdateWishList.Designer.cs">
+      <DependentUpon>202412081559553_UpdateWishList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ChiTietDonHang.cs" />
@@ -337,6 +346,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ChangePasswordVM.cs" />
     <Compile Include="ViewModel\CheckOutItemVM.cs" />
+    <Compile Include="ViewModel\ManageCusAccVM.cs" />
     <Compile Include="ViewModel\ResetPasswordVM.cs" />
     <Compile Include="ViewModel\DonHangDetailsViewModel.cs" />
     <Compile Include="ViewModel\ForgotPassMailVM.cs" />
@@ -2497,6 +2507,8 @@
     <Content Include="Areas\Admin\Views\UserAccount\Login.cshtml" />
     <Content Include="Areas\Admin\Views\AdminOrder\OrderDetail.cshtml" />
     <Content Include="Areas\Admin\Views\CustomerAccount\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageCusAcc\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageAdminAcc\Index.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
@@ -2509,6 +2521,7 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\WishListjs.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2529,7 +2542,7 @@
     <Content Include="Views\About\GoogleMapLocations.cshtml" />
     <Content Include="Views\About\FAQ.cshtml" />
     <Content Include="Views\Account\MyAccount.cshtml" />
-    <Content Include="Views\Account\WishList.cshtml" />
+    <Content Include="Views\WishList\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -2686,6 +2699,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202412070112097_AddLyDoToDonHang.resx">
       <DependentUpon>202412070112097_AddLyDoToDonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412080320158_ChangeTacGiaBlogId.resx">
+      <DependentUpon>202412080320158_ChangeTacGiaBlogId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412081559553_UpdateWishList.resx">
+      <DependentUpon>202412081559553_UpdateWishList.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

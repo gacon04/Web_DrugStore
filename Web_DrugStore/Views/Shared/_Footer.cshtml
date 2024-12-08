@@ -58,7 +58,7 @@
                                 <li><a href="@Url.Action("AllProducts","Product")">Tất cả sản phẩm</a></li>
                                 <li><a href="@Url.Action("FAQ","About")">FAQ  - Câu hỏi thường gặp</a></li>
                                 <li><a href="@Url.Action("Contact","About")">Liên hệ</a></li>
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -128,6 +128,11 @@
         </div>
     </div>
 </footer>
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger intent="WELCOME"
+              chat-title="Trợ lý ảo PharmaVillage"
+              agent-id="3bd255a7-d8fe-40c1-a980-31406b1514e9"
+              language-code="vi"></df-messenger>
 <!-- FOOTER AREA END -->
 <script src="~/Content/js/plugins.js"></script>
 <!-- Contact Form -->

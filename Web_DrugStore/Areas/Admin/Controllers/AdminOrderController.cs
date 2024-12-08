@@ -12,7 +12,6 @@ using Web_DrugStore.Models;
 
 namespace Web_DrugStore.Areas.Admin.Controllers
 {
-    [AuthenticationFilter]
     [AuthorizationFilter]
     public class AdminOrderController : Controller
     {
@@ -28,7 +27,14 @@ namespace Web_DrugStore.Areas.Admin.Controllers
 
             if (!string.IsNullOrEmpty(searchText))
             {
-                dhList = dhList.Where(sp => sp.MaDonHang.Contains(searchText));
+                dhList = dhList.Where(sp => sp.MaDonHang.Contains(searchText)
+                                    || sp.TenKhachHang.Contains(searchText)
+                                    || sp.TrangThai.ToString().Contains(searchText)
+                                    || sp.TenXa.Contains(searchText)
+                                    || sp.TenHuyen.Contains(searchText)
+                                    || sp.TenDuong.Contains(searchText)
+                                    || sp.TenTinh.Contains(searchText)
+                );
             }
             dhList = dhList.OrderByDescending(sp => sp.NgayDat);
             var paginatedDH = dhList.ToPagedList(pageNumber, size);
