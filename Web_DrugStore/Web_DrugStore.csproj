@@ -354,6 +354,7 @@
     <Compile Include="ViewModel\Mail.cs" />
     <Compile Include="ViewModel\ShoppingCart.cs" />
     <Compile Include="ViewModel\RegisterVM.cs" />
+    <Compile Include="ViewModel\SPBanChayVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Admin_assets\css\app.min.css" />
@@ -2513,6 +2514,9 @@
     <Content Include="Areas\Admin\Views\Dashboard\GetMostPopularProd.cshtml" />
     <Content Include="Areas\Admin\Views\ManageCusAcc\AccountDetail.cshtml" />
     <Content Include="Areas\Admin\Views\ManageCusAcc\GetListUserOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\TongDoanhThu.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\KhachHangTrongThang.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\SPBanChay.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />

@@ -89,7 +89,7 @@ class DashboardECommerce {
                         pointBorderColor: themeColors.white,
                         pointHoverBackgroundColor: themeColors.cyanLight,
                         pointHoverBorderColor: themeColors.cyanLight,
-                        data: [30, 60, 40, 50, 40, 55, 85, 65, 75, 50, 70],
+                        data: [3333, 60, 40, 50, 40, 55, 85, 65, 75, 50, 70],
                         label: 'Series A' 
                     }
                 ]
