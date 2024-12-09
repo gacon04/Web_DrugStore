@@ -13,9 +13,8 @@ namespace Web_DrugStore.Identity
         public static DS_DBContext Create()
         {
             return new DS_DBContext();
+
         }
-
-
     }
 
 }

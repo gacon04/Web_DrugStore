@@ -16,5 +16,9 @@ namespace Web_DrugStore.Areas.Admin.Controllers
         {
             return View();
         }
+        public ActionResult GetMostPopularProd()
+        {
+            return PartialView();
+        }
     }
 }

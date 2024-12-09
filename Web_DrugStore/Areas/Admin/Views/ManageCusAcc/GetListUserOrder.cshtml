@@ -1,37 +1,21 @@
-﻿@model Web_DrugStore.ViewModel.ManageCusAccVM
-@{
-    ViewBag.Title = "Quản lí tài khoản khách hàng";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-}
-
-<h2 style="text-align:center">QUẢN LÝ TÀI KHOẢN KHÁCH HÀNG</h2>
-
-<form method="get" action="@Url.Action("Index", "ManageCusAcc")" class="form-inline">
-    <div class="input-group" style="max-width: 400px;">
-        <input type="text" name="searchText" class="form-control" placeholder="Tìm kiếm..." value="@Model.SearchText" />
-        <div class="input-group-append">
-            <button type="submit" class="btn btn-secondary">
-                <i class="anticon anticon-search"></i> Tìm
-            </button>
-        </div>
-    </div>
-</form>
-
-
-
-@if (Model != null && Model.Users.Any())
+﻿@using Web_DrugStore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<DonHang>
+@if (Model != null && Model.Any())
 {
     <div class="m-t-25">
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
-
                         <th scope="col">#</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Họ tên</th>
+                        <th scope="col">Mã đơn</th>
+                        <th scope="col">Ngày tạo đơn</th>
+                        <th scope="col">Tên tài khoản</th>
                         <th scope="col">Số điện thoại</th>
-                        <th scope="col">Địa chỉ</th>
+                        <th scope="col">Trạng thái đơn</th>
+                        <th scope="col">Tổng giá</th>
+                        <th scope="col">Tổng đơn</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -39,19 +23,38 @@
 
 
                 <tbody>
-                    @{ 
-                        var j = 1;
-                    }
-                    @foreach (var user in Model.Users)
+                    @foreach (var item in Model)
                     {
-                        
+                        var j = 0;
                         <tr>
-                            <td>@j</td>
-                            <th scope="row">@user.Email</th>
-                            <td>@user.HoTen</td>
-                            <td>@user.SDT</td>
-                            <td>@user.DiaChi</td>
-                            <td><a href="@Url.Action("AccountDetail","ManageCusAcc", new {id = user.Id})">Chi tiết</a></td>
+                            <td>@(j+1)</td>
+                            <th scope="row">@item.MaDonHang</th>
+                            <td>@item.NgayDat.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>@Html.Action("GetHoTenById", "AdminOrder", new { id = item.UserAspId })</td>
+                            <td>@item.SoDienThoai</td>
+                            @if (item.TrangThai == Web_DrugStore.Models.TrangThaiDonHang.ChoXacNhan)
+                            {
+                                <td>Chờ xác nhận</td>
+                            }
+                            else if (item.TrangThai == Web_DrugStore.Models.TrangThaiDonHang.DangXuLy)
+                            {
+                                <td>Đang xử lý</td>
+                            }
+                            else if (item.TrangThai == Web_DrugStore.Models.TrangThaiDonHang.DaGiao)
+                            {
+                                <td>Đã giao</td>
+                            }
+                            else if (item.TrangThai == Web_DrugStore.Models.TrangThaiDonHang.DaHuy)
+                            {
+                                <td>Đã huỷ</td>
+                            }
+                            else if (item.TrangThai == Web_DrugStore.Models.TrangThaiDonHang.DangGiao)
+                            {
+                                <td>Đang giao hàng</td>
+                            }
+                            <td>@item.TongTienHang.ToString("#,0") ₫</td>
+                            <td>@item.TongHoaDon.ToString("#,0") ₫</td>
+                            <td><a href="@Url.Action("OrderDetail","AdminOrder", new {id = item.DonHangId})">Chi tiết</a></td>
                         </tr>
                         j++;
                     }
@@ -61,23 +64,15 @@
     </div>
 
 
-    if (Model.TotalPages > 1)
-    {
-        <div class="pagination">
-            @for (int i = 1; i <= Model.TotalPages; i++)
-            {
-                if (i == Model.CurrentPage)
-                {
-                    <span>@i</span>
-                }
-                else
-                {
-                    <a href="@Url.Action("Index", "ManageCusAcc", new { page = i, searchText = Model.SearchText })">@i</a>
-                }
-            }
-        </div>
-    }
 
+
+    <div class="text-center">
+        <span>Trang @(Model.PageNumber) / @Model.PageCount</span>
+        <div>
+            @Html.PagedListPager(Model, page =>
+         Url.Action("AccountDetail", "ManageCusAcc", new { id = ViewBag.UserId, page = page }))
+        </div>
+    </div>
 
 }
 
@@ -86,13 +81,10 @@ else
 {
     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 30vh; text-align: center;">
         <h2 style="color: #dc3545; font-size: 18px; font-weight: bold; margin-bottom: 20px;">
-            Không tìm thấy tài khoản có thông tin phù hợp
+            Khách hàng hiện tại chưa có đơn nào
         </h2>
 
-        <!-- Nút Quay lại -->
-        <a href="@Url.Action("Index", "ManageCusAcc")" class="btn btn-primary" style="padding: 10px 20px; font-size: 16px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px;">
-            Quay lại
-        </a>
+       
     </div>
 }
 <style>
@@ -165,3 +157,4 @@ else
                 cursor: not-allowed;
             }
 </style>
+

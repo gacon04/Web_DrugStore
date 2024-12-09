@@ -1,24 +1,36 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Web_DrugStore.Filters;
 using Web_DrugStore.Identity;
 using Web_DrugStore.ViewModel;
 
 namespace Web_DrugStore.Areas.Admin.Controllers
 {
+    [AuthorizationFilter]
     public class ManageAdminAccController : Controller
     {
         // GET: Admin/ManageAdminAc
+        
         public ActionResult Index(int? page, string searchText)
         {
             var appDBContext = new AppDBContext();
-            var userStore = new AppUserStore(appDBContext);
-            var userManager = new AppUserManager(userStore);
 
-            var users = userManager.Users.AsQueryable();
+            var userRole = appDBContext.Roles.FirstOrDefault(r => r.Name == "Admin");
 
+            var userIdsInRole = appDBContext.Set<IdentityUserRole>()
+                                            .Where(ur => ur.RoleId == userRole.Id)
+                                            .Select(ur => ur.UserId)
+                                            .ToList();
+
+            var users = appDBContext.Users
+                                    .Where(u => userIdsInRole.Contains(u.Id))
+                                    .AsQueryable();
+
+            // Apply search functionality
             if (!string.IsNullOrEmpty(searchText))
             {
                 users = users.Where(u => u.Email.Contains(searchText)
@@ -27,7 +39,6 @@ namespace Web_DrugStore.Areas.Admin.Controllers
                                       || u.SDT.Contains(searchText));
             }
 
-            // Phân trang
             int pageSize = 10;
             int pageNumber = page ?? 1;
             int totalUsers = users.Count();
@@ -35,7 +46,6 @@ namespace Web_DrugStore.Areas.Admin.Controllers
 
             var pagedUsers = users.OrderBy(u => u.UserName)
                                   .Skip((pageNumber - 1) * pageSize)
-
                                   .Take(pageSize)
                                   .ToList();
 
